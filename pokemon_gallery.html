@@ -1,0 +1,532 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ポケモン図鑑ギャラリー</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        .header h1 {
+            font-size: 2.5rem;
+            margin: 0;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+        .pokemon-section {
+            margin-bottom: 50px;
+        }
+        .pokemon-grid {
+            display: grid;
+            grid-template-columns: repeat(6, 1fr);
+            gap: 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+        .pokemon-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3), 0 0 20px rgba(255, 182, 193, 0.2);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .pokemon-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff6b9d, #4facfe, #43e97b, #f093fb, #ff6b9d);
+            border-radius: 17px;
+            z-index: -1;
+            animation: borderGlow 3s linear infinite;
+        }
+        
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .pokemon-card:hover {
+            transform: translateY(-8px) scale(1.05) rotateZ(2deg);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4), 0 5px 15px rgba(255, 182, 193, 0.3);
+            background: linear-gradient(145deg, #ffffff 0%, #ffeef8 50%, #ffe0f0 100%);
+        }
+        .pokemon-image {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+        .pokemon-number {
+            font-size: 0.9rem;
+            color: #6c757d;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .pokemon-name {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #333;
+            margin: 0;
+        }
+        .section-break {
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+            max-width: 1200px;
+        }
+        .section-break::before, .section-break::after {
+            content: "";
+            flex: 1;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        }
+        .section-break span {
+            color: white;
+            margin: 0 20px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .search-container {
+            max-width: 600px;
+            margin: 20px auto;
+            position: relative;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            background: rgba(255, 255, 255, 0.95);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        .search-icon {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #666;
+            font-size: 1.2rem;
+        }
+        
+        .clear-search {
+            position: absolute;
+            right: 50px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: none;
+        }
+        
+        .clear-search:hover {
+            color: #333;
+        }
+        
+        .search-results {
+            color: white;
+            text-align: center;
+            margin: 10px 0;
+            font-size: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>ポケモン図鑑ギャラリー</h1>
+        <p>全230種のユニークポケモンコレクション</p>
+        <div class="search-container">
+            <input type="text" class="search-box" placeholder="ポケモン名または図鑑No.で検索... (例: ピカチュウ、025)" id="searchInput">
+            <button class="clear-search" id="clearSearch">×</button>
+            <span class="search-icon">🔍</span>
+        </div>
+        <div class="search-results" id="searchResults"></div>
+    </div><div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.001</div><img src="pokemon_images/pokemon_001_chikorita.png" alt="チコリータ" class="pokemon-image" loading="lazy"><div class="pokemon-name">チコリータ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.002</div><img src="pokemon_images/pokemon_002_bayleef.png" alt="ベイリーフ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ベイリーフ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.003</div><img src="pokemon_images/pokemon_003_meganium.png" alt="メガニウム" class="pokemon-image" loading="lazy"><div class="pokemon-name">メガニウム</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.004</div><img src="pokemon_images/pokemon_004_tepig.png" alt="ポカブ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ポカブ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.005</div><img src="pokemon_images/pokemon_005_pignite.png" alt="チャオブー" class="pokemon-image" loading="lazy"><div class="pokemon-name">チャオブー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.006</div><img src="pokemon_images/pokemon_006_emboar.png" alt="エンブオー" class="pokemon-image" loading="lazy"><div class="pokemon-name">エンブオー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.007</div><img src="pokemon_images/pokemon_007_totodile.png" alt="ワニノコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワニノコ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.008</div><img src="pokemon_images/pokemon_008_croconaw.png" alt="アリゲイツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アリゲイツ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.009</div><img src="pokemon_images/pokemon_009_feraligatr.png" alt="オーダイル" class="pokemon-image" loading="lazy"><div class="pokemon-name">オーダイル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.010</div><img src="pokemon_images/pokemon_010_fletchling.png" alt="ヤヤコマ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤヤコマ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.011</div><img src="pokemon_images/pokemon_011_fletchinder.png" alt="ヒノヤコマ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒノヤコマ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.012</div><img src="pokemon_images/pokemon_012_talonflame.png" alt="ファイアロー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ファイアロー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.013</div><img src="pokemon_images/pokemon_013.png" alt="ホルビー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホルビー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.014</div><img src="pokemon_images/pokemon_014.png" alt="ホルード" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホルード</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.015</div><img src="pokemon_images/pokemon_015.png" alt="コフキムシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コフキムシ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.016</div><img src="pokemon_images/pokemon_016.png" alt="コフーライ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コフーライ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.017</div><img src="pokemon_images/pokemon_017.png" alt="ビビヨン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ビビヨン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.018</div><img src="pokemon_images/pokemon_018.png" alt="ビードル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ビードル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.019</div><img src="pokemon_images/pokemon_019.png" alt="コクーン" class="pokemon-image" loading="lazy"><div class="pokemon-name">コクーン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.020</div><img src="pokemon_images/pokemon_020.png" alt="スピアー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スピアー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.021</div><img src="pokemon_images/pokemon_021.png" alt="ポッポ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ポッポ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.022</div><img src="pokemon_images/pokemon_022.png" alt="ピジョン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピジョン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.023</div><img src="pokemon_images/pokemon_023.png" alt="ピジョット" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピジョット</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.024</div><img src="pokemon_images/pokemon_024.png" alt="メリープ" class="pokemon-image" loading="lazy"><div class="pokemon-name">メリープ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.025</div><img src="pokemon_images/pokemon_025.png" alt="モココ" class="pokemon-image" loading="lazy"><div class="pokemon-name">モココ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.026</div><img src="pokemon_images/pokemon_026.png" alt="デンリュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">デンリュウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.027</div><img src="pokemon_images/pokemon_027.png" alt="ミネズミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミネズミ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.028</div><img src="pokemon_images/pokemon_028.png" alt="ミルホッグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミルホッグ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.029</div><img src="pokemon_images/pokemon_029.png" alt="スボミー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スボミー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.030</div><img src="pokemon_images/pokemon_030.png" alt="ロゼリア" class="pokemon-image" loading="lazy"><div class="pokemon-name">ロゼリア</div></div>
+</div></div>
+<div class="section-break"><span>Section 2</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.031</div><img src="pokemon_images/pokemon_031.png" alt="ロズレイド" class="pokemon-image" loading="lazy"><div class="pokemon-name">ロズレイド</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.032</div><img src="pokemon_images/pokemon_032.png" alt="コイキング" class="pokemon-image" loading="lazy"><div class="pokemon-name">コイキング</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.033</div><img src="pokemon_images/pokemon_033.png" alt="ギャラドス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ギャラドス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.034</div><img src="pokemon_images/pokemon_034.png" alt="カメテテ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメテテ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.035</div><img src="pokemon_images/pokemon_035.png" alt="ガメノデス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガメノデス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.036</div><img src="pokemon_images/pokemon_036.png" alt="ヒトデマン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトデマン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.037</div><img src="pokemon_images/pokemon_037.png" alt="スターミー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スターミー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.038</div><img src="pokemon_images/pokemon_038.png" alt="フラベベ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラベベ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.039</div><img src="pokemon_images/pokemon_039.png" alt="フラエッテ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラエッテ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.040</div><img src="pokemon_images/pokemon_040.png" alt="フラージェス" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラージェス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.041</div><img src="pokemon_images/pokemon_041.png" alt="メェークル" class="pokemon-image" loading="lazy"><div class="pokemon-name">メェークル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.042</div><img src="pokemon_images/pokemon_042.png" alt="ゴーゴート" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴーゴート</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.043</div><img src="pokemon_images/pokemon_043.png" alt="ニャスパー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニャスパー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.044</div><img src="pokemon_images/pokemon_044.png" alt="ニャオニクス(オス)" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニャオニクス(オス)</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.045</div><img src="pokemon_images/pokemon_045.png" alt="シシコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シシコ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.046</div><img src="pokemon_images/pokemon_046.png" alt="カエンジシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カエンジシ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.047</div><img src="pokemon_images/pokemon_047.png" alt="ヤンチャム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤンチャム</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.048</div><img src="pokemon_images/pokemon_048.png" alt="ゴロンダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴロンダ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.049</div><img src="pokemon_images/pokemon_049.png" alt="ヤブクロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤブクロン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.050</div><img src="pokemon_images/pokemon_050.png" alt="ダストダス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ダストダス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.051</div><img src="pokemon_images/pokemon_051.png" alt="デデンネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">デデンネ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.052</div><img src="pokemon_images/pokemon_052.png" alt="ピチュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピチュー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.053</div><img src="pokemon_images/pokemon_053.png" alt="ピカチュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピカチュウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.054</div><img src="pokemon_images/pokemon_054.png" alt="ライチュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ライチュウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.055</div><img src="pokemon_images/pokemon_055.png" alt="ピィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピィ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.056</div><img src="pokemon_images/pokemon_056.png" alt="ピッピ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピッピ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.057</div><img src="pokemon_images/pokemon_057.png" alt="ピクシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピクシー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.058</div><img src="pokemon_images/pokemon_058.png" alt="イトマル" class="pokemon-image" loading="lazy"><div class="pokemon-name">イトマル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.059</div><img src="pokemon_images/pokemon_059.png" alt="アリアドス" class="pokemon-image" loading="lazy"><div class="pokemon-name">アリアドス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.060</div><img src="pokemon_images/pokemon_060.png" alt="アーボ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アーボ</div></div>
+</div></div>
+<div class="section-break"><span>Section 3</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.061</div><img src="pokemon_images/pokemon_061.png" alt="アーボック" class="pokemon-image" loading="lazy"><div class="pokemon-name">アーボック</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.062</div><img src="pokemon_images/pokemon_062.png" alt="ケーシィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ケーシィ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.063</div><img src="pokemon_images/pokemon_063.png" alt="ユンゲラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユンゲラー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.064</div><img src="pokemon_images/pokemon_064.png" alt="フーディン" class="pokemon-image" loading="lazy"><div class="pokemon-name">フーディン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.065</div><img src="pokemon_images/pokemon_065.png" alt="ゴース" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴース</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.066</div><img src="pokemon_images/pokemon_066.png" alt="ゴースト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴースト</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.067</div><img src="pokemon_images/pokemon_067.png" alt="ゲンガー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲンガー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.068</div><img src="pokemon_images/pokemon_068.png" alt="フシデ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシデ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.069</div><img src="pokemon_images/pokemon_069.png" alt="ホイーガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホイーガ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.070</div><img src="pokemon_images/pokemon_070.png" alt="ペンドラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペンドラー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.071</div><img src="pokemon_images/pokemon_071.png" alt="ヒトツキ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトツキ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.072</div><img src="pokemon_images/pokemon_072.png" alt="ニダンギル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニダンギル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.073</div><img src="pokemon_images/pokemon_073.png" alt="ギルガルド" class="pokemon-image" loading="lazy"><div class="pokemon-name">ギルガルド</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.074</div><img src="pokemon_images/pokemon_074.png" alt="マダツボミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マダツボミ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.075</div><img src="pokemon_images/pokemon_075.png" alt="ウツドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウツドン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.076</div><img src="pokemon_images/pokemon_076.png" alt="ウツボット" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウツボット</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.077</div><img src="pokemon_images/pokemon_077.png" alt="ヤナップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤナップ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.078</div><img src="pokemon_images/pokemon_078.png" alt="ヤナッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤナッキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.079</div><img src="pokemon_images/pokemon_079.png" alt="バオップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バオップ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.080</div><img src="pokemon_images/pokemon_080.png" alt="バオッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">バオッキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.081</div><img src="pokemon_images/pokemon_081.png" alt="ヒヤップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒヤップ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.082</div><img src="pokemon_images/pokemon_082.png" alt="ヒヤッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒヤッキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.083</div><img src="pokemon_images/pokemon_083.png" alt="アサナン" class="pokemon-image" loading="lazy"><div class="pokemon-name">アサナン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.084</div><img src="pokemon_images/pokemon_084.png" alt="チャーレム" class="pokemon-image" loading="lazy"><div class="pokemon-name">チャーレム</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.085</div><img src="pokemon_images/pokemon_085.png" alt="ラクライ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ラクライ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.086</div><img src="pokemon_images/pokemon_086.png" alt="ライボルト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ライボルト</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.087</div><img src="pokemon_images/pokemon_087.png" alt="ラルトス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ラルトス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.088</div><img src="pokemon_images/pokemon_088.png" alt="キルリア" class="pokemon-image" loading="lazy"><div class="pokemon-name">キルリア</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.089</div><img src="pokemon_images/pokemon_089.png" alt="サーナイト" class="pokemon-image" loading="lazy"><div class="pokemon-name">サーナイト</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.090</div><img src="pokemon_images/pokemon_090.png" alt="エルレイド" class="pokemon-image" loading="lazy"><div class="pokemon-name">エルレイド</div></div>
+</div></div>
+<div class="section-break"><span>Section 4</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.091</div><img src="pokemon_images/pokemon_091.png" alt="デルビル" class="pokemon-image" loading="lazy"><div class="pokemon-name">デルビル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.092</div><img src="pokemon_images/pokemon_092.png" alt="ヘルガー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヘルガー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.093</div><img src="pokemon_images/pokemon_093.png" alt="チルット" class="pokemon-image" loading="lazy"><div class="pokemon-name">チルット</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.094</div><img src="pokemon_images/pokemon_094.png" alt="チルタリス" class="pokemon-image" loading="lazy"><div class="pokemon-name">チルタリス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.095</div><img src="pokemon_images/pokemon_095.png" alt="タブンネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タブンネ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.096</div><img src="pokemon_images/pokemon_096.png" alt="シュシュプ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シュシュプ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.097</div><img src="pokemon_images/pokemon_097.png" alt="フレフワン" class="pokemon-image" loading="lazy"><div class="pokemon-name">フレフワン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.098</div><img src="pokemon_images/pokemon_098.png" alt="ペロッパフ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペロッパフ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.099</div><img src="pokemon_images/pokemon_099.png" alt="ペロリーム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペロリーム</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.100</div><img src="pokemon_images/pokemon_100.png" alt="イーブイ" class="pokemon-image" loading="lazy"><div class="pokemon-name">イーブイ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.101</div><img src="pokemon_images/pokemon_101.png" alt="シャワーズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シャワーズ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.102</div><img src="pokemon_images/pokemon_102.png" alt="サンダース" class="pokemon-image" loading="lazy"><div class="pokemon-name">サンダース</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.103</div><img src="pokemon_images/pokemon_103.png" alt="ブースター" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブースター</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.104</div><img src="pokemon_images/pokemon_104.png" alt="エーフィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">エーフィ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.105</div><img src="pokemon_images/pokemon_105.png" alt="ブラッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブラッキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.106</div><img src="pokemon_images/pokemon_106.png" alt="リーフィア" class="pokemon-image" loading="lazy"><div class="pokemon-name">リーフィア</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.107</div><img src="pokemon_images/pokemon_107.png" alt="グレイシア" class="pokemon-image" loading="lazy"><div class="pokemon-name">グレイシア</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.108</div><img src="pokemon_images/pokemon_108.png" alt="ニンフィア" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニンフィア</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.109</div><img src="pokemon_images/pokemon_109.png" alt="ミミロル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミミロル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.110</div><img src="pokemon_images/pokemon_110.png" alt="ミミロップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミミロップ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.111</div><img src="pokemon_images/pokemon_111.png" alt="カゲボウズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カゲボウズ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.112</div><img src="pokemon_images/pokemon_112.png" alt="ジュペッタ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジュペッタ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.113</div><img src="pokemon_images/pokemon_113.png" alt="バニプッチ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バニプッチ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.114</div><img src="pokemon_images/pokemon_114.png" alt="バニリッチ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バニリッチ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.115</div><img src="pokemon_images/pokemon_115.png" alt="バイバニラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バイバニラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.116</div><img src="pokemon_images/pokemon_116.png" alt="ドンメル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドンメル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.117</div><img src="pokemon_images/pokemon_117.png" alt="バクーダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バクーダ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.118</div><img src="pokemon_images/pokemon_118.png" alt="ヒポポタス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒポポタス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.119</div><img src="pokemon_images/pokemon_119.png" alt="カバルドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">カバルドン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.120</div><img src="pokemon_images/pokemon_120.png" alt="モグリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">モグリュー</div></div>
+</div></div>
+<div class="section-break"><span>Section 5</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.121</div><img src="pokemon_images/pokemon_121.png" alt="ドリュウズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドリュウズ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.122</div><img src="pokemon_images/pokemon_122.png" alt="メグロコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">メグロコ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.123</div><img src="pokemon_images/pokemon_123.png" alt="ワルビル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワルビル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.124</div><img src="pokemon_images/pokemon_124.png" alt="ワルビアル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワルビアル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.125</div><img src="pokemon_images/pokemon_125.png" alt="ワンリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワンリキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.126</div><img src="pokemon_images/pokemon_126.png" alt="ゴーリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴーリキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.127</div><img src="pokemon_images/pokemon_127.png" alt="カイリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイリキー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.128</div><img src="pokemon_images/pokemon_128.png" alt="フカマル" class="pokemon-image" loading="lazy"><div class="pokemon-name">フカマル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.129</div><img src="pokemon_images/pokemon_129.png" alt="ガバイト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガバイト</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.130</div><img src="pokemon_images/pokemon_130.png" alt="ガブリアス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガブリアス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.131</div><img src="pokemon_images/pokemon_131.png" alt="メレシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">メレシー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.132</div><img src="pokemon_images/pokemon_132.png" alt="ヤミラミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤミラミ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.133</div><img src="pokemon_images/pokemon_133.png" alt="クチート" class="pokemon-image" loading="lazy"><div class="pokemon-name">クチート</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.134</div><img src="pokemon_images/pokemon_134.png" alt="アブソル" class="pokemon-image" loading="lazy"><div class="pokemon-name">アブソル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.135</div><img src="pokemon_images/pokemon_135.png" alt="リオル" class="pokemon-image" loading="lazy"><div class="pokemon-name">リオル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.136</div><img src="pokemon_images/pokemon_136.png" alt="ルカリオ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ルカリオ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.137</div><img src="pokemon_images/pokemon_137.png" alt="ヤドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.138</div><img src="pokemon_images/pokemon_138.png" alt="ヤドラン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドラン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.139</div><img src="pokemon_images/pokemon_139.png" alt="ヤドキング" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドキング</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.140</div><img src="pokemon_images/pokemon_140.png" alt="キバニア" class="pokemon-image" loading="lazy"><div class="pokemon-name">キバニア</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.141</div><img src="pokemon_images/pokemon_141.png" alt="サメハダー" class="pokemon-image" loading="lazy"><div class="pokemon-name">サメハダー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.142</div><img src="pokemon_images/pokemon_142.png" alt="シビシラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビシラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.143</div><img src="pokemon_images/pokemon_143.png" alt="シビビール" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビビール</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.144</div><img src="pokemon_images/pokemon_144.png" alt="シビルドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビルドン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.145</div><img src="pokemon_images/pokemon_145.png" alt="ミニリュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミニリュウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.146</div><img src="pokemon_images/pokemon_146.png" alt="ハクリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハクリュー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.147</div><img src="pokemon_images/pokemon_147.png" alt="カイリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイリュー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.148</div><img src="pokemon_images/pokemon_148.png" alt="フシギダネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギダネ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.149</div><img src="pokemon_images/pokemon_149.png" alt="フシギソウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギソウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.150</div><img src="pokemon_images/pokemon_150.png" alt="フシギバナ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギバナ</div></div>
+</div></div>
+<div class="section-break"><span>Section 6</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.151</div><img src="pokemon_images/pokemon_151.png" alt="ヒトカゲ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトカゲ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.152</div><img src="pokemon_images/pokemon_152.png" alt="リザード" class="pokemon-image" loading="lazy"><div class="pokemon-name">リザード</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.153</div><img src="pokemon_images/pokemon_153.png" alt="リザードン" class="pokemon-image" loading="lazy"><div class="pokemon-name">リザードン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.154</div><img src="pokemon_images/pokemon_154.png" alt="ゼニガメ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゼニガメ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.155</div><img src="pokemon_images/pokemon_155.png" alt="カメール" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメール</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.156</div><img src="pokemon_images/pokemon_156.png" alt="カメックス" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメックス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.157</div><img src="pokemon_images/pokemon_157.png" alt="マッギョ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マッギョ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.158</div><img src="pokemon_images/pokemon_158.png" alt="トリミアン" class="pokemon-image" loading="lazy"><div class="pokemon-name">トリミアン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.159</div><img src="pokemon_images/pokemon_159.png" alt="マーイーカ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マーイーカ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.160</div><img src="pokemon_images/pokemon_160.png" alt="カラマネロ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カラマネロ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.161</div><img src="pokemon_images/pokemon_161.png" alt="クズモー" class="pokemon-image" loading="lazy"><div class="pokemon-name">クズモー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.162</div><img src="pokemon_images/pokemon_162.png" alt="ドラミドロ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドラミドロ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.163</div><img src="pokemon_images/pokemon_163.png" alt="ウデッポウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウデッポウ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.164</div><img src="pokemon_images/pokemon_164.png" alt="ブロスター" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブロスター</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.165</div><img src="pokemon_images/pokemon_165.png" alt="ヌメラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.166</div><img src="pokemon_images/pokemon_166.png" alt="ヌメイル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメイル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.167</div><img src="pokemon_images/pokemon_167.png" alt="ヌメルゴン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメルゴン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.168</div><img src="pokemon_images/pokemon_168.png" alt="デリバード" class="pokemon-image" loading="lazy"><div class="pokemon-name">デリバード</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.169</div><img src="pokemon_images/pokemon_169.png" alt="ユキワラシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキワラシ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.170</div><img src="pokemon_images/pokemon_170.png" alt="オニゴーリ" class="pokemon-image" loading="lazy"><div class="pokemon-name">オニゴーリ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.171</div><img src="pokemon_images/pokemon_171.png" alt="ユキメノコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキメノコ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.172</div><img src="pokemon_images/pokemon_172.png" alt="ユキカブリ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキカブリ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.173</div><img src="pokemon_images/pokemon_173.png" alt="ユキノオー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキノオー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.174</div><img src="pokemon_images/pokemon_174.png" alt="カチコール" class="pokemon-image" loading="lazy"><div class="pokemon-name">カチコール</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.175</div><img src="pokemon_images/pokemon_175.png" alt="クレベース" class="pokemon-image" loading="lazy"><div class="pokemon-name">クレベース</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.176</div><img src="pokemon_images/pokemon_176.png" alt="ストライク" class="pokemon-image" loading="lazy"><div class="pokemon-name">ストライク</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.177</div><img src="pokemon_images/pokemon_177.png" alt="ハッサム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハッサム</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.178</div><img src="pokemon_images/pokemon_178.png" alt="カイロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイロス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.179</div><img src="pokemon_images/pokemon_179.png" alt="ヘラクロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヘラクロス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.180</div><img src="pokemon_images/pokemon_180.png" alt="エモンガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">エモンガ</div></div>
+</div></div>
+<div class="section-break"><span>Section 7</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.181</div><img src="pokemon_images/pokemon_181.png" alt="ルチャブル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ルチャブル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.182</div><img src="pokemon_images/pokemon_182.png" alt="ボクレー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボクレー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.183</div><img src="pokemon_images/pokemon_183.png" alt="オーロット" class="pokemon-image" loading="lazy"><div class="pokemon-name">オーロット</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.184</div><img src="pokemon_images/pokemon_184.png" alt="ズルッグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ズルッグ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.185</div><img src="pokemon_images/pokemon_185.png" alt="ズルズキン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ズルズキン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.186</div><img src="pokemon_images/pokemon_186.png" alt="オンバット" class="pokemon-image" loading="lazy"><div class="pokemon-name">オンバット</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.187</div><img src="pokemon_images/pokemon_187.png" alt="オンバーン" class="pokemon-image" loading="lazy"><div class="pokemon-name">オンバーン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.188</div><img src="pokemon_images/pokemon_188.png" alt="クレッフィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">クレッフィ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.189</div><img src="pokemon_images/pokemon_189.png" alt="ヒトモシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトモシ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.190</div><img src="pokemon_images/pokemon_190.png" alt="ランプラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ランプラー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.191</div><img src="pokemon_images/pokemon_191.png" alt="シャンデラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シャンデラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.192</div><img src="pokemon_images/pokemon_192.png" alt="プテラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">プテラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.193</div><img src="pokemon_images/pokemon_193.png" alt="チゴラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">チゴラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.194</div><img src="pokemon_images/pokemon_194.png" alt="ガチゴラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガチゴラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.195</div><img src="pokemon_images/pokemon_195.png" alt="アマルス" class="pokemon-image" loading="lazy"><div class="pokemon-name">アマルス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.196</div><img src="pokemon_images/pokemon_196.png" alt="アマルルガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アマルルガ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.197</div><img src="pokemon_images/pokemon_197.png" alt="イワーク" class="pokemon-image" loading="lazy"><div class="pokemon-name">イワーク</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.198</div><img src="pokemon_images/pokemon_198.png" alt="ハガネール" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハガネール</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.199</div><img src="pokemon_images/pokemon_199.png" alt="ココドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ココドラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.200</div><img src="pokemon_images/pokemon_200.png" alt="コドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コドラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.201</div><img src="pokemon_images/pokemon_201.png" alt="ボスゴドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボスゴドラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.202</div><img src="pokemon_images/pokemon_202.png" alt="エリキテル" class="pokemon-image" loading="lazy"><div class="pokemon-name">エリキテル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.203</div><img src="pokemon_images/pokemon_203.png" alt="エレザード" class="pokemon-image" loading="lazy"><div class="pokemon-name">エレザード</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.204</div><img src="pokemon_images/pokemon_204.png" alt="バケッチャ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バケッチャ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.205</div><img src="pokemon_images/pokemon_205.png" alt="パンプジン" class="pokemon-image" loading="lazy"><div class="pokemon-name">パンプジン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.206</div><img src="pokemon_images/pokemon_206.png" alt="ヨーギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヨーギラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.207</div><img src="pokemon_images/pokemon_207.png" alt="サナギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">サナギラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.208</div><img src="pokemon_images/pokemon_208.png" alt="バンギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">バンギラス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.209</div><img src="pokemon_images/pokemon_209.png" alt="ケロマツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ケロマツ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.210</div><img src="pokemon_images/pokemon_210.png" alt="ゲコガシラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲコガシラ</div></div>
+</div></div>
+<div class="section-break"><span>Section 8</span></div>
+<div class="pokemon-section"><div class="pokemon-grid">
+<div class="pokemon-card"><div class="pokemon-number">No.211</div><img src="pokemon_images/pokemon_211.png" alt="ゲッコウガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲッコウガ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.212</div><img src="pokemon_images/pokemon_212.png" alt="タイレーツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タイレーツ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.213</div><img src="pokemon_images/pokemon_213.png" alt="ハリマロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハリマロン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.214</div><img src="pokemon_images/pokemon_214.png" alt="ハリボーグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハリボーグ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.215</div><img src="pokemon_images/pokemon_215.png" alt="ブリガロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブリガロン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.216</div><img src="pokemon_images/pokemon_216.png" alt="エアームド" class="pokemon-image" loading="lazy"><div class="pokemon-name">エアームド</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.217</div><img src="pokemon_images/pokemon_217.png" alt="フォッコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フォッコ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.218</div><img src="pokemon_images/pokemon_218.png" alt="テールナー" class="pokemon-image" loading="lazy"><div class="pokemon-name">テールナー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.219</div><img src="pokemon_images/pokemon_219.png" alt="マフォクシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">マフォクシー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.220</div><img src="pokemon_images/pokemon_220.png" alt="タツベイ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タツベイ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.221</div><img src="pokemon_images/pokemon_221.png" alt="コモルー" class="pokemon-image" loading="lazy"><div class="pokemon-name">コモルー</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.222</div><img src="pokemon_images/pokemon_222.png" alt="ボーマンダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボーマンダ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.223</div><img src="pokemon_images/pokemon_223.png" alt="ガルーラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガルーラ</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.224</div><img src="pokemon_images/pokemon_224.png" alt="ジジーロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジジーロン</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.225</div><img src="pokemon_images/pokemon_225.png" alt="ダンバル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ダンバル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.226</div><img src="pokemon_images/pokemon_226.png" alt="メタング" class="pokemon-image" loading="lazy"><div class="pokemon-name">メタング</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.227</div><img src="pokemon_images/pokemon_227.png" alt="メタグロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">メタグロス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.228</div><img src="pokemon_images/pokemon_228.png" alt="ゼルネアス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゼルネアス</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.229</div><img src="pokemon_images/pokemon_229.png" alt="イベルタル" class="pokemon-image" loading="lazy"><div class="pokemon-name">イベルタル</div></div>
+<div class="pokemon-card"><div class="pokemon-number">No.230</div><img src="pokemon_images/pokemon_230.png" alt="ジガルデ(50%フォルム)" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジガルデ(50%フォルム)</div></div>
+</div></div>
+    <div class="footer" style="text-align: center; color: white; margin-top: 40px; padding: 20px; opacity: 0.8;">
+        <p>2025 Pokemon Gallery - Generated by AI Assistant</p>
+        <p>合計230匹のポケモンを6匹×5行のグリッドで表示</p>
+    </div>
+
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const clearSearch = document.getElementById('clearSearch');
+        const searchResults = document.getElementById('searchResults');
+        const pokemonCards = document.querySelectorAll('.pokemon-card');
+        const pokemonSections = document.querySelectorAll('.pokemon-section');
+        
+        let allCards = Array.from(pokemonCards);
+        
+        function performSearch(query) {
+            const searchTerm = query.toLowerCase().trim();
+            
+            if (searchTerm === '') {
+                showAllPokemon();
+                searchResults.textContent = '';
+                clearSearch.style.display = 'none';
+                return;
+            }
+            
+            clearSearch.style.display = 'block';
+            
+            const matchedCards = allCards.filter(card => {
+                const pokemonName = card.querySelector('.pokemon-name').textContent.toLowerCase();
+                const pokemonNumber = card.querySelector('.pokemon-number').textContent.toLowerCase();
+                
+                return pokemonName.includes(searchTerm) || 
+                       pokemonNumber.includes(searchTerm) ||
+                       pokemonNumber.replace('no.', '').trim().includes(searchTerm);
+            });
+            
+            // Hide all sections first
+            pokemonSections.forEach(section => {
+                section.style.display = 'none';
+            });
+            
+            // Hide all cards
+            allCards.forEach(card => {
+                card.style.display = 'none';
+            });
+            
+            if (matchedCards.length > 0) {
+                // Show matched cards
+                matchedCards.forEach(card => {
+                    card.style.display = 'block';
+                    card.parentElement.parentElement.style.display = 'block';
+                });
+                
+                searchResults.textContent = `${matchedCards.length}匹のポケモンが見つかりました`;
+            } else {
+                searchResults.textContent = 'ポケモンが見つかりませんでした';
+            }
+        }
+        
+        function showAllPokemon() {
+            pokemonSections.forEach(section => {
+                section.style.display = 'block';
+            });
+            allCards.forEach(card => {
+                card.style.display = 'block';
+            });
+        }
+        
+        searchInput.addEventListener('input', (e) => {
+            performSearch(e.target.value);
+        });
+        
+        clearSearch.addEventListener('click', () => {
+            searchInput.value = '';
+            showAllPokemon();
+            searchResults.textContent = '';
+            clearSearch.style.display = 'none';
+            searchInput.focus();
+        });
+        
+        // Enable Enter key search
+        searchInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                performSearch(searchInput.value);
+            }
+        });
+    </script>
+</body>
+</html>
+
