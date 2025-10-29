@@ -26,14 +26,49 @@
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
 
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
         .header h1 {
-            margin: 0 0 15px 0;
+            margin: 0;
             text-align: center;
             font-size: 2rem;
             background: linear-gradient(45deg, #667eea, #764ba2);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+        }
+
+        /* チャート表示ボタン（タイトル右端） */
+        .chart-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .chart-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #9c27b0, #673ab7);
+            color: white;
+            text-decoration: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.8rem;
+            box-shadow: 0 3px 15px rgba(156, 39, 176, 0.3);
+        }
+
+        .chart-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(156, 39, 176, 0.4);
+            background: linear-gradient(45deg, #ab47bc, #7e57c2);
+            color: white;
+            text-decoration: none;
         }
 
         /* 世代切り替えボタン */
@@ -556,7 +591,13 @@
 <body>
     <!-- 固定ヘッダー -->
     <div class="header">
-        <h1>PokeAkane ポケモン図鑑</h1>
+        <div class="header-top">
+            <h1>PokeAkane ポケモン図鑑</h1>
+            <div class="chart-buttons">
+                <a href="type_chart.html" class="chart-btn">📊 タイプ相性表</a>
+                <a href="nature_chart.html" class="chart-btn">🌟 性格表</a>
+            </div>
+        </div>
         
         <!-- 世代切り替えボタン -->
         <div class="generation-buttons">
@@ -576,22 +617,23 @@
         <div class="software-buttons">
             <button class="soft-btn active" data-soft="all">全て</button>
             <button class="soft-btn" data-soft="rby">赤緑青ピカ</button>
-            <button class="soft-btn" data-soft="frlg">FRLG</button>
             <button class="soft-btn" data-soft="gsc">金銀ク</button>
-            <button class="soft-btn" data-soft="hgss">HGSS</button>
             <button class="soft-btn" data-soft="rse">RSE</button>
-            <button class="soft-btn" data-soft="oras">ORAS</button>
+            <button class="soft-btn" data-soft="frlg">FRLG</button>
             <button class="soft-btn" data-soft="dpp">DPPt</button>
-            <button class="soft-btn" data-soft="bdsp">BDSP</button>
+            <button class="soft-btn" data-soft="hgss">HGSS</button>
             <button class="soft-btn" data-soft="bw">BW</button>
             <button class="soft-btn" data-soft="b2w2">B2W2</button>
             <button class="soft-btn" data-soft="xy">XY</button>
+            <button class="soft-btn" data-soft="oras">ORAS</button>
             <button class="soft-btn" data-soft="sm">SM</button>
             <button class="soft-btn" data-soft="usum">USUM</button>
             <button class="soft-btn" data-soft="lgpe">LGPE</button>
             <button class="soft-btn" data-soft="swsh">剣盾</button>
+            <button class="soft-btn" data-soft="bdsp">BDSP</button>
             <button class="soft-btn" data-soft="la">レジェアル</button>
             <button class="soft-btn" data-soft="sv">SV</button>
+            <button class="soft-btn" data-soft="za">ZA</button>
         </div>
 
         <!-- 検索エリア -->
@@ -687,22 +729,23 @@
         // ソフト毎のポケモンリスト
         const softwarePokedex = {
             'rby': [1, 151], // 赤緑青ピカチュウ
-            'frlg': [1, 386], // ファイアレッド・リーフグリーン（第3世代まで）
             'gsc': [1, 251], // 金銀クリスタル
-            'hgss': [1, 493], // ハートゴールド・ソウルシルバー（第4世代まで）
             'rse': [1, 386], // ルビー・サファイア・エメラルド
-            'oras': [1, 721], // オメガルビー・アルファサファイア（第6世代まで）
+            'frlg': [1, 386], // ファイアレッド・リーフグリーン（第3世代まで）
             'dpp': [1, 493], // ダイヤモンド・パール・プラチナ
-            'bdsp': [1, 493], // ブリリアントダイヤモンド・シャイニングパール
+            'hgss': [1, 493], // ハートゴールド・ソウルシルバー（第4世代まで）
             'bw': [1, 649], // ブラック・ホワイト
             'b2w2': [1, 649], // ブラック2・ホワイト2
             'xy': [1, 721], // X・Y
+            'oras': [1, 721], // オメガルビー・アルファサファイア（第6世代まで）
             'sm': [1, 809], // サン・ムーン
             'usum': [1, 809], // ウルトラサン・ウルトラムーン
             'lgpe': [1, 151], // Let's Go ピカチュウ・イーブイ（カントーのみ）
             'swsh': [1, 905], // ソード・シールド
+            'bdsp': [1, 493], // ブリリアントダイヤモンド・シャイニングパール
             'la': [1, 905], // レジェンズアルセウス（第8世代まで）
-            'sv': [1, 1025] // スカーレット・バイオレット
+            'sv': [1, 1025], // スカーレット・バイオレット
+            'za': [1, 1025] // ポケモンレジェンズZ-A（予想）
         };
 
         // 初期化
@@ -764,6 +807,17 @@
                 };
 
                 console.log('世代別データ読み込み完了:', Object.keys(pokemonData).length + '匹');
+                console.log('世代データ詳細:', {
+                    'gen1': Object.keys(generationData.gen1).length,
+                    'gen2': Object.keys(generationData.gen2).length,
+                    'gen3': Object.keys(generationData.gen3).length,
+                    'gen4': Object.keys(generationData.gen4).length,
+                    'gen5': Object.keys(generationData.gen5).length,
+                    'gen6': Object.keys(generationData.gen6).length,
+                    'gen7': Object.keys(generationData.gen7).length,
+                    'gen8': Object.keys(generationData.gen8).length,
+                    'gen9': Object.keys(generationData.gen9).length
+                });
                 document.getElementById('loading').style.display = 'none';
                 
             } catch (error) {
@@ -794,7 +848,8 @@
                 });
             });
 
-            // ソフト毎ボタン
+            // ソフト毎ボタン（現在無効化中）
+            /*
             document.querySelectorAll('.soft-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     document.querySelectorAll('.soft-btn').forEach(b => b.classList.remove('active'));
@@ -803,6 +858,7 @@
                     displayPokemon();
                 });
             });
+            */
 
             // 検索機能
             document.getElementById('searchInput').addEventListener('input', displayPokemon);
@@ -836,10 +892,19 @@
                 // 世代番号をキーにマッピング
                 const genKey = `gen${currentGeneration}`;
                 currentGenData = generationData[genKey] || {};
+                console.log(`世代${currentGeneration}のデータ:`, Object.keys(currentGenData).length + '匹');
+            }
+
+            // データが配列かオブジェクトかチェックして適切に処理
+            let pokemonArray;
+            if (Array.isArray(currentGenData)) {
+                pokemonArray = currentGenData;
+            } else {
+                pokemonArray = Object.values(currentGenData);
             }
 
             // フィルタリング（選択された世代のデータのみ処理）
-            filteredPokemon = Object.values(currentGenData).filter(pokemon => {
+            filteredPokemon = pokemonArray.filter(pokemon => {
                 // 検索フィルター
                 if (searchTerm) {
                     const nameMatch = pokemon.name.toLowerCase().includes(searchTerm);
@@ -856,30 +921,34 @@
                 }
 
                 // 進化フィルター（実際の進化データを使用）
-                if (evolutionFilter) {
+                if (evolutionFilter && evolutionFilter !== '') {
                     const evolution = pokemon.evolution || {};
-                    const hasEvolutionFrom = evolution.prev !== null && evolution.prev !== undefined;
-                    const hasEvolutionTo = evolution.next && evolution.next.length > 0;
+                    const hasEvolutionFrom = evolution.prev !== null && evolution.prev !== undefined && evolution.prev !== '';
+                    const hasEvolutionTo = evolution.next && Array.isArray(evolution.next) && evolution.next.length > 0;
+                    
+                    // console.log(`${pokemon.name} (ID: ${pokemon.id}) - 進化前: ${hasEvolutionFrom}, 進化後: ${hasEvolutionTo}`);
                     
                     if (evolutionFilter === 'basic') {
                         // 進化前：進化後があるが進化前がないもの
-                        return hasEvolutionTo && !hasEvolutionFrom;
+                        if (!(hasEvolutionTo && !hasEvolutionFrom)) return false;
                     } else if (evolutionFilter === 'middle') {
                         // 中間進化：進化前と進化後の両方があるもの
-                        return hasEvolutionFrom && hasEvolutionTo;
+                        if (!(hasEvolutionFrom && hasEvolutionTo)) return false;
                     } else if (evolutionFilter === 'final') {
                         // 最終進化：進化後がないもの（無進化ポケモンも含む）
-                        return !hasEvolutionTo;
+                        if (hasEvolutionTo) return false;
                     }
                 }
 
-                // ソフト毎フィルター
+                // ソフト毎フィルター（後で詳細な図鑑データで実装予定）
+                /*
                 if (currentSoftware !== 'all') {
                     const softwareRange = softwarePokedex[currentSoftware];
                     if (softwareRange && (pokemon.id < softwareRange[0] || pokemon.id > softwareRange[1])) {
                         return false;
                     }
                 }
+                */
 
                 return true;
             });
@@ -1152,7 +1221,9 @@
 
         // ESCキーでモーダル閉じる
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeModal();
+            if (e.key === 'Escape') {
+                closeModal();
+            }
         });
 
         // 画像関連の処理（削除済み）
