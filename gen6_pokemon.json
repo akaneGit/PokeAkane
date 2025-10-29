@@ -1,0 +1,2691 @@
+{
+  "650": {
+    "id": 650,
+    "name": "ハリマロン",
+    "name_en": "chespin",
+    "types": [
+      "くさ"
+    ],
+    "types_en": [
+      "grass"
+    ],
+    "abilities": [
+      "しんりょく",
+      "ぼうだん(隠れ)"
+    ],
+    "stats": {
+      "hp": 56,
+      "attack": 61,
+      "defense": 65,
+      "special_attack": 48,
+      "special_defense": 45,
+      "speed": 38
+    },
+    "height": 0.4,
+    "weight": 9.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        651
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/650",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/650",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/650"
+    }
+  },
+  "651": {
+    "id": 651,
+    "name": "ハリボーグ",
+    "name_en": "quilladin",
+    "types": [
+      "くさ"
+    ],
+    "types_en": [
+      "grass"
+    ],
+    "abilities": [
+      "しんりょく",
+      "ぼうだん(隠れ)"
+    ],
+    "stats": {
+      "hp": 61,
+      "attack": 78,
+      "defense": 95,
+      "special_attack": 56,
+      "special_defense": 58,
+      "speed": 57
+    },
+    "height": 0.7,
+    "weight": 29.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 650,
+      "next": [
+        652
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/651",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/651",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/651"
+    }
+  },
+  "652": {
+    "id": 652,
+    "name": "ブリガロン",
+    "name_en": "chesnaught",
+    "types": [
+      "くさ",
+      "かくとう"
+    ],
+    "types_en": [
+      "grass",
+      "fighting"
+    ],
+    "abilities": [
+      "しんりょく",
+      "ぼうだん(隠れ)"
+    ],
+    "stats": {
+      "hp": 88,
+      "attack": 107,
+      "defense": 122,
+      "special_attack": 74,
+      "special_defense": 75,
+      "speed": 64
+    },
+    "height": 1.6,
+    "weight": 90.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 651,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/652",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/652",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/652"
+    }
+  },
+  "653": {
+    "id": 653,
+    "name": "フォッコ",
+    "name_en": "fennekin",
+    "types": [
+      "ほのお"
+    ],
+    "types_en": [
+      "fire"
+    ],
+    "abilities": [
+      "もうか",
+      "マジシャン(隠れ)"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 45,
+      "defense": 40,
+      "special_attack": 62,
+      "special_defense": 60,
+      "speed": 60
+    },
+    "height": 0.4,
+    "weight": 9.4,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        654
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/653",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/653",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/653"
+    }
+  },
+  "654": {
+    "id": 654,
+    "name": "テールナー",
+    "name_en": "braixen",
+    "types": [
+      "ほのお"
+    ],
+    "types_en": [
+      "fire"
+    ],
+    "abilities": [
+      "もうか",
+      "マジシャン(隠れ)"
+    ],
+    "stats": {
+      "hp": 59,
+      "attack": 59,
+      "defense": 58,
+      "special_attack": 90,
+      "special_defense": 70,
+      "speed": 73
+    },
+    "height": 1.0,
+    "weight": 14.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 653,
+      "next": [
+        655
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/654",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/654",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/654"
+    }
+  },
+  "655": {
+    "id": 655,
+    "name": "マフォクシー",
+    "name_en": "delphox",
+    "types": [
+      "ほのお",
+      "エスパー"
+    ],
+    "types_en": [
+      "fire",
+      "psychic"
+    ],
+    "abilities": [
+      "もうか",
+      "マジシャン(隠れ)"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 69,
+      "defense": 72,
+      "special_attack": 114,
+      "special_defense": 100,
+      "speed": 104
+    },
+    "height": 1.5,
+    "weight": 39.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 654,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/655",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/655",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/655"
+    }
+  },
+  "656": {
+    "id": 656,
+    "name": "ケロマツ",
+    "name_en": "froakie",
+    "types": [
+      "みず"
+    ],
+    "types_en": [
+      "water"
+    ],
+    "abilities": [
+      "げきりゅう",
+      "へんげんじざい(隠れ)"
+    ],
+    "stats": {
+      "hp": 41,
+      "attack": 56,
+      "defense": 40,
+      "special_attack": 62,
+      "special_defense": 44,
+      "speed": 71
+    },
+    "height": 0.3,
+    "weight": 7.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        657
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/656",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/656",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/656"
+    }
+  },
+  "657": {
+    "id": 657,
+    "name": "ゲコガシラ",
+    "name_en": "frogadier",
+    "types": [
+      "みず"
+    ],
+    "types_en": [
+      "water"
+    ],
+    "abilities": [
+      "げきりゅう",
+      "へんげんじざい(隠れ)"
+    ],
+    "stats": {
+      "hp": 54,
+      "attack": 63,
+      "defense": 52,
+      "special_attack": 83,
+      "special_defense": 56,
+      "speed": 97
+    },
+    "height": 0.6,
+    "weight": 10.9,
+    "generation": 6,
+    "evolution": {
+      "prev": 656,
+      "next": [
+        658
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/657",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/657",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/657"
+    }
+  },
+  "658": {
+    "id": 658,
+    "name": "ゲッコウガ",
+    "name_en": "greninja",
+    "types": [
+      "みず",
+      "あく"
+    ],
+    "types_en": [
+      "water",
+      "dark"
+    ],
+    "abilities": [
+      "げきりゅう",
+      "へんげんじざい(隠れ)"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 95,
+      "defense": 67,
+      "special_attack": 103,
+      "special_defense": 71,
+      "speed": 122
+    },
+    "height": 1.5,
+    "weight": 40.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 657,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/658",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/658",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/658"
+    }
+  },
+  "659": {
+    "id": 659,
+    "name": "ホルビー",
+    "name_en": "bunnelby",
+    "types": [
+      "ノーマル"
+    ],
+    "types_en": [
+      "normal"
+    ],
+    "abilities": [
+      "ものひろい",
+      "ほおぶくろ",
+      "ちからもち(隠れ)"
+    ],
+    "stats": {
+      "hp": 38,
+      "attack": 36,
+      "defense": 38,
+      "special_attack": 32,
+      "special_defense": 36,
+      "speed": 57
+    },
+    "height": 0.4,
+    "weight": 5.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        660
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/659",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/659",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/659"
+    }
+  },
+  "660": {
+    "id": 660,
+    "name": "ホルード",
+    "name_en": "diggersby",
+    "types": [
+      "ノーマル",
+      "じめん"
+    ],
+    "types_en": [
+      "normal",
+      "ground"
+    ],
+    "abilities": [
+      "ものひろい",
+      "ほおぶくろ",
+      "ちからもち(隠れ)"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 56,
+      "defense": 77,
+      "special_attack": 50,
+      "special_defense": 77,
+      "speed": 78
+    },
+    "height": 1.0,
+    "weight": 42.4,
+    "generation": 6,
+    "evolution": {
+      "prev": 659,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/660",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/660",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/660"
+    }
+  },
+  "661": {
+    "id": 661,
+    "name": "ヤヤコマ",
+    "name_en": "fletchling",
+    "types": [
+      "ノーマル",
+      "ひこう"
+    ],
+    "types_en": [
+      "normal",
+      "flying"
+    ],
+    "abilities": [
+      "はとむね",
+      "はやてのつばさ(隠れ)"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 50,
+      "defense": 43,
+      "special_attack": 40,
+      "special_defense": 38,
+      "speed": 62
+    },
+    "height": 0.3,
+    "weight": 1.7,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        662
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/661",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/661",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/661"
+    }
+  },
+  "662": {
+    "id": 662,
+    "name": "ヒノヤコマ",
+    "name_en": "fletchinder",
+    "types": [
+      "ほのお",
+      "ひこう"
+    ],
+    "types_en": [
+      "fire",
+      "flying"
+    ],
+    "abilities": [
+      "ほのおのからだ",
+      "はやてのつばさ(隠れ)"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 73,
+      "defense": 55,
+      "special_attack": 56,
+      "special_defense": 52,
+      "speed": 84
+    },
+    "height": 0.7,
+    "weight": 16.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 661,
+      "next": [
+        663
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/662",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/662",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/662"
+    }
+  },
+  "663": {
+    "id": 663,
+    "name": "ファイアロー",
+    "name_en": "talonflame",
+    "types": [
+      "ほのお",
+      "ひこう"
+    ],
+    "types_en": [
+      "fire",
+      "flying"
+    ],
+    "abilities": [
+      "ほのおのからだ",
+      "はやてのつばさ(隠れ)"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 81,
+      "defense": 71,
+      "special_attack": 74,
+      "special_defense": 69,
+      "speed": 126
+    },
+    "height": 1.2,
+    "weight": 24.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 662,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/663",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/663",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/663"
+    }
+  },
+  "664": {
+    "id": 664,
+    "name": "コフキムシ",
+    "name_en": "scatterbug",
+    "types": [
+      "むし"
+    ],
+    "types_en": [
+      "bug"
+    ],
+    "abilities": [
+      "りんぷん",
+      "ふくがん",
+      "フレンドガード(隠れ)"
+    ],
+    "stats": {
+      "hp": 38,
+      "attack": 35,
+      "defense": 40,
+      "special_attack": 27,
+      "special_defense": 25,
+      "speed": 35
+    },
+    "height": 0.3,
+    "weight": 2.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        665
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/664",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/664",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/664"
+    }
+  },
+  "665": {
+    "id": 665,
+    "name": "コフーライ",
+    "name_en": "spewpa",
+    "types": [
+      "むし"
+    ],
+    "types_en": [
+      "bug"
+    ],
+    "abilities": [
+      "だっぴ",
+      "フレンドガード(隠れ)"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 22,
+      "defense": 60,
+      "special_attack": 27,
+      "special_defense": 30,
+      "speed": 29
+    },
+    "height": 0.3,
+    "weight": 8.4,
+    "generation": 6,
+    "evolution": {
+      "prev": 664,
+      "next": [
+        666
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/665",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/665",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/665"
+    }
+  },
+  "666": {
+    "id": 666,
+    "name": "ビビヨン",
+    "name_en": "vivillon",
+    "types": [
+      "むし",
+      "ひこう"
+    ],
+    "types_en": [
+      "bug",
+      "flying"
+    ],
+    "abilities": [
+      "りんぷん",
+      "ふくがん",
+      "フレンドガード(隠れ)"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 52,
+      "defense": 50,
+      "special_attack": 90,
+      "special_defense": 50,
+      "speed": 89
+    },
+    "height": 1.2,
+    "weight": 17.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 665,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/666",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/666",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/666"
+    }
+  },
+  "667": {
+    "id": 667,
+    "name": "シシコ",
+    "name_en": "litleo",
+    "types": [
+      "ほのお",
+      "ノーマル"
+    ],
+    "types_en": [
+      "fire",
+      "normal"
+    ],
+    "abilities": [
+      "とうそうしん",
+      "きんちょうかん",
+      "じしんかじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 50,
+      "defense": 58,
+      "special_attack": 73,
+      "special_defense": 54,
+      "speed": 72
+    },
+    "height": 0.6,
+    "weight": 13.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        668
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/667",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/667",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/667"
+    }
+  },
+  "668": {
+    "id": 668,
+    "name": "カエンジシ",
+    "name_en": "pyroar",
+    "types": [
+      "ほのお",
+      "ノーマル"
+    ],
+    "types_en": [
+      "fire",
+      "normal"
+    ],
+    "abilities": [
+      "とうそうしん",
+      "きんちょうかん",
+      "じしんかじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 68,
+      "defense": 72,
+      "special_attack": 109,
+      "special_defense": 66,
+      "speed": 106
+    },
+    "height": 1.5,
+    "weight": 81.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 667,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/668",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/668",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/668"
+    }
+  },
+  "669": {
+    "id": 669,
+    "name": "フラベベ",
+    "name_en": "flabebe",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "フラワーベール",
+      "きょうせい(隠れ)"
+    ],
+    "stats": {
+      "hp": 44,
+      "attack": 38,
+      "defense": 39,
+      "special_attack": 61,
+      "special_defense": 79,
+      "speed": 42
+    },
+    "height": 0.1,
+    "weight": 0.1,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        670
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/669",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/669",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/669"
+    }
+  },
+  "670": {
+    "id": 670,
+    "name": "フラエッテ",
+    "name_en": "floette",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "フラワーベール",
+      "きょうせい(隠れ)"
+    ],
+    "stats": {
+      "hp": 54,
+      "attack": 45,
+      "defense": 47,
+      "special_attack": 75,
+      "special_defense": 98,
+      "speed": 52
+    },
+    "height": 0.2,
+    "weight": 0.9,
+    "generation": 6,
+    "evolution": {
+      "prev": 669,
+      "next": [
+        671
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/670",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/670",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/670"
+    }
+  },
+  "671": {
+    "id": 671,
+    "name": "フラージェス",
+    "name_en": "florges",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "フラワーベール",
+      "きょうせい(隠れ)"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 65,
+      "defense": 68,
+      "special_attack": 112,
+      "special_defense": 154,
+      "speed": 75
+    },
+    "height": 1.1,
+    "weight": 10.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 670,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/671",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/671",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/671"
+    }
+  },
+  "672": {
+    "id": 672,
+    "name": "メェークル",
+    "name_en": "skiddo",
+    "types": [
+      "くさ"
+    ],
+    "types_en": [
+      "grass"
+    ],
+    "abilities": [
+      "そうしょく",
+      "くさのけがわ(隠れ)"
+    ],
+    "stats": {
+      "hp": 66,
+      "attack": 65,
+      "defense": 48,
+      "special_attack": 62,
+      "special_defense": 57,
+      "speed": 52
+    },
+    "height": 0.9,
+    "weight": 31.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        673
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/672",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/672",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/672"
+    }
+  },
+  "673": {
+    "id": 673,
+    "name": "ゴーゴート",
+    "name_en": "gogoat",
+    "types": [
+      "くさ"
+    ],
+    "types_en": [
+      "grass"
+    ],
+    "abilities": [
+      "そうしょく",
+      "くさのけがわ(隠れ)"
+    ],
+    "stats": {
+      "hp": 123,
+      "attack": 100,
+      "defense": 62,
+      "special_attack": 97,
+      "special_defense": 81,
+      "speed": 68
+    },
+    "height": 1.7,
+    "weight": 91.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 672,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/673",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/673",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/673"
+    }
+  },
+  "674": {
+    "id": 674,
+    "name": "ヤンチャム",
+    "name_en": "pancham",
+    "types": [
+      "かくとう"
+    ],
+    "types_en": [
+      "fighting"
+    ],
+    "abilities": [
+      "てつのこぶし",
+      "かたやぶり",
+      "きもったま(隠れ)"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 82,
+      "defense": 62,
+      "special_attack": 46,
+      "special_defense": 48,
+      "speed": 43
+    },
+    "height": 0.6,
+    "weight": 8.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        675
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/674",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/674",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/674"
+    }
+  },
+  "675": {
+    "id": 675,
+    "name": "ゴロンダ",
+    "name_en": "pangoro",
+    "types": [
+      "かくとう",
+      "あく"
+    ],
+    "types_en": [
+      "fighting",
+      "dark"
+    ],
+    "abilities": [
+      "てつのこぶし",
+      "かたやぶり",
+      "きもったま(隠れ)"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 124,
+      "defense": 78,
+      "special_attack": 69,
+      "special_defense": 71,
+      "speed": 58
+    },
+    "height": 2.1,
+    "weight": 136.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 674,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/675",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/675",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/675"
+    }
+  },
+  "676": {
+    "id": 676,
+    "name": "トリミアン",
+    "name_en": "furfrou",
+    "types": [
+      "ノーマル"
+    ],
+    "types_en": [
+      "normal"
+    ],
+    "abilities": [
+      "ファーコート"
+    ],
+    "stats": {
+      "hp": 75,
+      "attack": 80,
+      "defense": 60,
+      "special_attack": 65,
+      "special_defense": 90,
+      "speed": 102
+    },
+    "height": 1.2,
+    "weight": 28.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/676",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/676",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/676"
+    }
+  },
+  "677": {
+    "id": 677,
+    "name": "ニャスパー",
+    "name_en": "espurr",
+    "types": [
+      "エスパー"
+    ],
+    "types_en": [
+      "psychic"
+    ],
+    "abilities": [
+      "するどいめ",
+      "すりぬけ",
+      "マイペース(隠れ)"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 48,
+      "defense": 54,
+      "special_attack": 63,
+      "special_defense": 60,
+      "speed": 68
+    },
+    "height": 0.3,
+    "weight": 3.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        678
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/677",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/677",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/677"
+    }
+  },
+  "678": {
+    "id": 678,
+    "name": "ニャオニクス",
+    "name_en": "meowstic-male",
+    "types": [
+      "エスパー"
+    ],
+    "types_en": [
+      "psychic"
+    ],
+    "abilities": [
+      "するどいめ",
+      "すりぬけ",
+      "いたずらごころ(隠れ)"
+    ],
+    "stats": {
+      "hp": 74,
+      "attack": 48,
+      "defense": 76,
+      "special_attack": 83,
+      "special_defense": 81,
+      "speed": 104
+    },
+    "height": 0.6,
+    "weight": 8.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 677,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/678",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/678",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/678"
+    }
+  },
+  "679": {
+    "id": 679,
+    "name": "ヒトツキ",
+    "name_en": "honedge",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "types_en": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "ノーガード"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 80,
+      "defense": 100,
+      "special_attack": 35,
+      "special_defense": 37,
+      "speed": 28
+    },
+    "height": 0.8,
+    "weight": 2.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        680
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/679",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/679",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/679"
+    }
+  },
+  "680": {
+    "id": 680,
+    "name": "ニダンギル",
+    "name_en": "doublade",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "types_en": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "ノーガード"
+    ],
+    "stats": {
+      "hp": 59,
+      "attack": 110,
+      "defense": 150,
+      "special_attack": 45,
+      "special_defense": 49,
+      "speed": 35
+    },
+    "height": 0.8,
+    "weight": 4.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 679,
+      "next": [
+        681
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/680",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/680",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/680"
+    }
+  },
+  "681": {
+    "id": 681,
+    "name": "ギルガルド",
+    "name_en": "aegislash-shield",
+    "types": [
+      "はがね",
+      "ゴースト"
+    ],
+    "types_en": [
+      "steel",
+      "ghost"
+    ],
+    "abilities": [
+      "バトルスイッチ"
+    ],
+    "stats": {
+      "hp": 60,
+      "attack": 50,
+      "defense": 140,
+      "special_attack": 50,
+      "special_defense": 140,
+      "speed": 60
+    },
+    "height": 1.7,
+    "weight": 53.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 680,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/681",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/681",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/681"
+    }
+  },
+  "682": {
+    "id": 682,
+    "name": "シュシュプ",
+    "name_en": "spritzee",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "いやしのこころ",
+      "アロマベール(隠れ)"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 52,
+      "defense": 60,
+      "special_attack": 63,
+      "special_defense": 65,
+      "speed": 23
+    },
+    "height": 0.2,
+    "weight": 0.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        683
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/682",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/682",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/682"
+    }
+  },
+  "683": {
+    "id": 683,
+    "name": "フレフワン",
+    "name_en": "aromatisse",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "いやしのこころ",
+      "アロマベール(隠れ)"
+    ],
+    "stats": {
+      "hp": 101,
+      "attack": 72,
+      "defense": 72,
+      "special_attack": 99,
+      "special_defense": 89,
+      "speed": 29
+    },
+    "height": 0.8,
+    "weight": 15.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 682,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/683",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/683",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/683"
+    }
+  },
+  "684": {
+    "id": 684,
+    "name": "ペロッパフ",
+    "name_en": "swirlix",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "スイートベール",
+      "かるわざ(隠れ)"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 48,
+      "defense": 66,
+      "special_attack": 59,
+      "special_defense": 57,
+      "speed": 49
+    },
+    "height": 0.4,
+    "weight": 3.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        685
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/684",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/684",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/684"
+    }
+  },
+  "685": {
+    "id": 685,
+    "name": "ペロリーム",
+    "name_en": "slurpuff",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "スイートベール",
+      "かるわざ(隠れ)"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 80,
+      "defense": 86,
+      "special_attack": 85,
+      "special_defense": 75,
+      "speed": 72
+    },
+    "height": 0.8,
+    "weight": 5.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 684,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/685",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/685",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/685"
+    }
+  },
+  "686": {
+    "id": 686,
+    "name": "マーイーカ",
+    "name_en": "inkay",
+    "types": [
+      "あく",
+      "エスパー"
+    ],
+    "types_en": [
+      "dark",
+      "psychic"
+    ],
+    "abilities": [
+      "あまのじゃく",
+      "きゅうばん",
+      "すりぬけ(隠れ)"
+    ],
+    "stats": {
+      "hp": 53,
+      "attack": 54,
+      "defense": 53,
+      "special_attack": 37,
+      "special_defense": 46,
+      "speed": 45
+    },
+    "height": 0.4,
+    "weight": 3.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        687
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/686",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/686",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/686"
+    }
+  },
+  "687": {
+    "id": 687,
+    "name": "カラマネロ",
+    "name_en": "malamar",
+    "types": [
+      "あく",
+      "エスパー"
+    ],
+    "types_en": [
+      "dark",
+      "psychic"
+    ],
+    "abilities": [
+      "あまのじゃく",
+      "きゅうばん",
+      "すりぬけ(隠れ)"
+    ],
+    "stats": {
+      "hp": 86,
+      "attack": 92,
+      "defense": 88,
+      "special_attack": 68,
+      "special_defense": 75,
+      "speed": 73
+    },
+    "height": 1.5,
+    "weight": 47.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 686,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/687",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/687",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/687"
+    }
+  },
+  "688": {
+    "id": 688,
+    "name": "カメテテ",
+    "name_en": "binacle",
+    "types": [
+      "いわ",
+      "みず"
+    ],
+    "types_en": [
+      "rock",
+      "water"
+    ],
+    "abilities": [
+      "かたいツメ",
+      "スナイパー",
+      "わるいてぐせ(隠れ)"
+    ],
+    "stats": {
+      "hp": 42,
+      "attack": 52,
+      "defense": 67,
+      "special_attack": 39,
+      "special_defense": 56,
+      "speed": 50
+    },
+    "height": 0.5,
+    "weight": 31.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        689
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/688",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/688",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/688"
+    }
+  },
+  "689": {
+    "id": 689,
+    "name": "ガメノデス",
+    "name_en": "barbaracle",
+    "types": [
+      "いわ",
+      "みず"
+    ],
+    "types_en": [
+      "rock",
+      "water"
+    ],
+    "abilities": [
+      "かたいツメ",
+      "スナイパー",
+      "わるいてぐせ(隠れ)"
+    ],
+    "stats": {
+      "hp": 72,
+      "attack": 105,
+      "defense": 115,
+      "special_attack": 54,
+      "special_defense": 86,
+      "speed": 68
+    },
+    "height": 1.3,
+    "weight": 96.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 688,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/689",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/689",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/689"
+    }
+  },
+  "690": {
+    "id": 690,
+    "name": "クズモー",
+    "name_en": "skrelp",
+    "types": [
+      "どく",
+      "みず"
+    ],
+    "types_en": [
+      "poison",
+      "water"
+    ],
+    "abilities": [
+      "どくのトゲ",
+      "どくしゅ",
+      "てきおうりょく(隠れ)"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 60,
+      "defense": 60,
+      "special_attack": 60,
+      "special_defense": 60,
+      "speed": 30
+    },
+    "height": 0.5,
+    "weight": 7.3,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        691
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/690",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/690",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/690"
+    }
+  },
+  "691": {
+    "id": 691,
+    "name": "ドラミドロ",
+    "name_en": "dragalge",
+    "types": [
+      "どく",
+      "ドラゴン"
+    ],
+    "types_en": [
+      "poison",
+      "dragon"
+    ],
+    "abilities": [
+      "どくのトゲ",
+      "どくしゅ",
+      "てきおうりょく(隠れ)"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 75,
+      "defense": 90,
+      "special_attack": 97,
+      "special_defense": 123,
+      "speed": 44
+    },
+    "height": 1.8,
+    "weight": 81.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 690,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/691",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/691",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/691"
+    }
+  },
+  "692": {
+    "id": 692,
+    "name": "ウデッポウ",
+    "name_en": "clauncher",
+    "types": [
+      "みず"
+    ],
+    "types_en": [
+      "water"
+    ],
+    "abilities": [
+      "メガランチャー"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 53,
+      "defense": 62,
+      "special_attack": 58,
+      "special_defense": 63,
+      "speed": 44
+    },
+    "height": 0.5,
+    "weight": 8.3,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        693
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/692",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/692",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/692"
+    }
+  },
+  "693": {
+    "id": 693,
+    "name": "ブロスター",
+    "name_en": "clawitzer",
+    "types": [
+      "みず"
+    ],
+    "types_en": [
+      "water"
+    ],
+    "abilities": [
+      "メガランチャー"
+    ],
+    "stats": {
+      "hp": 71,
+      "attack": 73,
+      "defense": 88,
+      "special_attack": 120,
+      "special_defense": 89,
+      "speed": 59
+    },
+    "height": 1.3,
+    "weight": 35.3,
+    "generation": 6,
+    "evolution": {
+      "prev": 692,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/693",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/693",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/693"
+    }
+  },
+  "694": {
+    "id": 694,
+    "name": "エリキテル",
+    "name_en": "helioptile",
+    "types": [
+      "でんき",
+      "ノーマル"
+    ],
+    "types_en": [
+      "electric",
+      "normal"
+    ],
+    "abilities": [
+      "かんそうはだ",
+      "すながくれ",
+      "サンパワー(隠れ)"
+    ],
+    "stats": {
+      "hp": 44,
+      "attack": 38,
+      "defense": 33,
+      "special_attack": 61,
+      "special_defense": 43,
+      "speed": 70
+    },
+    "height": 0.5,
+    "weight": 6.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        695
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/694",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/694",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/694"
+    }
+  },
+  "695": {
+    "id": 695,
+    "name": "エレザード",
+    "name_en": "heliolisk",
+    "types": [
+      "でんき",
+      "ノーマル"
+    ],
+    "types_en": [
+      "electric",
+      "normal"
+    ],
+    "abilities": [
+      "かんそうはだ",
+      "すながくれ",
+      "サンパワー(隠れ)"
+    ],
+    "stats": {
+      "hp": 62,
+      "attack": 55,
+      "defense": 52,
+      "special_attack": 109,
+      "special_defense": 94,
+      "speed": 109
+    },
+    "height": 1.0,
+    "weight": 21.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 694,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/695",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/695",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/695"
+    }
+  },
+  "696": {
+    "id": 696,
+    "name": "チゴラス",
+    "name_en": "tyrunt",
+    "types": [
+      "いわ",
+      "ドラゴン"
+    ],
+    "types_en": [
+      "rock",
+      "dragon"
+    ],
+    "abilities": [
+      "がんじょうあご",
+      "がんじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 58,
+      "attack": 89,
+      "defense": 77,
+      "special_attack": 45,
+      "special_defense": 45,
+      "speed": 48
+    },
+    "height": 0.8,
+    "weight": 26.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        697
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/696",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/696",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/696"
+    }
+  },
+  "697": {
+    "id": 697,
+    "name": "ガチゴラス",
+    "name_en": "tyrantrum",
+    "types": [
+      "いわ",
+      "ドラゴン"
+    ],
+    "types_en": [
+      "rock",
+      "dragon"
+    ],
+    "abilities": [
+      "がんじょうあご",
+      "いしあたま(隠れ)"
+    ],
+    "stats": {
+      "hp": 82,
+      "attack": 121,
+      "defense": 119,
+      "special_attack": 69,
+      "special_defense": 59,
+      "speed": 71
+    },
+    "height": 2.5,
+    "weight": 270.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 696,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/697",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/697",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/697"
+    }
+  },
+  "698": {
+    "id": 698,
+    "name": "アマルス",
+    "name_en": "amaura",
+    "types": [
+      "いわ",
+      "こおり"
+    ],
+    "types_en": [
+      "rock",
+      "ice"
+    ],
+    "abilities": [
+      "フリーズスキン",
+      "ゆきふらし(隠れ)"
+    ],
+    "stats": {
+      "hp": 77,
+      "attack": 59,
+      "defense": 50,
+      "special_attack": 67,
+      "special_defense": 63,
+      "speed": 46
+    },
+    "height": 1.3,
+    "weight": 25.2,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        699
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/698",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/698",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/698"
+    }
+  },
+  "699": {
+    "id": 699,
+    "name": "アマルルガ",
+    "name_en": "aurorus",
+    "types": [
+      "いわ",
+      "こおり"
+    ],
+    "types_en": [
+      "rock",
+      "ice"
+    ],
+    "abilities": [
+      "フリーズスキン",
+      "ゆきふらし(隠れ)"
+    ],
+    "stats": {
+      "hp": 123,
+      "attack": 77,
+      "defense": 72,
+      "special_attack": 99,
+      "special_defense": 92,
+      "speed": 58
+    },
+    "height": 2.7,
+    "weight": 225.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 698,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/699",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/699",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/699"
+    }
+  },
+  "700": {
+    "id": 700,
+    "name": "ニンフィア",
+    "name_en": "sylveon",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "メロメロボディ",
+      "フェアリースキン(隠れ)"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 65,
+      "defense": 65,
+      "special_attack": 110,
+      "special_defense": 130,
+      "speed": 60
+    },
+    "height": 1.0,
+    "weight": 23.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 133,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/700",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/700",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/700"
+    }
+  },
+  "701": {
+    "id": 701,
+    "name": "ルチャブル",
+    "name_en": "hawlucha",
+    "types": [
+      "かくとう",
+      "ひこう"
+    ],
+    "types_en": [
+      "fighting",
+      "flying"
+    ],
+    "abilities": [
+      "じゅうなん",
+      "かるわざ",
+      "かたやぶり(隠れ)"
+    ],
+    "stats": {
+      "hp": 78,
+      "attack": 92,
+      "defense": 75,
+      "special_attack": 74,
+      "special_defense": 63,
+      "speed": 118
+    },
+    "height": 0.8,
+    "weight": 21.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/701",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/701",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/701"
+    }
+  },
+  "702": {
+    "id": 702,
+    "name": "デデンネ",
+    "name_en": "dedenne",
+    "types": [
+      "でんき",
+      "フェアリー"
+    ],
+    "types_en": [
+      "electric",
+      "fairy"
+    ],
+    "abilities": [
+      "ほおぶくろ",
+      "ものひろい",
+      "プラス(隠れ)"
+    ],
+    "stats": {
+      "hp": 67,
+      "attack": 58,
+      "defense": 57,
+      "special_attack": 81,
+      "special_defense": 67,
+      "speed": 101
+    },
+    "height": 0.2,
+    "weight": 2.2,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/702",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/702",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/702"
+    }
+  },
+  "703": {
+    "id": 703,
+    "name": "メレシー",
+    "name_en": "carbink",
+    "types": [
+      "いわ",
+      "フェアリー"
+    ],
+    "types_en": [
+      "rock",
+      "fairy"
+    ],
+    "abilities": [
+      "クリアボディ",
+      "がんじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 50,
+      "defense": 150,
+      "special_attack": 50,
+      "special_defense": 150,
+      "speed": 50
+    },
+    "height": 0.3,
+    "weight": 5.7,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/703",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/703",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/703"
+    }
+  },
+  "704": {
+    "id": 704,
+    "name": "ヌメラ",
+    "name_en": "goomy",
+    "types": [
+      "ドラゴン"
+    ],
+    "types_en": [
+      "dragon"
+    ],
+    "abilities": [
+      "そうしょく",
+      "うるおいボディ",
+      "ぬめぬめ(隠れ)"
+    ],
+    "stats": {
+      "hp": 45,
+      "attack": 50,
+      "defense": 35,
+      "special_attack": 55,
+      "special_defense": 75,
+      "speed": 40
+    },
+    "height": 0.3,
+    "weight": 2.8,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        705
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/704",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/704",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/704"
+    }
+  },
+  "705": {
+    "id": 705,
+    "name": "ヌメイル",
+    "name_en": "sliggoo",
+    "types": [
+      "ドラゴン"
+    ],
+    "types_en": [
+      "dragon"
+    ],
+    "abilities": [
+      "そうしょく",
+      "うるおいボディ",
+      "ぬめぬめ(隠れ)"
+    ],
+    "stats": {
+      "hp": 68,
+      "attack": 75,
+      "defense": 53,
+      "special_attack": 83,
+      "special_defense": 113,
+      "speed": 60
+    },
+    "height": 0.8,
+    "weight": 17.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 704,
+      "next": [
+        706
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/705",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/705",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/705"
+    }
+  },
+  "706": {
+    "id": 706,
+    "name": "ヌメルゴン",
+    "name_en": "goodra",
+    "types": [
+      "ドラゴン"
+    ],
+    "types_en": [
+      "dragon"
+    ],
+    "abilities": [
+      "そうしょく",
+      "うるおいボディ",
+      "ぬめぬめ(隠れ)"
+    ],
+    "stats": {
+      "hp": 90,
+      "attack": 100,
+      "defense": 70,
+      "special_attack": 110,
+      "special_defense": 150,
+      "speed": 80
+    },
+    "height": 2.0,
+    "weight": 150.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 705,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/706",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/706",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/706"
+    }
+  },
+  "707": {
+    "id": 707,
+    "name": "クレッフィ",
+    "name_en": "klefki",
+    "types": [
+      "はがね",
+      "フェアリー"
+    ],
+    "types_en": [
+      "steel",
+      "fairy"
+    ],
+    "abilities": [
+      "いたずらごころ",
+      "マジシャン(隠れ)"
+    ],
+    "stats": {
+      "hp": 57,
+      "attack": 80,
+      "defense": 91,
+      "special_attack": 80,
+      "special_defense": 87,
+      "speed": 75
+    },
+    "height": 0.2,
+    "weight": 3.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/707",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/707",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/707"
+    }
+  },
+  "708": {
+    "id": 708,
+    "name": "ボクレー",
+    "name_en": "phantump",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "types_en": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "しぜんかいふく",
+      "おみとおし",
+      "しゅうかく(隠れ)"
+    ],
+    "stats": {
+      "hp": 43,
+      "attack": 70,
+      "defense": 48,
+      "special_attack": 50,
+      "special_defense": 60,
+      "speed": 38
+    },
+    "height": 0.4,
+    "weight": 7.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        709
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/708",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/708",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/708"
+    }
+  },
+  "709": {
+    "id": 709,
+    "name": "オーロット",
+    "name_en": "trevenant",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "types_en": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "しぜんかいふく",
+      "おみとおし",
+      "しゅうかく(隠れ)"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 110,
+      "defense": 76,
+      "special_attack": 65,
+      "special_defense": 82,
+      "speed": 56
+    },
+    "height": 1.5,
+    "weight": 71.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 708,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/709",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/709",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/709"
+    }
+  },
+  "710": {
+    "id": 710,
+    "name": "バケッチャ",
+    "name_en": "pumpkaboo-average",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "types_en": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん(隠れ)"
+    ],
+    "stats": {
+      "hp": 49,
+      "attack": 66,
+      "defense": 70,
+      "special_attack": 44,
+      "special_defense": 55,
+      "speed": 51
+    },
+    "height": 0.4,
+    "weight": 5.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        711
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/710",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/710",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/710"
+    }
+  },
+  "711": {
+    "id": 711,
+    "name": "パンプジン",
+    "name_en": "gourgeist-average",
+    "types": [
+      "ゴースト",
+      "くさ"
+    ],
+    "types_en": [
+      "ghost",
+      "grass"
+    ],
+    "abilities": [
+      "ものひろい",
+      "おみとおし",
+      "ふみん(隠れ)"
+    ],
+    "stats": {
+      "hp": 65,
+      "attack": 90,
+      "defense": 122,
+      "special_attack": 58,
+      "special_defense": 75,
+      "speed": 84
+    },
+    "height": 0.9,
+    "weight": 12.5,
+    "generation": 6,
+    "evolution": {
+      "prev": 710,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/711",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/711",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/711"
+    }
+  },
+  "712": {
+    "id": 712,
+    "name": "カチコール",
+    "name_en": "bergmite",
+    "types": [
+      "こおり"
+    ],
+    "types_en": [
+      "ice"
+    ],
+    "abilities": [
+      "マイペース",
+      "アイスボディ",
+      "がんじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 55,
+      "attack": 69,
+      "defense": 85,
+      "special_attack": 32,
+      "special_defense": 35,
+      "speed": 28
+    },
+    "height": 1.0,
+    "weight": 99.5,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        713
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/712",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/712",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/712"
+    }
+  },
+  "713": {
+    "id": 713,
+    "name": "クレベース",
+    "name_en": "avalugg",
+    "types": [
+      "こおり"
+    ],
+    "types_en": [
+      "ice"
+    ],
+    "abilities": [
+      "マイペース",
+      "アイスボディ",
+      "がんじょう(隠れ)"
+    ],
+    "stats": {
+      "hp": 95,
+      "attack": 117,
+      "defense": 184,
+      "special_attack": 44,
+      "special_defense": 46,
+      "speed": 28
+    },
+    "height": 2.0,
+    "weight": 505.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 712,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/713",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/713",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/713"
+    }
+  },
+  "714": {
+    "id": 714,
+    "name": "オンバット",
+    "name_en": "noibat",
+    "types": [
+      "ひこう",
+      "ドラゴン"
+    ],
+    "types_en": [
+      "flying",
+      "dragon"
+    ],
+    "abilities": [
+      "おみとおし",
+      "すりぬけ",
+      "テレパシー(隠れ)"
+    ],
+    "stats": {
+      "hp": 40,
+      "attack": 30,
+      "defense": 35,
+      "special_attack": 45,
+      "special_defense": 40,
+      "speed": 55
+    },
+    "height": 0.5,
+    "weight": 8.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": [
+        715
+      ]
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/714",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/714",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/714"
+    }
+  },
+  "715": {
+    "id": 715,
+    "name": "オンバーン",
+    "name_en": "noivern",
+    "types": [
+      "ひこう",
+      "ドラゴン"
+    ],
+    "types_en": [
+      "flying",
+      "dragon"
+    ],
+    "abilities": [
+      "おみとおし",
+      "すりぬけ",
+      "テレパシー(隠れ)"
+    ],
+    "stats": {
+      "hp": 85,
+      "attack": 70,
+      "defense": 80,
+      "special_attack": 97,
+      "special_defense": 80,
+      "speed": 123
+    },
+    "height": 1.5,
+    "weight": 85.0,
+    "generation": 6,
+    "evolution": {
+      "prev": 714,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/715",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/715",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/715"
+    }
+  },
+  "716": {
+    "id": 716,
+    "name": "ゼルネアス",
+    "name_en": "xerneas",
+    "types": [
+      "フェアリー"
+    ],
+    "types_en": [
+      "fairy"
+    ],
+    "abilities": [
+      "フェアリーオーラ"
+    ],
+    "stats": {
+      "hp": 126,
+      "attack": 131,
+      "defense": 95,
+      "special_attack": 131,
+      "special_defense": 98,
+      "speed": 99
+    },
+    "height": 3.0,
+    "weight": 215.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/716",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/716",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/716"
+    }
+  },
+  "717": {
+    "id": 717,
+    "name": "イベルタル",
+    "name_en": "yveltal",
+    "types": [
+      "あく",
+      "ひこう"
+    ],
+    "types_en": [
+      "dark",
+      "flying"
+    ],
+    "abilities": [
+      "ダークオーラ"
+    ],
+    "stats": {
+      "hp": 126,
+      "attack": 131,
+      "defense": 95,
+      "special_attack": 131,
+      "special_defense": 98,
+      "speed": 99
+    },
+    "height": 5.8,
+    "weight": 203.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/717",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/717",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/717"
+    }
+  },
+  "718": {
+    "id": 718,
+    "name": "ジガルデ",
+    "name_en": "zygarde-50",
+    "types": [
+      "ドラゴン",
+      "じめん"
+    ],
+    "types_en": [
+      "dragon",
+      "ground"
+    ],
+    "abilities": [
+      "オーラブレイク"
+    ],
+    "stats": {
+      "hp": 108,
+      "attack": 100,
+      "defense": 121,
+      "special_attack": 81,
+      "special_defense": 95,
+      "speed": 95
+    },
+    "height": 5.0,
+    "weight": 305.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/718",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/718",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/718"
+    }
+  },
+  "719": {
+    "id": 719,
+    "name": "ディアンシー",
+    "name_en": "diancie",
+    "types": [
+      "いわ",
+      "フェアリー"
+    ],
+    "types_en": [
+      "rock",
+      "fairy"
+    ],
+    "abilities": [
+      "クリアボディ"
+    ],
+    "stats": {
+      "hp": 50,
+      "attack": 100,
+      "defense": 150,
+      "special_attack": 100,
+      "special_defense": 150,
+      "speed": 50
+    },
+    "height": 0.7,
+    "weight": 8.8,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/719",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/719",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/719"
+    }
+  },
+  "720": {
+    "id": 720,
+    "name": "フーパ",
+    "name_en": "hoopa",
+    "types": [
+      "エスパー",
+      "ゴースト"
+    ],
+    "types_en": [
+      "psychic",
+      "ghost"
+    ],
+    "abilities": [
+      "マジシャン"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 110,
+      "defense": 60,
+      "special_attack": 150,
+      "special_defense": 130,
+      "speed": 70
+    },
+    "height": 0.5,
+    "weight": 9.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/720",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/720",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/720"
+    }
+  },
+  "721": {
+    "id": 721,
+    "name": "ボルケニオン",
+    "name_en": "volcanion",
+    "types": [
+      "ほのお",
+      "みず"
+    ],
+    "types_en": [
+      "fire",
+      "water"
+    ],
+    "abilities": [
+      "ちょすい"
+    ],
+    "stats": {
+      "hp": 80,
+      "attack": 110,
+      "defense": 120,
+      "special_attack": 130,
+      "special_defense": 90,
+      "speed": 70
+    },
+    "height": 1.7,
+    "weight": 195.0,
+    "generation": 6,
+    "evolution": {
+      "prev": null,
+      "next": []
+    },
+    "external_links": {
+      "kouryaku": "https://pokemon.gamewith.jp/article/show/721",
+      "gamewith": "https://gamewith.jp/pokemon-go/article/show/721",
+      "game8": "https://game8.jp/pokemon-sv/pokemon/721"
+    }
+  }
+}

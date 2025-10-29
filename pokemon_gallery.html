@@ -1,56 +1,236 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ポケモン図鑑ギャラリー</title>
+    <title>PokeAkane ポケモン図鑑</title>
     <style>
         body {
             margin: 0;
-            padding: 20px;
+            padding: 0;
             font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
+
+        /* 固定ヘッダー */
         .header {
-            text-align: center;
-            margin-bottom: 30px;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
         }
+
         .header h1 {
-            font-size: 2.5rem;
-            margin: 0;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            margin: 0 0 15px 0;
+            text-align: center;
+            font-size: 2rem;
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-        .pokemon-section {
-            margin-bottom: 50px;
+
+        /* 世代切り替えボタン */
+        .generation-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
         }
+
+        .gen-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 20px;
+            background: linear-gradient(45deg, #ff6b9d, #4facfe);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .gen-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .gen-btn.active {
+            background: linear-gradient(45deg, #43e97b, #38f9d7);
+            transform: scale(1.05);
+        }
+
+        /* ソフト毎ボタン */
+        .software-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+        }
+
+        .soft-btn {
+            padding: 4px 8px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(45deg, #ffa726, #ff7043);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 0.7rem;
+            min-width: 40px;
+        }
+
+        .soft-btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
+        }
+
+        .soft-btn.active {
+            background: linear-gradient(45deg, #66bb6a, #42a5f5);
+            transform: scale(1.05);
+        }
+
+        /* 検索エリア */
+        .search-area {
+            display: grid;
+            grid-template-columns: 1fr 180px 150px 150px;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .search-box {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .type-select, .filter-select {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+        }
+
+        .type-filter-container {
+            position: relative;
+        }
+
+        .type-dropdown summary {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.9);
+            outline: none;
+            font-size: 0.9rem;
+            cursor: pointer;
+            list-style: none;
+        }
+
+        .type-checkbox-list {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            z-index: 1000;
+            padding: 15px;
+            min-width: 200px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .type-checkbox-list label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 5px;
+        }
+
+        .type-checkbox-list label:hover {
+            background: #f8f9fa;
+        }
+
+        /* メインコンテンツ */
+        .main-content {
+            margin-top: 280px;
+            padding: 20px;
+        }
+
         .pokemon-grid {
             display: grid;
             grid-template-columns: repeat(6, 1fr);
-            gap: 15px;
-            max-width: 1200px;
+            gap: 20px 20px;
+            row-gap: 40px;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            position: relative;
         }
+
+        /* 30個ごと（5行ごと）に区切り線を引く */
+        .pokemon-card:nth-child(30n) {
+            position: relative;
+        }
+
+        .pokemon-card:nth-child(30n)::after {
+            content: '';
+            position: absolute;
+            top: calc(100% + 25px);
+            left: -100vw;
+            right: -100vw;
+            width: 200vw;
+            height: 10px;
+            background: #ff1493;
+            z-index: 999;
+            box-shadow: 0 3px 15px rgba(255, 20, 147, 0.9);
+            border-radius: 5px;
+            display: block !important;
+            visibility: visible !important;
+        }
+
+        /* 実際のHTML要素としての区切り線 */
+        .row-separator {
+            grid-column: 1 / -1;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #ff69b4, transparent);
+            margin: 15px 0;
+            width: 100%;
+            border-radius: 2px;
+        }
+
         .pokemon-card {
             background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
             border-radius: 15px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3), 0 0 20px rgba(255, 182, 193, 0.2);
+            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
-            background-clip: padding-box;
+            cursor: pointer;
             position: relative;
             overflow: hidden;
         }
-        
+
         .pokemon-card::before {
             content: '';
             position: absolute;
@@ -58,148 +238,101 @@
             left: -2px;
             right: -2px;
             bottom: -2px;
-            background: linear-gradient(45deg, #ff6b9d, #4facfe, #43e97b, #f093fb, #ff6b9d);
+            background: linear-gradient(45deg, #ff6b9d, #4facfe, #43e97b, #f093fb);
             border-radius: 17px;
             z-index: -1;
-            animation: borderGlow 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s ease;
         }
-        
-        @keyframes borderGlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+
+        .pokemon-card:hover::before {
+            opacity: 1;
         }
-        
+
         .pokemon-card:hover {
-            transform: translateY(-8px) scale(1.05) rotateZ(2deg);
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4), 0 5px 15px rgba(255, 182, 193, 0.3);
-            background: linear-gradient(145deg, #ffffff 0%, #ffeef8 50%, #ffe0f0 100%);
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4);
         }
-        .pokemon-image {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            background: #f8f9fa;
-            padding: 5px;
-        }
+
         .pokemon-number {
             font-size: 0.9rem;
             color: #6c757d;
             font-weight: bold;
             margin-bottom: 5px;
         }
+
+        .pokemon-image-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 8px;
+        }
+
+        .pokemon-image {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: #f8f9fa;
+            padding: 5px;
+        }
+
         .pokemon-name {
             font-size: 1rem;
             font-weight: bold;
             color: #333;
-            margin: 0;
+            margin-bottom: 10px;
         }
-        .section-break {
-            height: 40px;
+
+        .pokemon-types {
             display: flex;
-            align-items: center;
             justify-content: center;
-            margin: 30px auto;
-            max-width: 1200px;
+            gap: 5px;
+            margin-bottom: 10px;
         }
-        .section-break::before, .section-break::after {
-            content: "";
-            flex: 1;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-        }
-        .section-break span {
-            color: white;
-            margin: 0 20px;
-            font-size: 1.1rem;
-            font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .search-container {
-            max-width: 600px;
-            margin: 20px auto;
-            position: relative;
-        }
-        
-        .search-box {
-            width: 100%;
-            padding: 15px 50px 15px 20px;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 25px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            outline: none;
-            transition: all 0.3s ease;
-        }
-        
-        .search-box:focus {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
-        }
-        
-        .search-icon {
-            position: absolute;
-            right: 20px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #666;
-            font-size: 1.2rem;
-        }
-        
-        .clear-search {
-            position: absolute;
-            right: 50px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #666;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: none;
-        }
-        
-        .clear-search:hover {
-            color: #333;
-        }
-        
-        .search-results {
-            color: white;
-            text-align: center;
-            margin: 10px 0;
-            font-size: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        /* 姿違いモーダル関連のスタイル */
-        .forms-indicator {
-            position: absolute;
-            top: 5px;
-            right: 5px;
-            background: linear-gradient(45deg, #ff6b9d, #4facfe);
-            color: white;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+
+        .type-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
             font-size: 0.7rem;
             font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-            z-index: 2;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 3px;
         }
-        
-        .forms-modal {
+
+        .type-icon {
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+        }
+
+        /* タイプ別色分け */
+        .type-ノーマル { background: #A8A878; }
+        .type-ほのお { background: #F08030; }
+        .type-みず { background: #6890F0; }
+        .type-でんき { background: #F8D030; }
+        .type-くさ { background: #78C850; }
+        .type-こおり { background: #98D8D8; }
+        .type-かくとう { background: #C03028; }
+        .type-どく { background: #A040A0; }
+        .type-じめん { background: #E0C068; }
+        .type-ひこう { background: #A890F0; }
+        .type-エスパー { background: #F85888; }
+        .type-むし { background: #A8B820; }
+        .type-いわ { background: #B8A038; }
+        .type-ゴースト { background: #705898; }
+        .type-ドラゴン { background: #7038F8; }
+        .type-あく { background: #705848; }
+        .type-はがね { background: #B8B8D0; }
+        .type-フェアリー { background: #EE99AC; }
+
+        /* 詳細モーダル */
+        .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
             left: 0;
             top: 0;
             width: 100%;
@@ -207,8 +340,8 @@
             background-color: rgba(0,0,0,0.8);
             backdrop-filter: blur(10px);
         }
-        
-        .forms-modal-content {
+
+        .modal-content {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             margin: 5% auto;
             padding: 30px;
@@ -218,23 +351,22 @@
             max-height: 80vh;
             overflow-y: auto;
             box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+            color: white;
         }
-        
-        .forms-modal-header {
+
+        .modal-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 20px;
-            color: white;
         }
-        
-        .forms-modal-title {
-            font-size: 1.5rem;
+
+        .modal-title {
+            font-size: 1.8rem;
             font-weight: bold;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
-        
-        .forms-close {
+
+        .close {
             background: none;
             border: none;
             color: white;
@@ -249,661 +381,786 @@
             justify-content: center;
             transition: all 0.3s ease;
         }
-        
-        .forms-close:hover {
+
+        .close:hover {
             background: rgba(255,255,255,0.2);
             transform: rotate(90deg);
         }
-        
-        .forms-grid {
+
+        .modal-body {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
-        
-        .form-card {
-            background: rgba(255,255,255,0.95);
+
+        .pokemon-detail-image {
+            width: 200px;
+            height: 200px;
+            object-fit: contain;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 0 auto;
+        }
+
+        /* 進化表示のスタイル */
+        .evolution-display {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .evolution-step {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .evolution-step.branched {
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .evolution-pokemon {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .evolution-pokemon:hover {
+            transform: scale(1.05);
+        }
+
+        .evolution-arrow {
+            font-size: 1.5rem;
+            color: #ff69b4;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .evolution-branches {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .evolution-branch {
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .evolution-branch:hover {
+            transform: scale(1.1);
+        }
+
+        .detail-section {
+            background: rgba(255,255,255,0.1);
             border-radius: 15px;
             padding: 15px;
-            text-align: center;
-            transition: all 0.3s ease;
-            cursor: pointer;
-            position: relative;
-            overflow: hidden;
+            margin-bottom: 15px;
         }
-        
-        .form-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b9d, #4facfe, #43e97b, #f093fb);
-            border-radius: 17px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
+
+        .detail-section h3 {
+            margin: 0 0 10px 0;
+            color: #43e97b;
         }
-        
-        .form-card:hover::before {
-            opacity: 1;
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
         }
-        
-        .form-card:hover {
-            transform: translateY(-5px) scale(1.05);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-        }
-        
-        .form-image {
-            width: 80px;
-            height: 80px;
-            object-fit: contain;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            background: #f8f9fa;
+
+        .stat-item {
+            display: flex;
+            justify-content: space-between;
             padding: 5px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
         }
-        
-        .form-name {
+
+        .external-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .external-link {
+            padding: 8px 16px;
+            background: linear-gradient(45deg, #ff6b9d, #4facfe);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            transition: all 0.3s ease;
             font-size: 0.9rem;
-            font-weight: bold;
-            color: #333;
-            margin: 0;
         }
-        
-        .clickable-card {
-            cursor: pointer;
-            position: relative;
+
+        .external-link:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
         }
-        
-        .clickable-card:hover .forms-indicator {
-            animation: pulse 1s infinite;
+
+        /* レスポンシブ */
+        @media (max-width: 768px) {
+            .search-area {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .modal-body {
+                grid-template-columns: 1fr;
+            }
+            
+            .generation-buttons {
+                gap: 5px;
+            }
+            
+            .gen-btn {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
         }
-        
-        @keyframes pulse {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
+
+        /* ローディング */
+        .loading {
+            text-align: center;
+            color: white;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+
+        .loading::after {
+            content: '';
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-left: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- 固定ヘッダー -->
     <div class="header">
-        <h1>ポケモン図鑑ギャラリー</h1>
-        <p>全230種のユニークポケモンコレクション</p>
-        <div class="search-container">
-            <input type="text" class="search-box" placeholder="ポケモン名または図鑑No.で検索... (例: ピカチュウ、025)" id="searchInput">
-            <button class="clear-search" id="clearSearch">×</button>
-            <span class="search-icon">🔍</span>
+        <h1>PokeAkane ポケモン図鑑</h1>
+        
+        <!-- 世代切り替えボタン -->
+        <div class="generation-buttons">
+            <button class="gen-btn active" data-gen="all">全国図鑑</button>
+            <button class="gen-btn" data-gen="1">第1世代</button>
+            <button class="gen-btn" data-gen="2">第2世代</button>
+            <button class="gen-btn" data-gen="3">第3世代</button>
+            <button class="gen-btn" data-gen="4">第4世代</button>
+            <button class="gen-btn" data-gen="5">第5世代</button>
+            <button class="gen-btn" data-gen="6">第6世代</button>
+            <button class="gen-btn" data-gen="7">第7世代</button>
+            <button class="gen-btn" data-gen="8">第8世代</button>
+            <button class="gen-btn" data-gen="9">第9世代</button>
         </div>
-        <div class="search-results" id="searchResults"></div>
-        <div class="section-break"><span>No.001～030</span></div>
-    </div><div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.001</div><img src="pokemon_images/pokemon_001.png" alt="チコリータ" class="pokemon-image" loading="lazy"><div class="pokemon-name">チコリータ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.002</div><img src="pokemon_images/pokemon_002.png" alt="ベイリーフ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ベイリーフ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.003</div><img src="pokemon_images/pokemon_003.png" alt="メガニウム" class="pokemon-image" loading="lazy"><div class="pokemon-name">メガニウム</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.004</div><img src="pokemon_images/pokemon_004.png" alt="ポカブ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ポカブ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.005</div><img src="pokemon_images/pokemon_005.png" alt="チャオブー" class="pokemon-image" loading="lazy"><div class="pokemon-name">チャオブー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.006</div><img src="pokemon_images/pokemon_006.png" alt="エンブオー" class="pokemon-image" loading="lazy"><div class="pokemon-name">エンブオー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.007</div><img src="pokemon_images/pokemon_007.png" alt="ワニノコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワニノコ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.008</div><img src="pokemon_images/pokemon_008.png" alt="アリゲイツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アリゲイツ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.009</div><img src="pokemon_images/pokemon_009.png" alt="オーダイル" class="pokemon-image" loading="lazy"><div class="pokemon-name">オーダイル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.010</div><img src="pokemon_images/pokemon_010.png" alt="ヤヤコマ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤヤコマ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.011</div><img src="pokemon_images/pokemon_011.png" alt="ヒノヤコマ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒノヤコマ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.012</div><img src="pokemon_images/pokemon_012.png" alt="ファイアロー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ファイアロー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.013</div><img src="pokemon_images/pokemon_013.png" alt="ホルビー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホルビー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.014</div><img src="pokemon_images/pokemon_014.png" alt="ホルード" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホルード</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.015</div><img src="pokemon_images/pokemon_015.png" alt="コフキムシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コフキムシ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.016</div><img src="pokemon_images/pokemon_016.png" alt="コフーライ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コフーライ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.017</div><img src="pokemon_images/pokemon_017.png" alt="ビビヨン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ビビヨン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.018</div><img src="pokemon_images/pokemon_018.png" alt="ビードル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ビードル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.019</div><img src="pokemon_images/pokemon_019.png" alt="コクーン" class="pokemon-image" loading="lazy"><div class="pokemon-name">コクーン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.020</div><img src="pokemon_images/pokemon_020.png" alt="スピアー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スピアー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.021</div><img src="pokemon_images/pokemon_021.png" alt="ポッポ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ポッポ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.022</div><img src="pokemon_images/pokemon_022.png" alt="ピジョン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピジョン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.023</div><img src="pokemon_images/pokemon_023.png" alt="ピジョット" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピジョット</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.024</div><img src="pokemon_images/pokemon_024.png" alt="メリープ" class="pokemon-image" loading="lazy"><div class="pokemon-name">メリープ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.025</div><img src="pokemon_images/pokemon_025.png" alt="モココ" class="pokemon-image" loading="lazy"><div class="pokemon-name">モココ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.026</div><img src="pokemon_images/pokemon_026.png" alt="デンリュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">デンリュウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.027</div><img src="pokemon_images/pokemon_027.png" alt="ミネズミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミネズミ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.028</div><img src="pokemon_images/pokemon_028.png" alt="ミルホッグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミルホッグ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.029</div><img src="pokemon_images/pokemon_029.png" alt="スボミー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スボミー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.030</div><img src="pokemon_images/pokemon_030.png" alt="ロゼリア" class="pokemon-image" loading="lazy"><div class="pokemon-name">ロゼリア</div></div>
-</div></div>
-<div class="section-break"><span>No.031～060</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.031</div><img src="pokemon_images/pokemon_031.png" alt="ロズレイド" class="pokemon-image" loading="lazy"><div class="pokemon-name">ロズレイド</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.032</div><img src="pokemon_images/pokemon_032.png" alt="コイキング" class="pokemon-image" loading="lazy"><div class="pokemon-name">コイキング</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.033</div><img src="pokemon_images/pokemon_033.png" alt="ギャラドス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ギャラドス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.034</div><img src="pokemon_images/pokemon_034.png" alt="カメテテ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメテテ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.035</div><img src="pokemon_images/pokemon_035.png" alt="ガメノデス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガメノデス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.036</div><img src="pokemon_images/pokemon_036.png" alt="ヒトデマン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトデマン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.037</div><img src="pokemon_images/pokemon_037.png" alt="スターミー" class="pokemon-image" loading="lazy"><div class="pokemon-name">スターミー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.038</div><img src="pokemon_images/pokemon_038.png" alt="フラベベ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラベベ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.039</div><img src="pokemon_images/pokemon_039.png" alt="フラエッテ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラエッテ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.040</div><img src="pokemon_images/pokemon_040.png" alt="フラージェス" class="pokemon-image" loading="lazy"><div class="pokemon-name">フラージェス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.041</div><img src="pokemon_images/pokemon_041.png" alt="メェークル" class="pokemon-image" loading="lazy"><div class="pokemon-name">メェークル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.042</div><img src="pokemon_images/pokemon_042.png" alt="ゴーゴート" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴーゴート</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.043</div><img src="pokemon_images/pokemon_043.png" alt="ニャスパー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニャスパー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.044</div><img src="pokemon_images/pokemon_044.png" alt="ニャオニクス(オス)" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニャオニクス(オス)</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.045</div><img src="pokemon_images/pokemon_045.png" alt="シシコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シシコ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.046</div><img src="pokemon_images/pokemon_046.png" alt="カエンジシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カエンジシ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.047</div><img src="pokemon_images/pokemon_047.png" alt="ヤンチャム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤンチャム</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.048</div><img src="pokemon_images/pokemon_048.png" alt="ゴロンダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴロンダ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.049</div><img src="pokemon_images/pokemon_049.png" alt="ヤブクロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤブクロン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.050</div><img src="pokemon_images/pokemon_050.png" alt="ダストダス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ダストダス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.051</div><img src="pokemon_images/pokemon_051.png" alt="デデンネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">デデンネ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.052</div><img src="pokemon_images/pokemon_052.png" alt="ピチュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピチュー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.053</div><img src="pokemon_images/pokemon_053.png" alt="ピカチュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピカチュウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.054</div><img src="pokemon_images/pokemon_054.png" alt="ライチュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ライチュウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.055</div><img src="pokemon_images/pokemon_055.png" alt="ピィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピィ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.056</div><img src="pokemon_images/pokemon_056.png" alt="ピッピ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピッピ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.057</div><img src="pokemon_images/pokemon_057.png" alt="ピクシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ピクシー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.058</div><img src="pokemon_images/pokemon_058.png" alt="イトマル" class="pokemon-image" loading="lazy"><div class="pokemon-name">イトマル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.059</div><img src="pokemon_images/pokemon_059.png" alt="アリアドス" class="pokemon-image" loading="lazy"><div class="pokemon-name">アリアドス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.060</div><img src="pokemon_images/pokemon_060.png" alt="アーボ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アーボ</div></div>
-</div></div>
-<div class="section-break"><span>No.061～090</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.061</div><img src="pokemon_images/pokemon_061.png" alt="アーボック" class="pokemon-image" loading="lazy"><div class="pokemon-name">アーボック</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.062</div><img src="pokemon_images/pokemon_062.png" alt="ケーシィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ケーシィ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.063</div><img src="pokemon_images/pokemon_063.png" alt="ユンゲラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユンゲラー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.064</div><img src="pokemon_images/pokemon_064.png" alt="フーディン" class="pokemon-image" loading="lazy"><div class="pokemon-name">フーディン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.065</div><img src="pokemon_images/pokemon_065.png" alt="ゴース" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴース</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.066</div><img src="pokemon_images/pokemon_066.png" alt="ゴースト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴースト</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.067</div><img src="pokemon_images/pokemon_067.png" alt="ゲンガー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲンガー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.068</div><img src="pokemon_images/pokemon_068.png" alt="フシデ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシデ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.069</div><img src="pokemon_images/pokemon_069.png" alt="ホイーガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ホイーガ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.070</div><img src="pokemon_images/pokemon_070.png" alt="ペンドラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペンドラー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.071</div><img src="pokemon_images/pokemon_071.png" alt="ヒトツキ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトツキ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.072</div><img src="pokemon_images/pokemon_072.png" alt="ニダンギル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニダンギル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.073</div><img src="pokemon_images/pokemon_073.png" alt="ギルガルド" class="pokemon-image" loading="lazy"><div class="pokemon-name">ギルガルド</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.074</div><img src="pokemon_images/pokemon_074.png" alt="マダツボミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マダツボミ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.075</div><img src="pokemon_images/pokemon_075.png" alt="ウツドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウツドン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.076</div><img src="pokemon_images/pokemon_076.png" alt="ウツボット" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウツボット</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.077</div><img src="pokemon_images/pokemon_077.png" alt="ヤナップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤナップ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.078</div><img src="pokemon_images/pokemon_078.png" alt="ヤナッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤナッキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.079</div><img src="pokemon_images/pokemon_079.png" alt="バオップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バオップ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.080</div><img src="pokemon_images/pokemon_080.png" alt="バオッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">バオッキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.081</div><img src="pokemon_images/pokemon_081.png" alt="ヒヤップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒヤップ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.082</div><img src="pokemon_images/pokemon_082.png" alt="ヒヤッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒヤッキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.083</div><img src="pokemon_images/pokemon_083.png" alt="アサナン" class="pokemon-image" loading="lazy"><div class="pokemon-name">アサナン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.084</div><img src="pokemon_images/pokemon_084.png" alt="チャーレム" class="pokemon-image" loading="lazy"><div class="pokemon-name">チャーレム</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.085</div><img src="pokemon_images/pokemon_085.png" alt="ラクライ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ラクライ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.086</div><img src="pokemon_images/pokemon_086.png" alt="ライボルト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ライボルト</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.087</div><img src="pokemon_images/pokemon_087.png" alt="ラルトス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ラルトス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.088</div><img src="pokemon_images/pokemon_088.png" alt="キルリア" class="pokemon-image" loading="lazy"><div class="pokemon-name">キルリア</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.089</div><img src="pokemon_images/pokemon_089.png" alt="サーナイト" class="pokemon-image" loading="lazy"><div class="pokemon-name">サーナイト</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.090</div><img src="pokemon_images/pokemon_090.png" alt="エルレイド" class="pokemon-image" loading="lazy"><div class="pokemon-name">エルレイド</div></div>
-</div></div>
-<div class="section-break"><span>No.091～120</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.091</div><img src="pokemon_images/pokemon_091.png" alt="デルビル" class="pokemon-image" loading="lazy"><div class="pokemon-name">デルビル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.092</div><img src="pokemon_images/pokemon_092.png" alt="ヘルガー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヘルガー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.093</div><img src="pokemon_images/pokemon_093.png" alt="チルット" class="pokemon-image" loading="lazy"><div class="pokemon-name">チルット</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.094</div><img src="pokemon_images/pokemon_094.png" alt="チルタリス" class="pokemon-image" loading="lazy"><div class="pokemon-name">チルタリス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.095</div><img src="pokemon_images/pokemon_095.png" alt="タブンネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タブンネ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.096</div><img src="pokemon_images/pokemon_096.png" alt="シュシュプ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シュシュプ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.097</div><img src="pokemon_images/pokemon_097.png" alt="フレフワン" class="pokemon-image" loading="lazy"><div class="pokemon-name">フレフワン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.098</div><img src="pokemon_images/pokemon_098.png" alt="ペロッパフ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペロッパフ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.099</div><img src="pokemon_images/pokemon_099.png" alt="ペロリーム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ペロリーム</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.100</div><img src="pokemon_images/pokemon_100.png" alt="イーブイ" class="pokemon-image" loading="lazy"><div class="pokemon-name">イーブイ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.101</div><img src="pokemon_images/pokemon_101.png" alt="シャワーズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シャワーズ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.102</div><img src="pokemon_images/pokemon_102.png" alt="サンダース" class="pokemon-image" loading="lazy"><div class="pokemon-name">サンダース</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.103</div><img src="pokemon_images/pokemon_103.png" alt="ブースター" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブースター</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.104</div><img src="pokemon_images/pokemon_104.png" alt="エーフィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">エーフィ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.105</div><img src="pokemon_images/pokemon_105.png" alt="ブラッキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブラッキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.106</div><img src="pokemon_images/pokemon_106.png" alt="リーフィア" class="pokemon-image" loading="lazy"><div class="pokemon-name">リーフィア</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.107</div><img src="pokemon_images/pokemon_107.png" alt="グレイシア" class="pokemon-image" loading="lazy"><div class="pokemon-name">グレイシア</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.108</div><img src="pokemon_images/pokemon_108.png" alt="ニンフィア" class="pokemon-image" loading="lazy"><div class="pokemon-name">ニンフィア</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.109</div><img src="pokemon_images/pokemon_109.png" alt="ミミロル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミミロル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.110</div><img src="pokemon_images/pokemon_110.png" alt="ミミロップ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミミロップ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.111</div><img src="pokemon_images/pokemon_111.png" alt="カゲボウズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カゲボウズ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.112</div><img src="pokemon_images/pokemon_112.png" alt="ジュペッタ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジュペッタ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.113</div><img src="pokemon_images/pokemon_113.png" alt="バニプッチ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バニプッチ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.114</div><img src="pokemon_images/pokemon_114.png" alt="バニリッチ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バニリッチ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.115</div><img src="pokemon_images/pokemon_115.png" alt="バイバニラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バイバニラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.116</div><img src="pokemon_images/pokemon_116.png" alt="ドンメル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドンメル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.117</div><img src="pokemon_images/pokemon_117.png" alt="バクーダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バクーダ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.118</div><img src="pokemon_images/pokemon_118.png" alt="ヒポポタス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒポポタス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.119</div><img src="pokemon_images/pokemon_119.png" alt="カバルドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">カバルドン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.120</div><img src="pokemon_images/pokemon_120.png" alt="モグリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">モグリュー</div></div>
-</div></div>
-<div class="section-break"><span>No.121～150</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.121</div><img src="pokemon_images/pokemon_121.png" alt="ドリュウズ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドリュウズ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.122</div><img src="pokemon_images/pokemon_122.png" alt="メグロコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">メグロコ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.123</div><img src="pokemon_images/pokemon_123.png" alt="ワルビル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワルビル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.124</div><img src="pokemon_images/pokemon_124.png" alt="ワルビアル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワルビアル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.125</div><img src="pokemon_images/pokemon_125.png" alt="ワンリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ワンリキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.126</div><img src="pokemon_images/pokemon_126.png" alt="ゴーリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゴーリキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.127</div><img src="pokemon_images/pokemon_127.png" alt="カイリキー" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイリキー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.128</div><img src="pokemon_images/pokemon_128.png" alt="フカマル" class="pokemon-image" loading="lazy"><div class="pokemon-name">フカマル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.129</div><img src="pokemon_images/pokemon_129.png" alt="ガバイト" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガバイト</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.130</div><img src="pokemon_images/pokemon_130.png" alt="ガブリアス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガブリアス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.131</div><img src="pokemon_images/pokemon_131.png" alt="メレシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">メレシー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.132</div><img src="pokemon_images/pokemon_132.png" alt="ヤミラミ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤミラミ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.133</div><img src="pokemon_images/pokemon_133.png" alt="クチート" class="pokemon-image" loading="lazy"><div class="pokemon-name">クチート</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.134</div><img src="pokemon_images/pokemon_134.png" alt="アブソル" class="pokemon-image" loading="lazy"><div class="pokemon-name">アブソル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.135</div><img src="pokemon_images/pokemon_135.png" alt="リオル" class="pokemon-image" loading="lazy"><div class="pokemon-name">リオル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.136</div><img src="pokemon_images/pokemon_136.png" alt="ルカリオ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ルカリオ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.137</div><img src="pokemon_images/pokemon_137.png" alt="ヤドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.138</div><img src="pokemon_images/pokemon_138.png" alt="ヤドラン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドラン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.139</div><img src="pokemon_images/pokemon_139.png" alt="ヤドキング" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヤドキング</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.140</div><img src="pokemon_images/pokemon_140.png" alt="キバニア" class="pokemon-image" loading="lazy"><div class="pokemon-name">キバニア</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.141</div><img src="pokemon_images/pokemon_141.png" alt="サメハダー" class="pokemon-image" loading="lazy"><div class="pokemon-name">サメハダー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.142</div><img src="pokemon_images/pokemon_142.png" alt="シビシラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビシラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.143</div><img src="pokemon_images/pokemon_143.png" alt="シビビール" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビビール</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.144</div><img src="pokemon_images/pokemon_144.png" alt="シビルドン" class="pokemon-image" loading="lazy"><div class="pokemon-name">シビルドン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.145</div><img src="pokemon_images/pokemon_145.png" alt="ミニリュウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ミニリュウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.146</div><img src="pokemon_images/pokemon_146.png" alt="ハクリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハクリュー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.147</div><img src="pokemon_images/pokemon_147.png" alt="カイリュー" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイリュー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.148</div><img src="pokemon_images/pokemon_148.png" alt="フシギダネ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギダネ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.149</div><img src="pokemon_images/pokemon_149.png" alt="フシギソウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギソウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.150</div><img src="pokemon_images/pokemon_150.png" alt="フシギバナ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フシギバナ</div></div>
-</div></div>
-<div class="section-break"><span>No.151～180</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.151</div><img src="pokemon_images/pokemon_151.png" alt="ヒトカゲ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトカゲ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.152</div><img src="pokemon_images/pokemon_152.png" alt="リザード" class="pokemon-image" loading="lazy"><div class="pokemon-name">リザード</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.153</div><img src="pokemon_images/pokemon_153.png" alt="リザードン" class="pokemon-image" loading="lazy"><div class="pokemon-name">リザードン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.154</div><img src="pokemon_images/pokemon_154.png" alt="ゼニガメ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゼニガメ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.155</div><img src="pokemon_images/pokemon_155.png" alt="カメール" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメール</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.156</div><img src="pokemon_images/pokemon_156.png" alt="カメックス" class="pokemon-image" loading="lazy"><div class="pokemon-name">カメックス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.157</div><img src="pokemon_images/pokemon_157.png" alt="マッギョ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マッギョ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.158</div><img src="pokemon_images/pokemon_158.png" alt="トリミアン" class="pokemon-image" loading="lazy"><div class="pokemon-name">トリミアン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.159</div><img src="pokemon_images/pokemon_159.png" alt="マーイーカ" class="pokemon-image" loading="lazy"><div class="pokemon-name">マーイーカ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.160</div><img src="pokemon_images/pokemon_160.png" alt="カラマネロ" class="pokemon-image" loading="lazy"><div class="pokemon-name">カラマネロ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.161</div><img src="pokemon_images/pokemon_161.png" alt="クズモー" class="pokemon-image" loading="lazy"><div class="pokemon-name">クズモー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.162</div><img src="pokemon_images/pokemon_162.png" alt="ドラミドロ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ドラミドロ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.163</div><img src="pokemon_images/pokemon_163.png" alt="ウデッポウ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ウデッポウ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.164</div><img src="pokemon_images/pokemon_164.png" alt="ブロスター" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブロスター</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.165</div><img src="pokemon_images/pokemon_165.png" alt="ヌメラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.166</div><img src="pokemon_images/pokemon_166.png" alt="ヌメイル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメイル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.167</div><img src="pokemon_images/pokemon_167.png" alt="ヌメルゴン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヌメルゴン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.168</div><img src="pokemon_images/pokemon_168.png" alt="デリバード" class="pokemon-image" loading="lazy"><div class="pokemon-name">デリバード</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.169</div><img src="pokemon_images/pokemon_169.png" alt="ユキワラシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキワラシ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.170</div><img src="pokemon_images/pokemon_170.png" alt="オニゴーリ" class="pokemon-image" loading="lazy"><div class="pokemon-name">オニゴーリ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.171</div><img src="pokemon_images/pokemon_171.png" alt="ユキメノコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキメノコ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.172</div><img src="pokemon_images/pokemon_172.png" alt="ユキカブリ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキカブリ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.173</div><img src="pokemon_images/pokemon_173.png" alt="ユキノオー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ユキノオー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.174</div><img src="pokemon_images/pokemon_174.png" alt="カチコール" class="pokemon-image" loading="lazy"><div class="pokemon-name">カチコール</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.175</div><img src="pokemon_images/pokemon_175.png" alt="クレベース" class="pokemon-image" loading="lazy"><div class="pokemon-name">クレベース</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.176</div><img src="pokemon_images/pokemon_176.png" alt="ストライク" class="pokemon-image" loading="lazy"><div class="pokemon-name">ストライク</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.177</div><img src="pokemon_images/pokemon_177.png" alt="ハッサム" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハッサム</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.178</div><img src="pokemon_images/pokemon_178.png" alt="カイロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">カイロス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.179</div><img src="pokemon_images/pokemon_179.png" alt="ヘラクロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヘラクロス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.180</div><img src="pokemon_images/pokemon_180.png" alt="エモンガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">エモンガ</div></div>
-</div></div>
-<div class="section-break"><span>No.181～210</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.181</div><img src="pokemon_images/pokemon_181.png" alt="ルチャブル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ルチャブル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.182</div><img src="pokemon_images/pokemon_182.png" alt="ボクレー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボクレー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.183</div><img src="pokemon_images/pokemon_183.png" alt="オーロット" class="pokemon-image" loading="lazy"><div class="pokemon-name">オーロット</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.184</div><img src="pokemon_images/pokemon_184.png" alt="ズルッグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ズルッグ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.185</div><img src="pokemon_images/pokemon_185.png" alt="ズルズキン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ズルズキン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.186</div><img src="pokemon_images/pokemon_186.png" alt="オンバット" class="pokemon-image" loading="lazy"><div class="pokemon-name">オンバット</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.187</div><img src="pokemon_images/pokemon_187.png" alt="オンバーン" class="pokemon-image" loading="lazy"><div class="pokemon-name">オンバーン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.188</div><img src="pokemon_images/pokemon_188.png" alt="クレッフィ" class="pokemon-image" loading="lazy"><div class="pokemon-name">クレッフィ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.189</div><img src="pokemon_images/pokemon_189.png" alt="ヒトモシ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヒトモシ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.190</div><img src="pokemon_images/pokemon_190.png" alt="ランプラー" class="pokemon-image" loading="lazy"><div class="pokemon-name">ランプラー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.191</div><img src="pokemon_images/pokemon_191.png" alt="シャンデラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">シャンデラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.192</div><img src="pokemon_images/pokemon_192.png" alt="プテラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">プテラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.193</div><img src="pokemon_images/pokemon_193.png" alt="チゴラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">チゴラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.194</div><img src="pokemon_images/pokemon_194.png" alt="ガチゴラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガチゴラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.195</div><img src="pokemon_images/pokemon_195.png" alt="アマルス" class="pokemon-image" loading="lazy"><div class="pokemon-name">アマルス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.196</div><img src="pokemon_images/pokemon_196.png" alt="アマルルガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">アマルルガ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.197</div><img src="pokemon_images/pokemon_197.png" alt="イワーク" class="pokemon-image" loading="lazy"><div class="pokemon-name">イワーク</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.198</div><img src="pokemon_images/pokemon_198.png" alt="ハガネール" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハガネール</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.199</div><img src="pokemon_images/pokemon_199.png" alt="ココドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ココドラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.200</div><img src="pokemon_images/pokemon_200.png" alt="コドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">コドラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.201</div><img src="pokemon_images/pokemon_201.png" alt="ボスゴドラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボスゴドラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.202</div><img src="pokemon_images/pokemon_202.png" alt="エリキテル" class="pokemon-image" loading="lazy"><div class="pokemon-name">エリキテル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.203</div><img src="pokemon_images/pokemon_203.png" alt="エレザード" class="pokemon-image" loading="lazy"><div class="pokemon-name">エレザード</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.204</div><img src="pokemon_images/pokemon_204.png" alt="バケッチャ" class="pokemon-image" loading="lazy"><div class="pokemon-name">バケッチャ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.205</div><img src="pokemon_images/pokemon_205.png" alt="パンプジン" class="pokemon-image" loading="lazy"><div class="pokemon-name">パンプジン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.206</div><img src="pokemon_images/pokemon_206.png" alt="ヨーギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ヨーギラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.207</div><img src="pokemon_images/pokemon_207.png" alt="サナギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">サナギラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.208</div><img src="pokemon_images/pokemon_208.png" alt="バンギラス" class="pokemon-image" loading="lazy"><div class="pokemon-name">バンギラス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.209</div><img src="pokemon_images/pokemon_209.png" alt="ケロマツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ケロマツ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.210</div><img src="pokemon_images/pokemon_210.png" alt="ゲコガシラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲコガシラ</div></div>
-</div></div>
-<div class="section-break"><span>No.211～230</span></div>
-<div class="pokemon-section"><div class="pokemon-grid">
-<div class="pokemon-card"><div class="pokemon-number">No.211</div><img src="pokemon_images/pokemon_211.png" alt="ゲッコウガ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゲッコウガ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.212</div><img src="pokemon_images/pokemon_212.png" alt="タイレーツ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タイレーツ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.213</div><img src="pokemon_images/pokemon_213.png" alt="ハリマロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハリマロン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.214</div><img src="pokemon_images/pokemon_214.png" alt="ハリボーグ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ハリボーグ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.215</div><img src="pokemon_images/pokemon_215.png" alt="ブリガロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ブリガロン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.216</div><img src="pokemon_images/pokemon_216.png" alt="エアームド" class="pokemon-image" loading="lazy"><div class="pokemon-name">エアームド</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.217</div><img src="pokemon_images/pokemon_217.png" alt="フォッコ" class="pokemon-image" loading="lazy"><div class="pokemon-name">フォッコ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.218</div><img src="pokemon_images/pokemon_218.png" alt="テールナー" class="pokemon-image" loading="lazy"><div class="pokemon-name">テールナー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.219</div><img src="pokemon_images/pokemon_219.png" alt="マフォクシー" class="pokemon-image" loading="lazy"><div class="pokemon-name">マフォクシー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.220</div><img src="pokemon_images/pokemon_220.png" alt="タツベイ" class="pokemon-image" loading="lazy"><div class="pokemon-name">タツベイ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.221</div><img src="pokemon_images/pokemon_221.png" alt="コモルー" class="pokemon-image" loading="lazy"><div class="pokemon-name">コモルー</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.222</div><img src="pokemon_images/pokemon_222.png" alt="ボーマンダ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ボーマンダ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.223</div><img src="pokemon_images/pokemon_223.png" alt="ガルーラ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ガルーラ</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.224</div><img src="pokemon_images/pokemon_224.png" alt="ジジーロン" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジジーロン</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.225</div><img src="pokemon_images/pokemon_225.png" alt="ダンバル" class="pokemon-image" loading="lazy"><div class="pokemon-name">ダンバル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.226</div><img src="pokemon_images/pokemon_226.png" alt="メタング" class="pokemon-image" loading="lazy"><div class="pokemon-name">メタング</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.227</div><img src="pokemon_images/pokemon_227.png" alt="メタグロス" class="pokemon-image" loading="lazy"><div class="pokemon-name">メタグロス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.228</div><img src="pokemon_images/pokemon_228.png" alt="ゼルネアス" class="pokemon-image" loading="lazy"><div class="pokemon-name">ゼルネアス</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.229</div><img src="pokemon_images/pokemon_229.png" alt="イベルタル" class="pokemon-image" loading="lazy"><div class="pokemon-name">イベルタル</div></div>
-<div class="pokemon-card"><div class="pokemon-number">No.230</div><img src="pokemon_images/pokemon_230.png" alt="ジガルデ" class="pokemon-image" loading="lazy"><div class="pokemon-name">ジガルデ</div></div>
-</div></div>
-    <div class="footer" style="text-align: center; color: white; margin-top: 40px; padding: 20px; opacity: 0.8;">
-        <p>Pokemon ZA Gallery - Generated by AI Assistant</p>
+
+        <!-- ソフト毎ボタン -->
+        <div class="software-buttons">
+            <button class="soft-btn active" data-soft="all">全て</button>
+            <button class="soft-btn" data-soft="rby">赤緑青ピカ</button>
+            <button class="soft-btn" data-soft="frlg">FRLG</button>
+            <button class="soft-btn" data-soft="gsc">金銀ク</button>
+            <button class="soft-btn" data-soft="hgss">HGSS</button>
+            <button class="soft-btn" data-soft="rse">RSE</button>
+            <button class="soft-btn" data-soft="oras">ORAS</button>
+            <button class="soft-btn" data-soft="dpp">DPPt</button>
+            <button class="soft-btn" data-soft="bdsp">BDSP</button>
+            <button class="soft-btn" data-soft="bw">BW</button>
+            <button class="soft-btn" data-soft="b2w2">B2W2</button>
+            <button class="soft-btn" data-soft="xy">XY</button>
+            <button class="soft-btn" data-soft="sm">SM</button>
+            <button class="soft-btn" data-soft="usum">USUM</button>
+            <button class="soft-btn" data-soft="lgpe">LGPE</button>
+            <button class="soft-btn" data-soft="swsh">剣盾</button>
+            <button class="soft-btn" data-soft="la">レジェアル</button>
+            <button class="soft-btn" data-soft="sv">SV</button>
+        </div>
+
+        <!-- 検索エリア -->
+        <div class="search-area">
+            <input type="text" class="search-box" id="searchInput" placeholder="ポケモン名または図鑑No.で検索...">
+            
+            <div class="type-filter-container">
+                <details class="type-dropdown">
+                    <summary>タイプ選択（複数可）</summary>
+                    <div class="type-checkbox-list">
+                        <label><input type="checkbox" value="ノーマル"> ノーマル</label>
+                        <label><input type="checkbox" value="ほのお"> ほのお</label>
+                        <label><input type="checkbox" value="みず"> みず</label>
+                        <label><input type="checkbox" value="でんき"> でんき</label>
+                        <label><input type="checkbox" value="くさ"> くさ</label>
+                        <label><input type="checkbox" value="こおり"> こおり</label>
+                        <label><input type="checkbox" value="かくとう"> かくとう</label>
+                        <label><input type="checkbox" value="どく"> どく</label>
+                        <label><input type="checkbox" value="じめん"> じめん</label>
+                        <label><input type="checkbox" value="ひこう"> ひこう</label>
+                        <label><input type="checkbox" value="エスパー"> エスパー</label>
+                        <label><input type="checkbox" value="むし"> むし</label>
+                        <label><input type="checkbox" value="いわ"> いわ</label>
+                        <label><input type="checkbox" value="ゴースト"> ゴースト</label>
+                        <label><input type="checkbox" value="ドラゴン"> ドラゴン</label>
+                        <label><input type="checkbox" value="あく"> あく</label>
+                        <label><input type="checkbox" value="はがね"> はがね</label>
+                        <label><input type="checkbox" value="フェアリー"> フェアリー</label>
+                    </div>
+                </details>
+            </div>
+
+            <select class="filter-select" id="sortOrder">
+                <option value="id">番号順</option>
+                <option value="stats_total">種族値合計順</option>
+                <option value="hp">HP順</option>
+                <option value="attack">攻撃順</option>
+                <option value="defense">防御順</option>
+                <option value="special_attack">特攻順</option>
+                <option value="special_defense">特防順</option>
+                <option value="speed">素早さ順</option>
+            </select>
+
+            <select class="filter-select" id="evolutionFilter">
+                <option value="">進化フィルター</option>
+                <option value="final">最終進化系</option>
+                <option value="middle">中間進化</option>
+                <option value="basic">進化前</option>
+            </select>
+        </div>
     </div>
 
-    <!-- 姿違いモーダル -->
-    <div id="formsModal" class="forms-modal">
-        <div class="forms-modal-content">
-            <div class="forms-modal-header">
-                <h2 class="forms-modal-title" id="modalTitle">ポケモンの姿違い</h2>
-                <button class="forms-close" id="closeModal">&times;</button>
+    <!-- メインコンテンツ -->
+    <div class="main-content">
+        <div class="loading" id="loading">データ読み込み中...</div>
+        <div class="pokemon-grid" id="pokemonGrid"></div>
+    </div>
+
+    <!-- 詳細モーダル -->
+    <div id="pokemonModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="modal-title" id="modalTitle">ポケモン詳細</div>
+                <button class="close" id="closeModal">&times;</button>
             </div>
-            <div class="forms-grid" id="formsGrid">
-                <!-- 姿違いカードがここに動的に追加される -->
+            <div class="modal-body" id="modalBody">
+                <!-- 詳細内容がここに動的に追加される -->
             </div>
         </div>
     </div>
 
     <script>
-        // 姿違いデータの定義
-        const pokemonForms = {
-            // 性別違い
-            44: {
-                baseName: "ニャオニクス",
-                forms: [
-                    { name: "ニャオニクス(オス)", image: "pokemon_044_male.png" },
-                    { name: "ニャオニクス(メス)", image: "pokemon_044_female.png" }
-                ]
-            },
-            
-            // ロトムの各フォルム
-            // ※ 実際の図鑑No.は例として使用
-            // 必要に応じて正しい番号に修正してください
-            
-            // ジガルデのフォルム
-            230: {
-                baseName: "ジガルデ",
-                forms: [
-                    { name: "ジガルデ(10%フォルム)", image: "pokemon_230_10.png" },
-                    { name: "ジガルデ(50%フォルム)", image: "pokemon_230_50.png" },
-                    { name: "ジガルデ(パーフェクトフォルム)", image: "pokemon_230_perfect.png" }
-                ]
-            },
-            
-            // フラベベの色違い
-            38: {
-                baseName: "フラベベ",
-                forms: [
-                    { name: "フラベベ(赤い花)", image: "pokemon_038_red.png" },
-                    { name: "フラベベ(黄色い花)", image: "pokemon_038_yellow.png" },
-                    { name: "フラベベ(オレンジの花)", image: "pokemon_038_orange.png" },
-                    { name: "フラベベ(青い花)", image: "pokemon_038_blue.png" },
-                    { name: "フラベベ(白い花)", image: "pokemon_038_white.png" }
-                ]
-            },
-            
-            39: {
-                baseName: "フラエッテ",
-                forms: [
-                    { name: "フラエッテ(赤い花)", image: "pokemon_039_red.png" },
-                    { name: "フラエッテ(黄色い花)", image: "pokemon_039_yellow.png" },
-                    { name: "フラエッテ(オレンジの花)", image: "pokemon_039_orange.png" },
-                    { name: "フラエッテ(青い花)", image: "pokemon_039_blue.png" },
-                    { name: "フラエッテ(白い花)", image: "pokemon_039_white.png" },
-                    { name: "フラエッテ(永遠の花)", image: "pokemon_039_eternal.png" }
-                ]
-            },
-            
-            40: {
-                baseName: "フラージェス",
-                forms: [
-                    { name: "フラージェス(赤い花)", image: "pokemon_040_red.png" },
-                    { name: "フラージェス(黄色い花)", image: "pokemon_040_yellow.png" },
-                    { name: "フラージェス(オレンジの花)", image: "pokemon_040_orange.png" },
-                    { name: "フラージェス(青い花)", image: "pokemon_040_blue.png" },
-                    { name: "フラージェス(白い花)", image: "pokemon_040_white.png" }
-                ]
-            },
-            
-            // ビビヨンの模様違い
-            17: {
-                baseName: "ビビヨン",
-                forms: [
-                    { name: "ビビヨン(花園の模様)", image: "pokemon_017_meadow.png" },
-                    { name: "ビビヨン(雪国の模様)", image: "pokemon_017_icy.png" },
-                    { name: "ビビヨン(大陸の模様)", image: "pokemon_017_continental.png" },
-                    { name: "ビビヨン(庭園の模様)", image: "pokemon_017_garden.png" },
-                    { name: "ビビヨン(雅な模様)", image: "pokemon_017_elegant.png" },
-                    { name: "ビビヨン(現代の模様)", image: "pokemon_017_modern.png" },
-                    { name: "ビビヨン(海洋の模様)", image: "pokemon_017_marine.png" },
-                    { name: "ビビヨン(群島の模様)", image: "pokemon_017_archipelago.png" },
-                    { name: "ビビヨン(高原の模様)", image: "pokemon_017_high_plains.png" },
-                    { name: "ビビヨン(砂塵の模様)", image: "pokemon_017_sandstorm.png" },
-                    { name: "ビビヨン(大河の模様)", image: "pokemon_017_river.png" },
-                    { name: "ビビヨン(モンスーンの模様)", image: "pokemon_017_monsoon.png" },
-                    { name: "ビビヨン(サバンナの模様)", image: "pokemon_017_savanna.png" },
-                    { name: "ビビヨン(太陽の模様)", image: "pokemon_017_sun.png" },
-                    { name: "ビビヨン(オーシャンの模様)", image: "pokemon_017_ocean.png" },
-                    { name: "ビビヨン(ジャングルの模様)", image: "pokemon_017_jungle.png" },
-                    { name: "ビビヨン(幻の模様)", image: "pokemon_017_fancy.png" },
-                    { name: "ビビヨン(ボールの模様)", image: "pokemon_017_pokeball.png" }
-                ]
-            },
-            
-            // トリミアンのカット
-            158: {
-                baseName: "トリミアン",
-                forms: [
-                    { name: "トリミアン(やせいのすがた)", image: "pokemon_158_natural.png" },
-                    { name: "トリミアン(ハートカット)", image: "pokemon_158_heart.png" },
-                    { name: "トリミアン(スターカット)", image: "pokemon_158_star.png" },
-                    { name: "トリミアン(ダイヤカット)", image: "pokemon_158_diamond.png" },
-                    { name: "トリミアン(クイーンカット)", image: "pokemon_158_debutante.png" },
-                    { name: "トリミアン(カブキカット)", image: "pokemon_158_matron.png" },
-                    { name: "トリミアン(キングダムカット)", image: "pokemon_158_dandy.png" },
-                    { name: "トリミアン(レディカット)", image: "pokemon_158_la_reine.png" },
-                    { name: "トリミアン(ジェントルカット)", image: "pokemon_158_pharaoh.png" }
-                ]
-            },
-            
-            // バケッチャ・パンプジンのサイズ違い
-            204: {
-                baseName: "バケッチャ",
-                forms: [
-                    { name: "バケッチャ(小さいサイズ)", image: "pokemon_204_small.png" },
-                    { name: "バケッチャ(普通のサイズ)", image: "pokemon_204_average.png" },
-                    { name: "バケッチャ(大きいサイズ)", image: "pokemon_204_large.png" },
-                    { name: "バケッチャ(特大サイズ)", image: "pokemon_204_super.png" }
-                ]
-            },
-            
-            205: {
-                baseName: "パンプジン",
-                forms: [
-                    { name: "パンプジン(小さいサイズ)", image: "pokemon_205_small.png" },
-                    { name: "パンプジン(普通のサイズ)", image: "pokemon_205_average.png" },
-                    { name: "パンプジン(大きいサイズ)", image: "pokemon_205_large.png" },
-                    { name: "パンプジン(特大サイズ)", image: "pokemon_205_super.png" }
-                ]
-            },
-            
-            // ギルガルドのフォルム
-            73: {
-                baseName: "ギルガルド",
-                forms: [
-                    { name: "ギルガルド(シールドフォルム)", image: "pokemon_073_shield.png" },
-                    { name: "ギルガルド(ブレードフォルム)", image: "pokemon_073_blade.png" }
-                ]
-            }
-            
-            // 他の姿違いも必要に応じて追加可能
-            // アローラの姿、ガラルの姿、パルデアの姿など
+        // グローバル変数
+        let pokemonData = {};
+        let generationData = {}; // 世代別データキャッシュ
+        let currentGeneration = 'all';
+        let currentSoftware = 'all';
+        let filteredPokemon = [];
+
+        // 世代別範囲
+        const generations = {
+            1: [1, 151],
+            2: [152, 251], 
+            3: [252, 386],
+            4: [387, 493],
+            5: [494, 649],
+            6: [650, 721],
+            7: [722, 809],
+            8: [810, 905],
+            9: [906, 1025]
         };
 
-        const searchInput = document.getElementById('searchInput');
-        const clearSearch = document.getElementById('clearSearch');
-        const searchResults = document.getElementById('searchResults');
-        const pokemonCards = document.querySelectorAll('.pokemon-card');
-        const pokemonSections = document.querySelectorAll('.pokemon-section');
-        const formsModal = document.getElementById('formsModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const formsGrid = document.getElementById('formsGrid');
-        const closeModal = document.getElementById('closeModal');
-        
-        let allCards = Array.from(pokemonCards);
-        
-        // ページ読み込み時に姿違いインジケーターを追加
-        function addFormsIndicators() {
-            allCards.forEach(card => {
-                const numberText = card.querySelector('.pokemon-number').textContent;
-                const pokemonNumber = parseInt(numberText.replace('No.', ''));
+        // ソフト毎のポケモンリスト
+        const softwarePokedex = {
+            'rby': [1, 151], // 赤緑青ピカチュウ
+            'frlg': [1, 386], // ファイアレッド・リーフグリーン（第3世代まで）
+            'gsc': [1, 251], // 金銀クリスタル
+            'hgss': [1, 493], // ハートゴールド・ソウルシルバー（第4世代まで）
+            'rse': [1, 386], // ルビー・サファイア・エメラルド
+            'oras': [1, 721], // オメガルビー・アルファサファイア（第6世代まで）
+            'dpp': [1, 493], // ダイヤモンド・パール・プラチナ
+            'bdsp': [1, 493], // ブリリアントダイヤモンド・シャイニングパール
+            'bw': [1, 649], // ブラック・ホワイト
+            'b2w2': [1, 649], // ブラック2・ホワイト2
+            'xy': [1, 721], // X・Y
+            'sm': [1, 809], // サン・ムーン
+            'usum': [1, 809], // ウルトラサン・ウルトラムーン
+            'lgpe': [1, 151], // Let's Go ピカチュウ・イーブイ（カントーのみ）
+            'swsh': [1, 905], // ソード・シールド
+            'la': [1, 905], // レジェンズアルセウス（第8世代まで）
+            'sv': [1, 1025] // スカーレット・バイオレット
+        };
+
+        // 初期化
+        document.addEventListener('DOMContentLoaded', async () => {
+            await loadPokemonData();
+            setupEventListeners();
+            displayPokemon();
+        });
+
+        // ポケモンデータ読み込み（世代別対応）
+        async function loadPokemonData() {
+            try {
+                document.getElementById('loading').textContent = '世代別データを読み込み中...';
                 
-                if (pokemonForms[pokemonNumber]) {
-                    card.classList.add('clickable-card');
-                    
-                    // インジケーターを追加
-                    const indicator = document.createElement('div');
-                    indicator.className = 'forms-indicator';
-                    indicator.textContent = pokemonForms[pokemonNumber].forms.length;
-                    card.appendChild(indicator);
-                    
-                    // クリックイベントを追加
-                    card.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        showFormsModal(pokemonNumber);
-                    });
+                // 世代別ファイルマップ
+                const genFiles = {
+                    'gen1': 'gen1_pokemon.json',
+                    'gen2': 'gen2_pokemon.json', 
+                    'gen3': 'gen3_pokemon.json',
+                    'gen4': 'gen4_pokemon.json',
+                    'gen5': 'gen5_pokemon.json',
+                    'gen6': 'gen6_pokemon.json',
+                    'gen7': 'gen7_pokemon.json',
+                    'gen8': 'gen8_pokemon.json',
+                    'gen9': 'gen9_pokemon.json',
+                    'all': 'pokemon_data.json'  // 後方互換用
+                };
+
+                // 全世代のデータを並行読み込み
+                const loadPromises = Object.values(genFiles).slice(0, -1).map(async file => {
+                    try {
+                        const response = await fetch(file);
+                        if (!response.ok) throw new Error(`${file} が見つかりません`);
+                        return await response.json();
+                    } catch (error) {
+                        console.warn(`${file} の読み込みに失敗:`, error);
+                        return {};
+                    }
+                });
+
+                // 全世代データを統合
+                const genDataArrays = await Promise.all(loadPromises);
+                pokemonData = genDataArrays.reduce((combined, genData) => {
+                    return { ...combined, ...genData };
+                }, {});
+
+                // 世代別データも保存（メモリ効率のため）
+                generationData = {
+                    'gen1': genDataArrays[0] || {},
+                    'gen2': genDataArrays[1] || {},
+                    'gen3': genDataArrays[2] || {},
+                    'gen4': genDataArrays[3] || {},
+                    'gen5': genDataArrays[4] || {},
+                    'gen6': genDataArrays[5] || {},
+                    'gen7': genDataArrays[6] || {},
+                    'gen8': genDataArrays[7] || {},
+                    'gen9': genDataArrays[8] || {},
+                    'all': pokemonData
+                };
+
+                console.log('世代別データ読み込み完了:', Object.keys(pokemonData).length + '匹');
+                document.getElementById('loading').style.display = 'none';
+                
+            } catch (error) {
+                console.error('データ読み込みエラー:', error);
+                // フォールバック: 元のファイルを試す
+                try {
+                    const response = await fetch('pokemon_data.json');
+                    pokemonData = await response.json();
+                    generationData = { 'all': pokemonData };
+                    console.log('フォールバック読み込み完了:', Object.keys(pokemonData).length + '匹');
+                    document.getElementById('loading').style.display = 'none';
+                } catch (fallbackError) {
+                    console.error('フォールバック読み込みエラー:', fallbackError);
+                    document.getElementById('loading').textContent = 'データ読み込みに失敗しました';
                 }
+            }
+        }
+
+        // イベントリスナー設定
+        function setupEventListeners() {
+            // 世代ボタン
+            document.querySelectorAll('.gen-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.gen-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentGeneration = e.target.dataset.gen;
+                    displayPokemon();
+                });
+            });
+
+            // ソフト毎ボタン
+            document.querySelectorAll('.soft-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.soft-btn').forEach(b => b.classList.remove('active'));
+                    e.target.classList.add('active');
+                    currentSoftware = e.target.dataset.soft;
+                    displayPokemon();
+                });
+            });
+
+            // 検索機能
+            document.getElementById('searchInput').addEventListener('input', displayPokemon);
+            document.getElementById('evolutionFilter').addEventListener('change', displayPokemon);
+            document.getElementById('sortOrder').addEventListener('change', displayPokemon);
+
+            // タイプフィルター（チェックボックス）
+            document.querySelectorAll('.type-checkbox-list input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', displayPokemon);
+            });
+
+            // モーダル
+            document.getElementById('closeModal').addEventListener('click', closeModal);
+            document.getElementById('pokemonModal').addEventListener('click', (e) => {
+                if (e.target.id === 'pokemonModal') closeModal();
             });
         }
-        
-        // 姿違いモーダルを表示
-        function showFormsModal(pokemonNumber) {
-            const formsData = pokemonForms[pokemonNumber];
-            if (!formsData) return;
-            
-            modalTitle.textContent = `${formsData.baseName}の姿違い`;
-            formsGrid.innerHTML = '';
-            
-            formsData.forms.forEach(form => {
-                const formCard = document.createElement('div');
-                formCard.className = 'form-card';
-                
-                formCard.innerHTML = `
-                    <img src="pokemon_images/${form.image}" alt="${form.name}" class="form-image" loading="lazy" 
-                         onerror="this.src='pokemon_images/pokemon_${pokemonNumber.toString().padStart(3, '0')}.png'">
-                    <div class="form-name">${form.name}</div>
-                `;
-                
-                formsGrid.appendChild(formCard);
+
+        // ポケモン表示（世代別データ対応）
+        function displayPokemon() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedTypes = Array.from(document.querySelectorAll('.type-checkbox-list input[type="checkbox"]:checked')).map(cb => cb.value);
+            const evolutionFilter = document.getElementById('evolutionFilter').value;
+            const sortOrder = document.getElementById('sortOrder').value;
+
+            // 現在の世代のデータを取得（メモリ効率のため）
+            let currentGenData;
+            if (currentGeneration === 'all') {
+                currentGenData = pokemonData;
+            } else {
+                // 世代番号をキーにマッピング
+                const genKey = `gen${currentGeneration}`;
+                currentGenData = generationData[genKey] || {};
+            }
+
+            // フィルタリング（選択された世代のデータのみ処理）
+            filteredPokemon = Object.values(currentGenData).filter(pokemon => {
+                // 検索フィルター
+                if (searchTerm) {
+                    const nameMatch = pokemon.name.toLowerCase().includes(searchTerm);
+                    const idMatch = pokemon.id.toString().includes(searchTerm);
+                    const formattedId = pokemon.id.toString().padStart(3, '0');
+                    const formattedIdMatch = formattedId.includes(searchTerm);
+                    if (!nameMatch && !idMatch && !formattedIdMatch) return false;
+                }
+
+                // タイプフィルター（複数選択対応）
+                if (selectedTypes.length > 0) {
+                    const hasAllSelectedTypes = selectedTypes.every(type => pokemon.types.includes(type));
+                    if (!hasAllSelectedTypes) return false;
+                }
+
+                // 進化フィルター（実際の進化データを使用）
+                if (evolutionFilter) {
+                    const evolution = pokemon.evolution || {};
+                    const hasEvolutionFrom = evolution.prev !== null && evolution.prev !== undefined;
+                    const hasEvolutionTo = evolution.next && evolution.next.length > 0;
+                    
+                    if (evolutionFilter === 'basic') {
+                        // 進化前：進化後があるが進化前がないもの
+                        return hasEvolutionTo && !hasEvolutionFrom;
+                    } else if (evolutionFilter === 'middle') {
+                        // 中間進化：進化前と進化後の両方があるもの
+                        return hasEvolutionFrom && hasEvolutionTo;
+                    } else if (evolutionFilter === 'final') {
+                        // 最終進化：進化後がないもの（無進化ポケモンも含む）
+                        return !hasEvolutionTo;
+                    }
+                }
+
+                // ソフト毎フィルター
+                if (currentSoftware !== 'all') {
+                    const softwareRange = softwarePokedex[currentSoftware];
+                    if (softwareRange && (pokemon.id < softwareRange[0] || pokemon.id > softwareRange[1])) {
+                        return false;
+                    }
+                }
+
+                return true;
             });
-            
-            formsModal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // スクロールを無効化
-        }
-        
-        // モーダルを閉じる
-        function hideFormsModal() {
-            formsModal.style.display = 'none';
-            document.body.style.overflow = 'auto'; // スクロールを有効化
-        }
-        
-        // イベントリスナー
-        closeModal.addEventListener('click', hideFormsModal);
-        
-        // モーダル外をクリックで閉じる
-        formsModal.addEventListener('click', (e) => {
-            if (e.target === formsModal) {
-                hideFormsModal();
+
+            // ソート
+            if (sortOrder === 'stats_total') {
+                filteredPokemon.sort((a, b) => {
+                    const statsA = Object.values(a.stats).reduce((sum, stat) => sum + stat, 0);
+                    const statsB = Object.values(b.stats).reduce((sum, stat) => sum + stat, 0);
+                    return statsB - statsA; // 降順
+                });
+            } else if (sortOrder === 'hp') {
+                filteredPokemon.sort((a, b) => b.stats.hp - a.stats.hp);
+            } else if (sortOrder === 'attack') {
+                filteredPokemon.sort((a, b) => b.stats.attack - a.stats.attack);
+            } else if (sortOrder === 'defense') {
+                filteredPokemon.sort((a, b) => b.stats.defense - a.stats.defense);
+            } else if (sortOrder === 'special_attack') {
+                filteredPokemon.sort((a, b) => b.stats.special_attack - a.stats.special_attack);
+            } else if (sortOrder === 'special_defense') {
+                filteredPokemon.sort((a, b) => b.stats.special_defense - a.stats.special_defense);
+            } else if (sortOrder === 'speed') {
+                filteredPokemon.sort((a, b) => b.stats.speed - a.stats.speed);
+            } else {
+                filteredPokemon.sort((a, b) => a.id - b.id); // 番号順
             }
-        });
-        
-        // ESCキーでモーダルを閉じる
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && formsModal.style.display === 'block') {
-                hideFormsModal();
-            }
-        });
-        
-        function performSearch(query) {
-            const searchTerm = query.toLowerCase().trim();
+
+            renderPokemonGrid();
+        }
+
+        // ポケモンカード描画
+        function renderPokemonGrid() {
+            const grid = document.getElementById('pokemonGrid');
             
-            if (searchTerm === '') {
-                showAllPokemon();
-                searchResults.textContent = '';
-                clearSearch.style.display = 'none';
+            if (filteredPokemon.length === 0) {
+                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: white; font-size: 1.2rem;">該当するポケモンが見つかりませんでした</div>';
                 return;
             }
-            
-            clearSearch.style.display = 'block';
-            
-            const matchedCards = allCards.filter(card => {
-                const pokemonName = card.querySelector('.pokemon-name').textContent.toLowerCase();
-                const pokemonNumber = card.querySelector('.pokemon-number').textContent.toLowerCase();
+
+            let htmlContent = '';
+            filteredPokemon.forEach((pokemon, index) => {
+                // 30匹（横5列）ごとに区切り線を追加
+                if (index > 0 && index % 30 === 0) {
+                    htmlContent += '<div class="row-separator"></div>';
+                }
                 
-                return pokemonName.includes(searchTerm) || 
-                       pokemonNumber.includes(searchTerm) ||
-                       pokemonNumber.replace('no.', '').trim().includes(searchTerm);
+                const typesBadges = pokemon.types.map(type => 
+                    `<span class="type-badge type-${type}">
+                        <img src="type_images/${type}_backup.png" class="type-icon" alt="${type}">
+                        ${type}
+                    </span>`
+                ).join('');
+
+                htmlContent += `
+                    <div class="pokemon-card" onclick="showPokemonDetail(${pokemon.id})">
+                        <div class="pokemon-number">No.${pokemon.id.toString().padStart(3, '0')}</div>
+                        <div class="pokemon-image-container">
+                            <img src="pokemon_images/normal/${pokemon.id.toString().padStart(3, '0')}.png" 
+                                 alt="${pokemon.name}" 
+                                 class="pokemon-image" 
+                                 id="pokemon-image-${pokemon.id}"
+                                 loading="lazy"
+                                 onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png'; this.onerror=function(){this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4jJHtwb2tlbW9uLmlkfTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==';}">
+                        </div>
+                        <div class="pokemon-name">${pokemon.name}</div>
+                        <div class="pokemon-types">${typesBadges}</div>
+                    </div>
+                `;
             });
-            
-            // Hide all sections first
-            pokemonSections.forEach(section => {
-                section.style.display = 'none';
-            });
-            
-            // Hide all cards
-            allCards.forEach(card => {
-                card.style.display = 'none';
-            });
-            
-            if (matchedCards.length > 0) {
-                // Show matched cards
-                matchedCards.forEach(card => {
-                    card.style.display = 'block';
-                    card.parentElement.parentElement.style.display = 'block';
-                });
-                
-                searchResults.textContent = `${matchedCards.length}匹のポケモンが見つかりました`;
-            } else {
-                searchResults.textContent = 'ポケモンが見つかりませんでした';
-            }
+
+            grid.innerHTML = htmlContent;
         }
-        
-        function showAllPokemon() {
-            pokemonSections.forEach(section => {
-                section.style.display = 'block';
-            });
-            allCards.forEach(card => {
-                card.style.display = 'block';
-            });
-        }
-        
-        searchInput.addEventListener('input', (e) => {
-            performSearch(e.target.value);
-        });
-        
-        clearSearch.addEventListener('click', () => {
-            searchInput.value = '';
-            showAllPokemon();
-            searchResults.textContent = '';
-            clearSearch.style.display = 'none';
-            searchInput.focus();
-        });
-        
-        // Enable Enter key search
-        searchInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                performSearch(searchInput.value);
+
+        // 進化表示を作成（分岐進化対応）
+        function createEvolutionDisplay(pokemon) {
+            const evolution = pokemon.evolution;
+            let html = '<div class="evolution-display">';
+            
+            // 進化前がある場合
+            if (evolution.prev) {
+                const prevPokemon = findPokemonById(evolution.prev);
+                const prevName = prevPokemon ? prevPokemon.name : `No.${evolution.prev}`;
+                html += `
+                    <div class="evolution-step">
+                        <div class="evolution-pokemon prev">
+                            <img src="pokemon_images/normal/${evolution.prev.toString().padStart(3, '0')}.png" 
+                                 alt="${prevName}" 
+                                 style="width: 80px; height: 80px; object-fit: contain; border-radius: 10px; background: #f8f9fa;">
+                            <div style="font-size: 0.8rem; margin-top: 5px;">${prevName}</div>
+                        </div>
+                        <div class="evolution-arrow">→</div>
+                    </div>
+                `;
             }
+            
+            // 現在のポケモン（中央に大きく表示）
+            html += `
+                <div class="evolution-step current">
+                    <div class="evolution-pokemon current">
+                        <img src="pokemon_images/normal/${pokemon.id.toString().padStart(3, '0')}.png" 
+                             alt="${pokemon.name}" 
+                             style="width: 120px; height: 120px; object-fit: contain; border-radius: 15px; background: linear-gradient(145deg, #fff, #f0f0f0); box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);">
+                        <div style="font-size: 1rem; margin-top: 8px; font-weight: bold; color: #ff69b4;">${pokemon.name}</div>
+                    </div>
+                </div>
+            `;
+            
+            // 進化後がある場合
+            if (evolution.next && evolution.next.length > 0) {
+                if (evolution.next.length === 1) {
+                    // 単一進化
+                    const nextPokemon = findPokemonById(evolution.next[0]);
+                    const nextName = nextPokemon ? nextPokemon.name : `No.${evolution.next[0]}`;
+                    html += `
+                        <div class="evolution-step">
+                            <div class="evolution-arrow">→</div>
+                            <div class="evolution-pokemon next">
+                                <img src="pokemon_images/normal/${evolution.next[0].toString().padStart(3, '0')}.png" 
+                                     alt="${nextName}" 
+                                     style="width: 80px; height: 80px; object-fit: contain; border-radius: 10px; background: #f8f9fa;">
+                                <div style="font-size: 0.8rem; margin-top: 5px;">${nextName}</div>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    // 分岐進化
+                    html += `
+                        <div class="evolution-step branched">
+                            <div class="evolution-arrow">→</div>
+                            <div class="evolution-branches">
+                    `;
+                    
+                    evolution.next.forEach((nextId, index) => {
+                        const nextPokemon = findPokemonById(nextId);
+                        const nextName = nextPokemon ? nextPokemon.name : `No.${nextId}`;
+                        html += `
+                            <div class="evolution-branch" style="margin: 5px;">
+                                <img src="pokemon_images/normal/${nextId.toString().padStart(3, '0')}.png" 
+                                     alt="${nextName}" 
+                                     style="width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: #f8f9fa;">
+                                <div style="font-size: 0.75rem; margin-top: 3px; text-align: center;">${nextName}</div>
+                            </div>
+                        `;
+                    });
+                    
+                    html += `
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+            
+            html += '</div>';
+            return html;
+        }
+
+        // ポケモンIDで検索するヘルパー関数
+        function findPokemonById(pokemonId) {
+            // まず統合データから検索
+            let pokemon = pokemonData[pokemonId.toString()];
+            
+            // 見つからない場合は世代別データから検索
+            if (!pokemon && generationData) {
+                for (const genKey in generationData) {
+                    const genData = generationData[genKey];
+                    if (genData[pokemonId.toString()]) {
+                        pokemon = genData[pokemonId.toString()];
+                        break;
+                    }
+                }
+            }
+            
+            return pokemon;
+        }
+
+        // ポケモン詳細表示
+        function showPokemonDetail(pokemonId) {
+            // 全データから検索（統合データまたは現在の世代データから）
+            let pokemon = pokemonData[pokemonId.toString()];
+            
+            // 統合データにない場合は、世代別データから検索
+            if (!pokemon && generationData) {
+                for (const genKey in generationData) {
+                    const genData = generationData[genKey];
+                    if (genData[pokemonId.toString()]) {
+                        pokemon = genData[pokemonId.toString()];
+                        break;
+                    }
+                }
+            }
+            
+            if (!pokemon) {
+                console.error(`ポケモンID ${pokemonId} が見つかりません`);
+                return;
+            }
+
+            const modal = document.getElementById('pokemonModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+
+            modalTitle.textContent = `#${pokemon.id.toString().padStart(3, '0')} ${pokemon.name}`;
+            
+            // 進化系表示を改善（分岐進化対応）
+            const evolutionDisplay = createEvolutionDisplay(pokemon);
+
+            modalBody.innerHTML = `
+                <div>
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        ${evolutionDisplay}
+                    </div>
+                    
+                    <div class="detail-section">
+                        <h3>基本情報</h3>
+                        <p><strong>タイプ:</strong> ${pokemon.types.join(' / ')}</p>
+                        <p><strong>特性:</strong> ${pokemon.abilities.join(', ')}</p>
+                        <p><strong>高さ:</strong> ${pokemon.height}m</p>
+                        <p><strong>重さ:</strong> ${pokemon.weight}kg</p>
+                        <p><strong>世代:</strong> 第${pokemon.generation}世代</p>
+                    </div>
+
+                    <div class="external-links">
+                        <a href="${pokemon.external_links.kouryaku}" target="_blank" class="external-link">徹底攻略</a>
+                        <a href="${pokemon.external_links.gamewith}" target="_blank" class="external-link">GameWith</a>
+                        <a href="${pokemon.external_links.game8}" target="_blank" class="external-link">Game8</a>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="detail-section">
+                        <h3>種族値</h3>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <span>HP</span>
+                                <span>${pokemon.stats.hp}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>攻撃</span>
+                                <span>${pokemon.stats.attack}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>防御</span>
+                                <span>${pokemon.stats.defense}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>特攻</span>
+                                <span>${pokemon.stats.special_attack}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>特防</span>
+                                <span>${pokemon.stats.special_defense}</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>素早さ</span>
+                                <span>${pokemon.stats.speed}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // モーダル閉じる
+        function closeModal() {
+            document.getElementById('pokemonModal').style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // ESCキーでモーダル閉じる
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeModal();
         });
-        
-        // ページ読み込み完了時に姿違いインジケーターを追加
-        document.addEventListener('DOMContentLoaded', addFormsIndicators);
+
+        // 画像関連の処理（削除済み）
+
+        // 利用可能な画像リストをキャッシュ
+        const availableImages = {};
+
+        // 画像関連の処理（削除済み）
     </script>
 </body>
 </html>
-
