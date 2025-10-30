@@ -381,6 +381,31 @@
     </div>
 
     <script>
+        // 日本語タイプ名を英語ファイル名に変換する関数
+        function getEnglishTypeName(japaneseType) {
+            const typeNameMap = {
+                'ノーマル': 'normal',
+                'ほのお': 'fire',
+                'みず': 'water',
+                'でんき': 'electric',
+                'くさ': 'grass',
+                'こおり': 'ice',
+                'かくとう': 'fighting',
+                'どく': 'poison',
+                'じめん': 'ground',
+                'ひこう': 'flying',
+                'エスパー': 'psychic',
+                'むし': 'bug',
+                'いわ': 'rock',
+                'ゴースト': 'ghost',
+                'ドラゴン': 'dragon',
+                'あく': 'dark',
+                'はがね': 'steel',
+                'フェアリー': 'fairy'
+            };
+            return typeNameMap[japaneseType] || 'normal';
+        }
+
         // タイプ相性データ（攻撃側 → 防御側の倍率）
         const typeEffectiveness = {
             "ノーマル": {"いわ": 0.5, "ゴースト": 0, "はがね": 0.5},
@@ -414,8 +439,7 @@
             types.forEach(type => {
                 html += `<th class="type-${type}" style="white-space: nowrap; text-align: center; min-width: 60px;">
                     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px;">
-                        <img src="type_images/${type}_backup.png" class="type-icon" alt="${type}" onerror="this.style.display='none'">
-                        <span style="font-size: 0.7rem;">${type}</span>
+                        <img src="type_images/${getEnglishTypeName(type)}.png" class="type-icon" alt="${type}" onerror="this.style.display='none'" style="width: 24px; height: 24px;">
                     </div>
                 </th>`;
             });
@@ -425,8 +449,7 @@
             types.forEach(attackingType => {
                 html += `<tr><td class="row-header type-${attackingType}" style="white-space: nowrap; text-align: center;">
                     <div style="display: inline-flex; align-items: center; justify-content: center; gap: 4px;">
-                        <img src="type_images/${attackingType}_backup.png" class="type-icon" alt="${attackingType}" onerror="this.style.display='none'">
-                        <span>${attackingType}</span>
+                        <img src="type_images/${getEnglishTypeName(attackingType)}.png" class="type-icon" alt="${attackingType}" onerror="this.style.display='none'" style="width: 24px; height: 24px;">
                     </div>
                 </td>`;
                 

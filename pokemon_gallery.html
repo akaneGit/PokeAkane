@@ -706,6 +706,28 @@
     </div>
 
     <script>
+        // タイプ名日本語→英語変換マップ
+        const typeNameMap = {
+            'ノーマル': 'normal',
+            'ほのお': 'fire',
+            'みず': 'water',
+            'でんき': 'electric',
+            'くさ': 'grass',
+            'こおり': 'ice',
+            'かくとう': 'fighting',
+            'どく': 'poison',
+            'じめん': 'ground',
+            'ひこう': 'flying',
+            'エスパー': 'psychic',
+            'むし': 'bug',
+            'いわ': 'rock',
+            'ゴースト': 'ghost',
+            'ドラゴン': 'dragon',
+            'あく': 'dark',
+            'はがね': 'steel',
+            'フェアリー': 'fairy'
+        };
+
         // グローバル変数
         let pokemonData = {};
         let generationData = {}; // 世代別データキャッシュ
@@ -995,12 +1017,13 @@
                     htmlContent += '<div class="row-separator"></div>';
                 }
                 
-                const typesBadges = pokemon.types.map(type => 
-                    `<span class="type-badge type-${type}">
-                        <img src="type_images/${type}_backup.png" class="type-icon" alt="${type}">
+                const typesBadges = pokemon.types.map(type => {
+                    const englishType = typeNameMap[type] || type.toLowerCase();
+                    return `<span class="type-badge type-${type}">
+                        <img src="type_images/${englishType}.png" class="type-icon" alt="${type}">
                         ${type}
-                    </span>`
-                ).join('');
+                    </span>`;
+                }).join('');
 
                 htmlContent += `
                     <div class="pokemon-card" onclick="showPokemonDetail(${pokemon.id})">
