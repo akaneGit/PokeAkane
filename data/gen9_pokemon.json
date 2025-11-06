@@ -1107,7 +1107,8 @@
     "evolution": {
       "prev": null,
       "next": [
-        936
+        936,
+        937
       ]
     },
     "external_links": {
@@ -1145,9 +1146,7 @@
     "generation": 9,
     "evolution": {
       "prev": 935,
-      "next": [
-        937
-      ]
+      "next": []
     },
     "external_links": {
       "kouryaku": "https://pokemon.gamewith.jp/article/show/936",
@@ -1183,7 +1182,7 @@
     "weight": 62.0,
     "generation": 9,
     "evolution": {
-      "prev": 936,
+      "prev": 935,
       "next": []
     },
     "external_links": {

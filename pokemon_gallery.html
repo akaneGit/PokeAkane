@@ -3,48 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PokeAkane ポケモン図鑑</title>
+    <title>PokeAkane ポケモン図鑑 - 図鑑ベース</title>
     <style>
         body {
+            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            padding: 20px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
         }
-
-        /* 固定ヘッダー */
-        .header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 15px 20px;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
         }
-
+        
+        h1 {
+            text-align: center;
+            color: #333;
+            margin: 0;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        /* ヘッダートップ（タイトルとチャートボタン） */
         .header-top {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
+            margin-bottom: 30px;
+            position: relative;
         }
-
-        .header h1 {
-            margin: 0;
-            text-align: center;
-            font-size: 2rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* チャート表示ボタン（タイトル右端） */
+        
+        /* チャート表示ボタン（右上に絶対配置） */
         .chart-buttons {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
             display: flex;
             gap: 10px;
         }
@@ -70,7 +70,7 @@
             color: white;
             text-decoration: none;
         }
-
+        
         /* 世代切り替えボタン */
         .generation-buttons {
             display: flex;
@@ -99,39 +99,8 @@
 
         .gen-btn.active {
             background: linear-gradient(45deg, #43e97b, #38f9d7);
-            transform: scale(1.05);
-        }
-
-        /* ソフト毎ボタン */
-        .software-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-bottom: 15px;
-            flex-wrap: wrap;
-        }
-
-        .soft-btn {
-            padding: 4px 8px;
-            border: none;
-            border-radius: 12px;
-            background: linear-gradient(45deg, #ffa726, #ff7043);
-            color: white;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            font-size: 0.7rem;
-            min-width: 40px;
-        }
-
-        .soft-btn:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
-        }
-
-        .soft-btn.active {
-            background: linear-gradient(45deg, #66bb6a, #42a5f5);
-            transform: scale(1.05);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(67, 233, 123, 0.4);
         }
 
         /* 検索エリア */
@@ -140,34 +109,57 @@
             grid-template-columns: 1fr 180px 150px 150px;
             gap: 10px;
             align-items: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
         .search-box {
-            padding: 10px 15px;
+            padding: 12px 18px;
             border: none;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.9);
             outline: none;
             font-size: 1rem;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
-        .type-select, .filter-select {
-            padding: 10px 15px;
+        .search-box:focus {
+            box-shadow: 0 4px 20px rgba(255, 107, 157, 0.3);
+            background: white;
+        }
+
+        .filter-select {
+            padding: 12px 16px;
             border: none;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.9);
             outline: none;
             font-size: 0.9rem;
             cursor: pointer;
+            transition: all 0.3s ease;
         }
 
+        .filter-select:hover {
+            background: white;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        /* タイプフィルター（ドロップダウン） */
         .type-filter-container {
             position: relative;
         }
 
+        .type-dropdown {
+            position: relative;
+        }
+
         .type-dropdown summary {
-            padding: 10px 15px;
+            padding: 12px 16px;
             border: none;
             border-radius: 25px;
             background: rgba(255, 255, 255, 0.9);
@@ -175,6 +167,28 @@
             font-size: 0.9rem;
             cursor: pointer;
             list-style: none;
+            transition: all 0.3s ease;
+            user-select: none;
+        }
+
+        .type-dropdown summary:hover {
+            background: white;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .type-dropdown summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .type-dropdown summary::after {
+            content: '▼';
+            float: right;
+            color: #666;
+            transition: transform 0.3s ease;
+        }
+
+        .type-dropdown[open] summary::after {
+            transform: rotate(180deg);
         }
 
         .type-checkbox-list {
@@ -183,14 +197,15 @@
             left: 0;
             background: white;
             border: 1px solid #ddd;
-            border-radius: 10px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
             z-index: 1000;
-            padding: 15px;
-            min-width: 200px;
+            padding: 20px;
+            min-width: 250px;
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 8px;
+            margin-top: 5px;
         }
 
         .type-checkbox-list label {
@@ -199,52 +214,98 @@
             gap: 8px;
             font-size: 0.85rem;
             cursor: pointer;
-            padding: 5px;
-            border-radius: 5px;
+            padding: 8px;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
 
         .type-checkbox-list label:hover {
             background: #f8f9fa;
+            transform: translateX(2px);
         }
 
-        /* メインコンテンツ */
-        .main-content {
-            margin-top: 280px;
+        .type-checkbox-list input[type="checkbox"] {
+            accent-color: #ff6b9d;
+            transform: scale(1.1);
+        }
+
+        /* レスポンシブ対応 */
+        @media (max-width: 768px) {
+            .search-area {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .chart-buttons {
+                justify-content: center;
+            }
+            
+            .chart-btn {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+            }
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
             padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
         }
-
+        
+        .dex-button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(145deg, #6c5ce7, #a29bfe);
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            font-size: 12px;
+            min-width: 120px;
+            text-align: center;
+        }
+        
+        .dex-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            background: linear-gradient(145deg, #5f4bd1, #9187fc);
+        }
+        
+        .dex-button.active {
+            background: linear-gradient(145deg, #fd79a8, #fdcb6e);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
+        }
+        
+        .info-panel {
+            background: #e8f4fd;
+            border: 2px solid #74b9ff;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
         .pokemon-grid {
             display: grid;
-            grid-template-columns: repeat(6, 1fr);
-            gap: 20px 20px;
-            row-gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-            position: relative;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
         }
-
-        /* 30個ごと（5行ごと）に区切り線を引く */
-        .pokemon-card:nth-child(30n) {
-            position: relative;
-        }
-
-        .pokemon-card:nth-child(30n)::after {
-            content: '';
-            position: absolute;
-            top: calc(100% + 25px);
-            left: -100vw;
-            right: -100vw;
-            width: 200vw;
-            height: 10px;
-            background: #ff1493;
-            z-index: 999;
-            box-shadow: 0 3px 15px rgba(255, 20, 147, 0.9);
-            border-radius: 5px;
-            display: block !important;
-            visibility: visible !important;
-        }
-
-        /* 実際のHTML要素としての区切り線 */
+        
+        /* 30匹ごとの区切り線 */
         .row-separator {
             grid-column: 1 / -1;
             height: 3px;
@@ -252,98 +313,125 @@
             margin: 15px 0;
             width: 100%;
             border-radius: 2px;
+            box-shadow: 0 2px 10px rgba(255, 105, 180, 0.5);
         }
-
+        
         .pokemon-card {
-            background: linear-gradient(145deg, #ffffff 0%, #f8f9fa 50%, #e9ecef 100%);
+            background: white;
             border-radius: 15px;
             padding: 15px;
             text-align: center;
-            box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
+            border: 2px solid #e9ecef;
             cursor: pointer;
-            position: relative;
-            overflow: hidden;
         }
-
-        .pokemon-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, #ff6b9d, #4facfe, #43e97b, #f093fb);
-            border-radius: 17px;
-            z-index: -1;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .pokemon-card:hover::before {
-            opacity: 1;
-        }
-
+        
         .pokemon-card:hover {
-            transform: translateY(-8px) scale(1.05);
-            box-shadow: 0 15px 35px rgba(255, 105, 180, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border-color: #74b9ff;
         }
-
-        .pokemon-number {
-            font-size: 0.9rem;
-            color: #6c757d;
-            font-weight: bold;
-            margin-bottom: 5px;
+        
+        .pokemon-card.selected {
+            border-color: #ff6b9d;
+            background: linear-gradient(145deg, #fff5f8, #ffffff);
+            box-shadow: 0 10px 25px rgba(255, 107, 157, 0.3);
         }
-
-        .pokemon-image-container {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 8px;
+        
+        /* 詳細表示パネル */
+        .detail-panel {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            z-index: 1000;
+            max-width: 500px;
+            width: 90%;
+            display: none;
         }
-
+        
+        .detail-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 999;
+            display: none;
+        }
+        
+        .detail-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #666;
+        }
+        
+        .detail-pokemon-image {
+            width: 150px;
+            height: 150px;
+            object-fit: contain;
+            margin: 0 auto 20px;
+            display: block;
+        }
+        
         .pokemon-image {
-            width: 100px;
-            height: 100px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
             margin-bottom: 10px;
+            background: radial-gradient(circle, #f8f9fa 0%, #e9ecef 100%);
             border-radius: 10px;
-            background: #f8f9fa;
-            padding: 5px;
+            padding: 10px;
         }
-
+        
         .pokemon-name {
-            font-size: 1rem;
             font-weight: bold;
-            color: #333;
+            color: #2d3436;
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+        
+        .pokemon-number {
+            color: #636e72;
+            font-size: 14px;
             margin-bottom: 10px;
         }
-
+        
         .pokemon-types {
             display: flex;
             justify-content: center;
             gap: 5px;
-            margin-bottom: 10px;
+            flex-wrap: wrap;
         }
-
+        
         .type-badge {
             padding: 4px 8px;
-            border-radius: 12px;
-            font-size: 0.7rem;
+            border-radius: 15px;
+            font-size: 12px;
             font-weight: bold;
             color: white;
-            display: flex;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            display: inline-flex;
             align-items: center;
-            gap: 3px;
+            gap: 4px;
         }
-
+        
         .type-icon {
             width: 16px;
             height: 16px;
-            border-radius: 50%;
+            object-fit: contain;
         }
-
-        /* タイプ別色分け */
+        
+        /* タイプ別の色 */
         .type-ノーマル { background: #A8A878; }
         .type-ほのお { background: #F08030; }
         .type-みず { background: #6890F0; }
@@ -362,237 +450,30 @@
         .type-あく { background: #705848; }
         .type-はがね { background: #B8B8D0; }
         .type-フェアリー { background: #EE99AC; }
-
-        /* 詳細モーダル */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            backdrop-filter: blur(10px);
-        }
-
-        .modal-content {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
-            color: white;
-        }
-
-        .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .modal-title {
-            font-size: 1.8rem;
-            font-weight: bold;
-        }
-
-        .close {
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-            padding: 0;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .close:hover {
-            background: rgba(255,255,255,0.2);
-            transform: rotate(90deg);
-        }
-
-        .modal-body {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .pokemon-detail-image {
-            width: 200px;
-            height: 200px;
-            object-fit: contain;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 20px;
-            margin: 0 auto;
-        }
-
-        /* 進化表示のスタイル */
-        .evolution-display {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 15px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            margin-bottom: 20px;
-        }
-
-        .evolution-step {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .evolution-step.branched {
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .evolution-pokemon {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .evolution-pokemon:hover {
-            transform: scale(1.05);
-        }
-
-        .evolution-arrow {
-            font-size: 1.5rem;
-            color: #ff69b4;
-            font-weight: bold;
-            margin: 0 10px;
-        }
-
-        .evolution-branches {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .evolution-branch {
-            text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .evolution-branch:hover {
-            transform: scale(1.1);
-        }
-
-        .detail-section {
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            padding: 15px;
-            margin-bottom: 15px;
-        }
-
-        .detail-section h3 {
-            margin: 0 0 10px 0;
-            color: #43e97b;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-        }
-
-        .stat-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 5px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 8px;
-        }
-
-        .external-links {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .external-link {
-            padding: 8px 16px;
-            background: linear-gradient(45deg, #ff6b9d, #4facfe);
-            color: white;
-            text-decoration: none;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .external-link:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        /* レスポンシブ */
-        @media (max-width: 768px) {
-            .search-area {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
-            
-            .modal-body {
-                grid-template-columns: 1fr;
-            }
-            
-            .generation-buttons {
-                gap: 5px;
-            }
-            
-            .gen-btn {
-                padding: 6px 12px;
-                font-size: 0.8rem;
-            }
-        }
-
-        /* ローディング */
+        
         .loading {
             text-align: center;
-            color: white;
-            font-size: 1.2rem;
-            margin: 50px 0;
+            color: #666;
+            font-style: italic;
+            padding: 40px;
         }
-
-        .loading::after {
-            content: '';
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-left: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        
+        .error {
+            background: #ffe0e0;
+            border: 2px solid #ff6b6b;
+            color: #d63031;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <!-- 固定ヘッダー -->
-    <div class="header">
+    <div class="container">
+        <!-- ヘッダートップ -->
         <div class="header-top">
-            <h1>PokeAkane ポケモン図鑑</h1>
+            <h1>🌟 PokeAkane ポケモン図鑑 🌟</h1>
             <div class="chart-buttons">
                 <a href="type_chart.html" class="chart-btn">📊 タイプ相性表</a>
                 <a href="nature_chart.html" class="chart-btn">🌟 性格表</a>
@@ -601,7 +482,7 @@
         
         <!-- 世代切り替えボタン -->
         <div class="generation-buttons">
-            <button class="gen-btn active" data-gen="all">全国図鑑</button>
+            <button class="gen-btn" data-gen="all">全世代</button>
             <button class="gen-btn" data-gen="1">第1世代</button>
             <button class="gen-btn" data-gen="2">第2世代</button>
             <button class="gen-btn" data-gen="3">第3世代</button>
@@ -612,30 +493,7 @@
             <button class="gen-btn" data-gen="8">第8世代</button>
             <button class="gen-btn" data-gen="9">第9世代</button>
         </div>
-
-        <!-- ソフト毎ボタン -->
-        <div class="software-buttons">
-            <button class="soft-btn active" data-soft="all">全て</button>
-            <button class="soft-btn" data-soft="rby">赤緑青ピカ</button>
-            <button class="soft-btn" data-soft="gsc">金銀ク</button>
-            <button class="soft-btn" data-soft="rse">RSE</button>
-            <button class="soft-btn" data-soft="frlg">FRLG</button>
-            <button class="soft-btn" data-soft="dpp">DPPt</button>
-            <button class="soft-btn" data-soft="hgss">HGSS</button>
-            <button class="soft-btn" data-soft="bw">BW</button>
-            <button class="soft-btn" data-soft="b2w2">B2W2</button>
-            <button class="soft-btn" data-soft="xy">XY</button>
-            <button class="soft-btn" data-soft="oras">ORAS</button>
-            <button class="soft-btn" data-soft="sm">SM</button>
-            <button class="soft-btn" data-soft="usum">USUM</button>
-            <button class="soft-btn" data-soft="lgpe">LGPE</button>
-            <button class="soft-btn" data-soft="swsh">剣盾</button>
-            <button class="soft-btn" data-soft="bdsp">BDSP</button>
-            <button class="soft-btn" data-soft="la">レジェアル</button>
-            <button class="soft-btn" data-soft="sv">SV</button>
-            <button class="soft-btn" data-soft="za">ZA</button>
-        </div>
-
+        
         <!-- 検索エリア -->
         <div class="search-area">
             <input type="text" class="search-box" id="searchInput" placeholder="ポケモン名または図鑑No.で検索...">
@@ -684,29 +542,370 @@
                 <option value="basic">進化前</option>
             </select>
         </div>
+        
+        <div class="controls" id="dexButtons">
+            <div class="loading">図鑑一覧を読み込み中...</div>
+        </div>
+        
+        <div class="info-panel" id="infoPanel" style="display: none;">
+            <strong id="selectedDexName">図鑑を選択してください</strong>
+            <div id="pokemonCount"></div>
+        </div>
+        
+        <div class="pokemon-grid" id="pokemonGrid">
+            <div class="loading">図鑑を選択してポケモンを表示</div>
+        </div>
     </div>
 
-    <!-- メインコンテンツ -->
-    <div class="main-content">
-        <div class="loading" id="loading">データ読み込み中...</div>
-        <div class="pokemon-grid" id="pokemonGrid"></div>
-    </div>
-
-    <!-- 詳細モーダル -->
-    <div id="pokemonModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <div class="modal-title" id="modalTitle">ポケモン詳細</div>
-                <button class="close" id="closeModal">&times;</button>
-            </div>
-            <div class="modal-body" id="modalBody">
-                <!-- 詳細内容がここに動的に追加される -->
-            </div>
+    <!-- 詳細表示パネル -->
+    <div class="detail-overlay" id="detailOverlay" onclick="closeDetailPanel()"></div>
+    <div class="detail-panel" id="detailPanel">
+        <div class="detail-close" onclick="closeDetailPanel()">&times;</div>
+        <div id="detailContent">
+            <!-- 詳細内容がここに表示されます -->
         </div>
     </div>
 
     <script>
-        // タイプ名日本語→英語変換マップ
+        // グローバル変数
+        let pokedexData = {};
+        let pokemonData = {};
+        let currentDex = null;
+        let currentGeneration = 'all';
+        
+        // 初期化
+        async function init() {
+            console.log('init関数が呼ばれました');
+            try {
+                console.log('図鑑構造データを読み込み中...');
+                await loadPokedexStructure();
+                console.log('ポケモンデータを読み込み中...');
+                await loadPokemonData();
+                console.log('図鑑ボタンを作成中...');
+                createDexButtons();
+                console.log('世代ボタンをセットアップ中...');
+                setupGenerationButtons();
+                console.log('検索・フィルター機能をセットアップ中...');
+                setupSearchAndFilters();
+                
+                console.log('デフォルトで全国図鑑を選択中...');
+                // デフォルトで全国図鑑を選択
+                selectDex(0);
+                console.log('初期化完了');
+            } catch (error) {
+                console.error('初期化エラー:', error);
+                showError('データの読み込みに失敗しました: ' + error.message);
+            }
+        }
+        
+        // 図鑑構造データを読み込み
+        async function loadPokedexStructure() {
+            try {
+                const response = await fetch('data/pokedex_structure.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                pokedexData = await response.json();
+                console.log('図鑑構造データを読み込みました:', Object.keys(pokedexData).length, '個の図鑑');
+            } catch (error) {
+                console.error('図鑑構造データ読み込みエラー:', error);
+                throw error;
+            }
+        }
+        
+        // ポケモンデータを読み込み
+        async function loadPokemonData() {
+            const generations = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+            
+            for (const gen of generations) {
+                try {
+                    const response = await fetch(`data/gen${gen}_pokemon.json`);
+                    if (response.ok) {
+                        const genData = await response.json();
+                        Object.assign(pokemonData, genData);
+                        console.log(`第${gen}世代のデータを読み込みました:`, Object.keys(genData).length, '匹');
+                    }
+                } catch (error) {
+                    console.warn(`第${gen}世代のデータ読み込みに失敗:`, error);
+                }
+            }
+            
+            console.log('総ポケモンデータ:', Object.keys(pokemonData).length, '匹');
+        }
+        
+        // 図鑑ボタンを作成
+        function createDexButtons() {
+            const container = document.getElementById('dexButtons');
+            container.innerHTML = '';
+            
+            // 図鑑IDでソート
+            const sortedDexes = Object.values(pokedexData).sort((a, b) => a.id - b.id);
+            
+            sortedDexes.forEach(dex => {
+                const button = document.createElement('button');
+                button.className = 'dex-button';
+                button.textContent = dex.name;
+                button.onclick = () => selectDex(dex.id);
+                button.dataset.dexId = dex.id;
+                container.appendChild(button);
+            });
+        }
+        
+        // 世代ボタンをセットアップ
+        function setupGenerationButtons() {
+            const genButtons = document.querySelectorAll('.gen-btn');
+            genButtons.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // アクティブ状態を更新
+                    genButtons.forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    
+                    // 現在の世代を更新
+                    currentGeneration = btn.dataset.gen;
+                    
+                    // 世代ボタンが押されたら全国図鑑に切り替え
+                    if (currentGeneration !== 'all') {
+                        selectDex(0, true); // 全国図鑑（ID: 0）に切り替え（世代リセットをスキップ）
+                    } else {
+                        // 全世代が選択された場合は現在の図鑑を表示
+                        if (currentDex !== null) {
+                            const dex = pokedexData[currentDex];
+                            if (dex) {
+                                displayPokemon(dex);
+                            }
+                        }
+                    }
+                });
+            });
+            
+            // デフォルトで全世代を選択
+            document.querySelector('[data-gen="all"]').classList.add('active');
+        }
+        
+        // 検索・フィルター機能のイベントリスナーをセットアップ
+        function setupSearchAndFilters() {
+            // 検索ボックス
+            document.getElementById('searchInput').addEventListener('input', () => {
+                if (currentDex !== null) {
+                    const dex = pokedexData[currentDex];
+                    if (dex) displayPokemon(dex);
+                }
+            });
+            
+            // ソート順変更
+            document.getElementById('sortOrder').addEventListener('change', () => {
+                if (currentDex !== null) {
+                    const dex = pokedexData[currentDex];
+                    if (dex) displayPokemon(dex);
+                }
+            });
+            
+            // 進化フィルター
+            document.getElementById('evolutionFilter').addEventListener('change', () => {
+                if (currentDex !== null) {
+                    const dex = pokedexData[currentDex];
+                    if (dex) displayPokemon(dex);
+                }
+            });
+            
+            // タイプフィルター（チェックボックス）
+            document.querySelectorAll('.type-checkbox-list input[type="checkbox"]').forEach(checkbox => {
+                checkbox.addEventListener('change', () => {
+                    if (currentDex !== null) {
+                        const dex = pokedexData[currentDex];
+                        if (dex) displayPokemon(dex);
+                    }
+                });
+            });
+        }
+        
+        // 図鑑を選択
+        function selectDex(dexId, skipGenerationReset = false) {
+            currentDex = dexId;
+            
+            // 図鑑ボタンの状態を更新
+            document.querySelectorAll('.dex-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            const targetButton = document.querySelector(`[data-dex-id="${dexId}"]`);
+            if (targetButton) {
+                targetButton.classList.add('active');
+            }
+            
+            // 世代ボタンを全世代にリセット（世代ボタンから呼ばれた場合はスキップ）
+            if (!skipGenerationReset) {
+                document.querySelectorAll('.gen-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                document.querySelector('[data-gen="all"]').classList.add('active');
+                currentGeneration = 'all';
+            }
+            
+            // 図鑑情報を表示
+            const dex = pokedexData[dexId];
+            if (!dex) {
+                console.error(`図鑑が見つかりません: ID ${dexId}`);
+                return;
+            }
+            
+            document.getElementById('selectedDexName').textContent = dex.name;
+            document.getElementById('pokemonCount').textContent = `登録ポケモン数: ${Object.keys(dex.pokemon).length}匹`;
+            document.getElementById('infoPanel').style.display = 'block';
+            
+            // ポケモンを表示
+            displayPokemon(dex);
+        }
+        
+        // ポケモンを表示
+        function displayPokemon(dex) {
+            const container = document.getElementById('pokemonGrid');
+            container.innerHTML = '';
+            
+            // 検索・フィルターの値を取得
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const selectedTypes = Array.from(document.querySelectorAll('.type-checkbox-list input[type="checkbox"]:checked')).map(cb => cb.value);
+            const evolutionFilter = document.getElementById('evolutionFilter').value;
+            const sortOrder = document.getElementById('sortOrder').value;
+            
+            // 図鑑番号順にソート
+            const sortedPokemon = Object.entries(dex.pokemon).sort((a, b) => parseInt(a[0]) - parseInt(b[0]));
+            
+            // フィルタリング処理
+            const filteredPokemon = sortedPokemon.filter(([dexNumber, pokemonInfo]) => {
+                const pokemon = pokemonData[pokemonInfo.pokemon_id];
+                if (!pokemon) return false;
+                
+                // 世代フィルター
+                if (currentGeneration !== 'all') {
+                    const pokemonId = parseInt(pokemonInfo.pokemon_id);
+                    const gen = getGenerationFromId(pokemonId);
+                    if (gen.toString() !== currentGeneration) return false;
+                }
+                
+                // 検索フィルター（ポケモン名または図鑑No.）
+                if (searchTerm) {
+                    const nameMatch = pokemon.name.toLowerCase().includes(searchTerm) || 
+                                    (pokemon.name_en && pokemon.name_en.toLowerCase().includes(searchTerm));
+                    const idMatch = pokemon.id.toString().includes(searchTerm);
+                    const dexMatch = dexNumber.toString().includes(searchTerm);
+                    const formattedId = pokemon.id.toString().padStart(3, '0');
+                    const formattedIdMatch = formattedId.includes(searchTerm);
+                    if (!nameMatch && !idMatch && !dexMatch && !formattedIdMatch) return false;
+                }
+                
+                // タイプフィルター（複数選択対応）
+                if (selectedTypes.length > 0) {
+                    const hasAllSelectedTypes = selectedTypes.every(type => pokemon.types.includes(type));
+                    if (!hasAllSelectedTypes) return false;
+                }
+                
+                // 進化段階フィルター
+                if (evolutionFilter && evolutionFilter !== '') {
+                    const evolution = pokemon.evolution || {};
+                    const hasEvolutionFrom = evolution.prev !== null && evolution.prev !== undefined && evolution.prev !== '';
+                    const hasEvolutionTo = evolution.next && Array.isArray(evolution.next) && evolution.next.length > 0;
+                    
+                    if (evolutionFilter === 'basic') {
+                        // 進化前：進化後があるが進化前がないもの
+                        if (!(hasEvolutionTo && !hasEvolutionFrom)) return false;
+                    } else if (evolutionFilter === 'middle') {
+                        // 中間進化：進化前と進化後の両方があるもの
+                        if (!(hasEvolutionFrom && hasEvolutionTo)) return false;
+                    } else if (evolutionFilter === 'final') {
+                        // 最終進化：進化後がないもの（無進化ポケモンも含む）
+                        if (hasEvolutionTo) return false;
+                    }
+                }
+                
+                return true;
+            });
+            
+            // ソート処理
+            if (sortOrder !== 'id') {
+                filteredPokemon.sort((a, b) => {
+                    const pokemonA = pokemonData[a[1].pokemon_id];
+                    const pokemonB = pokemonData[b[1].pokemon_id];
+                    
+                    if (!pokemonA || !pokemonB) return 0;
+                    
+                    if (sortOrder === 'stats_total') {
+                        const statsA = pokemonA.stats ? Object.values(pokemonA.stats).reduce((sum, stat) => sum + stat, 0) : 0;
+                        const statsB = pokemonB.stats ? Object.values(pokemonB.stats).reduce((sum, stat) => sum + stat, 0) : 0;
+                        return statsB - statsA; // 降順
+                    } else if (pokemonA.stats && pokemonB.stats) {
+                        const statA = pokemonA.stats[sortOrder] || 0;
+                        const statB = pokemonB.stats[sortOrder] || 0;
+                        return statB - statA; // 降順
+                    }
+                    return 0;
+                });
+            }
+            
+            // ポケモンカード描画
+            filteredPokemon.forEach(([dexNumber, pokemonInfo], index) => {
+                // 30匹ごとに区切り線を追加（最初は除く）
+                if (index > 0 && index % 30 === 0) {
+                    const separator = document.createElement('div');
+                    separator.className = 'row-separator';
+                    container.appendChild(separator);
+                }
+                
+                const pokemon = pokemonData[pokemonInfo.pokemon_id];
+                if (!pokemon) {
+                    console.warn(`ポケモンデータが見つかりません: ID ${pokemonInfo.pokemon_id}`);
+                    return;
+                }
+                
+                const card = createPokemonCard(pokemon, dexNumber);
+                container.appendChild(card);
+            });
+            
+            // 検索結果が0の場合のメッセージ
+            if (filteredPokemon.length === 0) {
+                container.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: #666; font-size: 1.2rem; padding: 40px;">該当するポケモンが見つかりませんでした</div>';
+            }
+            
+            // 図鑑情報を更新
+            const totalCount = Object.keys(dex.pokemon).length;
+            const filteredCount = filteredPokemon.length;
+            let countText;
+            if (searchTerm || selectedTypes.length > 0 || evolutionFilter) {
+                countText = `表示中: ${filteredCount}匹`;
+                if (currentGeneration !== 'all') {
+                    const genFilteredCount = sortedPokemon.filter(([dexNumber, pokemonInfo]) => {
+                        const pokemon = pokemonData[pokemonInfo.pokemon_id];
+                        if (!pokemon) return false;
+                        const pokemonId = parseInt(pokemonInfo.pokemon_id);
+                        const gen = getGenerationFromId(pokemonId);
+                        return gen.toString() === currentGeneration;
+                    }).length;
+                    countText += ` (第${currentGeneration}世代: ${genFilteredCount}匹中)`;
+                } else {
+                    countText += ` (全${totalCount}匹中)`;
+                }
+            } else {
+                countText = currentGeneration === 'all' 
+                    ? `登録ポケモン数: ${totalCount}匹`
+                    : `登録ポケモン数: ${filteredCount}匹 (全${totalCount}匹中)`;
+            }
+            document.getElementById('pokemonCount').textContent = countText;
+        }
+        
+        // ポケモンIDから世代を判定
+        function getGenerationFromId(pokemonId) {
+            if (pokemonId >= 1 && pokemonId <= 151) return 1;
+            if (pokemonId >= 152 && pokemonId <= 251) return 2;
+            if (pokemonId >= 252 && pokemonId <= 386) return 3;
+            if (pokemonId >= 387 && pokemonId <= 493) return 4;
+            if (pokemonId >= 494 && pokemonId <= 649) return 5;
+            if (pokemonId >= 650 && pokemonId <= 721) return 6;
+            if (pokemonId >= 722 && pokemonId <= 809) return 7;
+            if (pokemonId >= 810 && pokemonId <= 905) return 8;
+            if (pokemonId >= 906 && pokemonId <= 1025) return 9;
+            return 1; // フォールバック
+        }
+        
+        // タイプ名の変換マップ（日本語→英語）
         const typeNameMap = {
             'ノーマル': 'normal',
             'ほのお': 'fire',
@@ -727,534 +926,110 @@
             'はがね': 'steel',
             'フェアリー': 'fairy'
         };
-
-        // グローバル変数
-        let pokemonData = {};
-        let generationData = {}; // 世代別データキャッシュ
-        let currentGeneration = 'all';
-        let currentSoftware = 'all';
-        let filteredPokemon = [];
-
-        // 世代別範囲
-        const generations = {
-            1: [1, 151],
-            2: [152, 251], 
-            3: [252, 386],
-            4: [387, 493],
-            5: [494, 649],
-            6: [650, 721],
-            7: [722, 809],
-            8: [810, 905],
-            9: [906, 1025]
-        };
-
-        // ソフト毎のポケモンリスト
-        const softwarePokedex = {
-            'rby': [1, 151], // 赤緑青ピカチュウ
-            'gsc': [1, 251], // 金銀クリスタル
-            'rse': [1, 386], // ルビー・サファイア・エメラルド
-            'frlg': [1, 386], // ファイアレッド・リーフグリーン（第3世代まで）
-            'dpp': [1, 493], // ダイヤモンド・パール・プラチナ
-            'hgss': [1, 493], // ハートゴールド・ソウルシルバー（第4世代まで）
-            'bw': [1, 649], // ブラック・ホワイト
-            'b2w2': [1, 649], // ブラック2・ホワイト2
-            'xy': [1, 721], // X・Y
-            'oras': [1, 721], // オメガルビー・アルファサファイア（第6世代まで）
-            'sm': [1, 809], // サン・ムーン
-            'usum': [1, 809], // ウルトラサン・ウルトラムーン
-            'lgpe': [1, 151], // Let's Go ピカチュウ・イーブイ（カントーのみ）
-            'swsh': [1, 905], // ソード・シールド
-            'bdsp': [1, 493], // ブリリアントダイヤモンド・シャイニングパール
-            'la': [1, 905], // レジェンズアルセウス（第8世代まで）
-            'sv': [1, 1025], // スカーレット・バイオレット
-            'za': [1, 1025] // ポケモンレジェンズZ-A（予想）
-        };
-
-        // 初期化
-        document.addEventListener('DOMContentLoaded', async () => {
-            await loadPokemonData();
-            setupEventListeners();
-            displayPokemon();
-        });
-
-        // ポケモンデータ読み込み（世代別対応）
-        async function loadPokemonData() {
-            try {
-                document.getElementById('loading').textContent = '世代別データを読み込み中...';
-                
-                // 世代別ファイルマップ
-                const genFiles = {
-                    'gen1': 'gen1_pokemon.json',
-                    'gen2': 'gen2_pokemon.json', 
-                    'gen3': 'gen3_pokemon.json',
-                    'gen4': 'gen4_pokemon.json',
-                    'gen5': 'gen5_pokemon.json',
-                    'gen6': 'gen6_pokemon.json',
-                    'gen7': 'gen7_pokemon.json',
-                    'gen8': 'gen8_pokemon.json',
-                    'gen9': 'gen9_pokemon.json',
-                    'all': 'pokemon_data.json'  // 後方互換用
-                };
-
-                // 全世代のデータを並行読み込み
-                const loadPromises = Object.values(genFiles).slice(0, -1).map(async file => {
-                    try {
-                        const response = await fetch(file);
-                        if (!response.ok) throw new Error(`${file} が見つかりません`);
-                        return await response.json();
-                    } catch (error) {
-                        console.warn(`${file} の読み込みに失敗:`, error);
-                        return {};
-                    }
-                });
-
-                // 全世代データを統合
-                const genDataArrays = await Promise.all(loadPromises);
-                pokemonData = genDataArrays.reduce((combined, genData) => {
-                    return { ...combined, ...genData };
-                }, {});
-
-                // 世代別データも保存（メモリ効率のため）
-                generationData = {
-                    'gen1': genDataArrays[0] || {},
-                    'gen2': genDataArrays[1] || {},
-                    'gen3': genDataArrays[2] || {},
-                    'gen4': genDataArrays[3] || {},
-                    'gen5': genDataArrays[4] || {},
-                    'gen6': genDataArrays[5] || {},
-                    'gen7': genDataArrays[6] || {},
-                    'gen8': genDataArrays[7] || {},
-                    'gen9': genDataArrays[8] || {},
-                    'all': pokemonData
-                };
-
-                console.log('世代別データ読み込み完了:', Object.keys(pokemonData).length + '匹');
-                console.log('世代データ詳細:', {
-                    'gen1': Object.keys(generationData.gen1).length,
-                    'gen2': Object.keys(generationData.gen2).length,
-                    'gen3': Object.keys(generationData.gen3).length,
-                    'gen4': Object.keys(generationData.gen4).length,
-                    'gen5': Object.keys(generationData.gen5).length,
-                    'gen6': Object.keys(generationData.gen6).length,
-                    'gen7': Object.keys(generationData.gen7).length,
-                    'gen8': Object.keys(generationData.gen8).length,
-                    'gen9': Object.keys(generationData.gen9).length
-                });
-                document.getElementById('loading').style.display = 'none';
-                
-            } catch (error) {
-                console.error('データ読み込みエラー:', error);
-                // フォールバック: 元のファイルを試す
-                try {
-                    const response = await fetch('pokemon_data.json');
-                    pokemonData = await response.json();
-                    generationData = { 'all': pokemonData };
-                    console.log('フォールバック読み込み完了:', Object.keys(pokemonData).length + '匹');
-                    document.getElementById('loading').style.display = 'none';
-                } catch (fallbackError) {
-                    console.error('フォールバック読み込みエラー:', fallbackError);
-                    document.getElementById('loading').textContent = 'データ読み込みに失敗しました';
-                }
-            }
-        }
-
-        // イベントリスナー設定
-        function setupEventListeners() {
-            // 世代ボタン
-            document.querySelectorAll('.gen-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.gen-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentGeneration = e.target.dataset.gen;
-                    displayPokemon();
-                });
-            });
-
-            // ソフト毎ボタン（現在無効化中）
-            /*
-            document.querySelectorAll('.soft-btn').forEach(btn => {
-                btn.addEventListener('click', (e) => {
-                    document.querySelectorAll('.soft-btn').forEach(b => b.classList.remove('active'));
-                    e.target.classList.add('active');
-                    currentSoftware = e.target.dataset.soft;
-                    displayPokemon();
-                });
-            });
-            */
-
-            // 検索機能
-            document.getElementById('searchInput').addEventListener('input', displayPokemon);
-            document.getElementById('evolutionFilter').addEventListener('change', displayPokemon);
-            document.getElementById('sortOrder').addEventListener('change', displayPokemon);
-
-            // タイプフィルター（チェックボックス）
-            document.querySelectorAll('.type-checkbox-list input[type="checkbox"]').forEach(checkbox => {
-                checkbox.addEventListener('change', displayPokemon);
-            });
-
-            // モーダル
-            document.getElementById('closeModal').addEventListener('click', closeModal);
-            document.getElementById('pokemonModal').addEventListener('click', (e) => {
-                if (e.target.id === 'pokemonModal') closeModal();
-            });
-        }
-
-        // ポケモン表示（世代別データ対応）
-        function displayPokemon() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
-            const selectedTypes = Array.from(document.querySelectorAll('.type-checkbox-list input[type="checkbox"]:checked')).map(cb => cb.value);
-            const evolutionFilter = document.getElementById('evolutionFilter').value;
-            const sortOrder = document.getElementById('sortOrder').value;
-
-            // 現在の世代のデータを取得（メモリ効率のため）
-            let currentGenData;
-            if (currentGeneration === 'all') {
-                currentGenData = pokemonData;
-            } else {
-                // 世代番号をキーにマッピング
-                const genKey = `gen${currentGeneration}`;
-                currentGenData = generationData[genKey] || {};
-                console.log(`世代${currentGeneration}のデータ:`, Object.keys(currentGenData).length + '匹');
-            }
-
-            // データが配列かオブジェクトかチェックして適切に処理
-            let pokemonArray;
-            if (Array.isArray(currentGenData)) {
-                pokemonArray = currentGenData;
-            } else {
-                pokemonArray = Object.values(currentGenData);
-            }
-
-            // フィルタリング（選択された世代のデータのみ処理）
-            filteredPokemon = pokemonArray.filter(pokemon => {
-                // 検索フィルター
-                if (searchTerm) {
-                    const nameMatch = pokemon.name.toLowerCase().includes(searchTerm);
-                    const idMatch = pokemon.id.toString().includes(searchTerm);
-                    const formattedId = pokemon.id.toString().padStart(3, '0');
-                    const formattedIdMatch = formattedId.includes(searchTerm);
-                    if (!nameMatch && !idMatch && !formattedIdMatch) return false;
-                }
-
-                // タイプフィルター（複数選択対応）
-                if (selectedTypes.length > 0) {
-                    const hasAllSelectedTypes = selectedTypes.every(type => pokemon.types.includes(type));
-                    if (!hasAllSelectedTypes) return false;
-                }
-
-                // 進化フィルター（実際の進化データを使用）
-                if (evolutionFilter && evolutionFilter !== '') {
-                    const evolution = pokemon.evolution || {};
-                    const hasEvolutionFrom = evolution.prev !== null && evolution.prev !== undefined && evolution.prev !== '';
-                    const hasEvolutionTo = evolution.next && Array.isArray(evolution.next) && evolution.next.length > 0;
-                    
-                    // console.log(`${pokemon.name} (ID: ${pokemon.id}) - 進化前: ${hasEvolutionFrom}, 進化後: ${hasEvolutionTo}`);
-                    
-                    if (evolutionFilter === 'basic') {
-                        // 進化前：進化後があるが進化前がないもの
-                        if (!(hasEvolutionTo && !hasEvolutionFrom)) return false;
-                    } else if (evolutionFilter === 'middle') {
-                        // 中間進化：進化前と進化後の両方があるもの
-                        if (!(hasEvolutionFrom && hasEvolutionTo)) return false;
-                    } else if (evolutionFilter === 'final') {
-                        // 最終進化：進化後がないもの（無進化ポケモンも含む）
-                        if (hasEvolutionTo) return false;
-                    }
-                }
-
-                // ソフト毎フィルター（後で詳細な図鑑データで実装予定）
-                /*
-                if (currentSoftware !== 'all') {
-                    const softwareRange = softwarePokedex[currentSoftware];
-                    if (softwareRange && (pokemon.id < softwareRange[0] || pokemon.id > softwareRange[1])) {
-                        return false;
-                    }
-                }
-                */
-
-                return true;
-            });
-
-            // ソート
-            if (sortOrder === 'stats_total') {
-                filteredPokemon.sort((a, b) => {
-                    const statsA = Object.values(a.stats).reduce((sum, stat) => sum + stat, 0);
-                    const statsB = Object.values(b.stats).reduce((sum, stat) => sum + stat, 0);
-                    return statsB - statsA; // 降順
-                });
-            } else if (sortOrder === 'hp') {
-                filteredPokemon.sort((a, b) => b.stats.hp - a.stats.hp);
-            } else if (sortOrder === 'attack') {
-                filteredPokemon.sort((a, b) => b.stats.attack - a.stats.attack);
-            } else if (sortOrder === 'defense') {
-                filteredPokemon.sort((a, b) => b.stats.defense - a.stats.defense);
-            } else if (sortOrder === 'special_attack') {
-                filteredPokemon.sort((a, b) => b.stats.special_attack - a.stats.special_attack);
-            } else if (sortOrder === 'special_defense') {
-                filteredPokemon.sort((a, b) => b.stats.special_defense - a.stats.special_defense);
-            } else if (sortOrder === 'speed') {
-                filteredPokemon.sort((a, b) => b.stats.speed - a.stats.speed);
-            } else {
-                filteredPokemon.sort((a, b) => a.id - b.id); // 番号順
-            }
-
-            renderPokemonGrid();
-        }
-
-        // ポケモンカード描画
-        function renderPokemonGrid() {
-            const grid = document.getElementById('pokemonGrid');
+        
+        // ポケモンカードを作成
+        function createPokemonCard(pokemon, dexNumber) {
+            const card = document.createElement('div');
+            card.className = 'pokemon-card';
             
-            if (filteredPokemon.length === 0) {
-                grid.innerHTML = '<div style="grid-column: 1/-1; text-align: center; color: white; font-size: 1.2rem;">該当するポケモンが見つかりませんでした</div>';
-                return;
-            }
-
-            let htmlContent = '';
-            filteredPokemon.forEach((pokemon, index) => {
-                // 30匹（横5列）ごとに区切り線を追加
-                if (index > 0 && index % 30 === 0) {
-                    htmlContent += '<div class="row-separator"></div>';
-                }
-                
-                const typesBadges = pokemon.types.map(type => {
-                    const englishType = typeNameMap[type] || type.toLowerCase();
-                    return `<span class="type-badge type-${type}">
-                        <img src="type_images/${englishType}.png" class="type-icon" alt="${type}">
-                        ${type}
-                    </span>`;
-                }).join('');
-
-                htmlContent += `
-                    <div class="pokemon-card" onclick="showPokemonDetail(${pokemon.id})">
-                        <div class="pokemon-number">No.${pokemon.id.toString().padStart(3, '0')}</div>
-                        <div class="pokemon-image-container">
-                            <img src="pokemon_images/normal/${pokemon.id.toString().padStart(3, '0')}.png" 
-                                 alt="${pokemon.name}" 
-                                 class="pokemon-image" 
-                                 id="pokemon-image-${pokemon.id}"
-                                 loading="lazy"
-                                 onerror="this.src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png'; this.onerror=function(){this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KICA8cmVjdCB3aWR0aD0iMTAwIiBoZWlnaHQ9IjEwMCIgZmlsbD0iI2Y4ZjlmYSIvPgogIDx0ZXh0IHg9IjUwIiB5PSI1NSIgZm9udC1mYW1pbHk9IkFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyIiBmaWxsPSIjNjY2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIj4jJHtwb2tlbW9uLmlkfTwvdGV4dD4KICA8dGV4dCB4PSI1MCIgeT0iNzAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxMCIgZmlsbD0iIzY2NiIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tm8gSW1hZ2U8L3RleHQ+Cjwvc3ZnPg==';}">
-                        </div>
-                        <div class="pokemon-name">${pokemon.name}</div>
-                        <div class="pokemon-types">${typesBadges}</div>
-                    </div>
-                `;
-            });
-
-            grid.innerHTML = htmlContent;
-        }
-
-        // 進化表示を作成（分岐進化対応）
-        function createEvolutionDisplay(pokemon) {
-            const evolution = pokemon.evolution;
-            let html = '<div class="evolution-display">';
+            // ポケモンIDを3桁の0埋めフォーマットに変換
+            const formattedId = String(pokemon.id).padStart(3, '0');
+            const imageUrl = `pokemon_images/normal/${formattedId}.png`;
             
-            // 進化前がある場合
-            if (evolution.prev) {
-                const prevPokemon = findPokemonById(evolution.prev);
-                const prevName = prevPokemon ? prevPokemon.name : `No.${evolution.prev}`;
-                html += `
-                    <div class="evolution-step">
-                        <div class="evolution-pokemon prev">
-                            <img src="pokemon_images/normal/${evolution.prev.toString().padStart(3, '0')}.png" 
-                                 alt="${prevName}" 
-                                 style="width: 80px; height: 80px; object-fit: contain; border-radius: 10px; background: #f8f9fa;">
-                            <div style="font-size: 0.8rem; margin-top: 5px;">${prevName}</div>
-                        </div>
-                        <div class="evolution-arrow">→</div>
-                    </div>
-                `;
-            }
-            
-            // 現在のポケモン（中央に大きく表示）
-            html += `
-                <div class="evolution-step current">
-                    <div class="evolution-pokemon current">
-                        <img src="pokemon_images/normal/${pokemon.id.toString().padStart(3, '0')}.png" 
-                             alt="${pokemon.name}" 
-                             style="width: 120px; height: 120px; object-fit: contain; border-radius: 15px; background: linear-gradient(145deg, #fff, #f0f0f0); box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);">
-                        <div style="font-size: 1rem; margin-top: 8px; font-weight: bold; color: #ff69b4;">${pokemon.name}</div>
-                    </div>
-                </div>
-            `;
-            
-            // 進化後がある場合
-            if (evolution.next && evolution.next.length > 0) {
-                if (evolution.next.length === 1) {
-                    // 単一進化
-                    const nextPokemon = findPokemonById(evolution.next[0]);
-                    const nextName = nextPokemon ? nextPokemon.name : `No.${evolution.next[0]}`;
-                    html += `
-                        <div class="evolution-step">
-                            <div class="evolution-arrow">→</div>
-                            <div class="evolution-pokemon next">
-                                <img src="pokemon_images/normal/${evolution.next[0].toString().padStart(3, '0')}.png" 
-                                     alt="${nextName}" 
-                                     style="width: 80px; height: 80px; object-fit: contain; border-radius: 10px; background: #f8f9fa;">
-                                <div style="font-size: 0.8rem; margin-top: 5px;">${nextName}</div>
-                            </div>
-                        </div>
-                    `;
-                } else {
-                    // 分岐進化
-                    html += `
-                        <div class="evolution-step branched">
-                            <div class="evolution-arrow">→</div>
-                            <div class="evolution-branches">
-                    `;
-                    
-                    evolution.next.forEach((nextId, index) => {
-                        const nextPokemon = findPokemonById(nextId);
-                        const nextName = nextPokemon ? nextPokemon.name : `No.${nextId}`;
-                        html += `
-                            <div class="evolution-branch" style="margin: 5px;">
-                                <img src="pokemon_images/normal/${nextId.toString().padStart(3, '0')}.png" 
-                                     alt="${nextName}" 
-                                     style="width: 70px; height: 70px; object-fit: contain; border-radius: 8px; background: #f8f9fa;">
-                                <div style="font-size: 0.75rem; margin-top: 3px; text-align: center;">${nextName}</div>
-                            </div>
+            card.innerHTML = `
+                <img src="${imageUrl}" alt="${pokemon.name}" class="pokemon-image" 
+                     onerror="this.src='pokemon_images/normal/001.png'">
+                <div class="pokemon-name">${pokemon.name}</div>
+                <div class="pokemon-number">図鑑No. ${dexNumber} (全国No. ${pokemon.id})</div>
+                <div class="pokemon-types">
+                    ${pokemon.types.map(type => {
+                        const englishType = typeNameMap[type] || type.toLowerCase();
+                        return `
+                            <span class="type-badge type-${type}">
+                                <img src="type_images/${englishType}.png" alt="${type}" class="type-icon" 
+                                     onerror="this.style.display='none'">
+                                ${type}
+                            </span>
                         `;
-                    });
-                    
-                    html += `
-                            </div>
-                        </div>
-                    `;
-                }
-            }
-            
-            html += '</div>';
-            return html;
-        }
-
-        // ポケモンIDで検索するヘルパー関数
-        function findPokemonById(pokemonId) {
-            // まず統合データから検索
-            let pokemon = pokemonData[pokemonId.toString()];
-            
-            // 見つからない場合は世代別データから検索
-            if (!pokemon && generationData) {
-                for (const genKey in generationData) {
-                    const genData = generationData[genKey];
-                    if (genData[pokemonId.toString()]) {
-                        pokemon = genData[pokemonId.toString()];
-                        break;
-                    }
-                }
-            }
-            
-            return pokemon;
-        }
-
-        // ポケモン詳細表示
-        function showPokemonDetail(pokemonId) {
-            // 全データから検索（統合データまたは現在の世代データから）
-            let pokemon = pokemonData[pokemonId.toString()];
-            
-            // 統合データにない場合は、世代別データから検索
-            if (!pokemon && generationData) {
-                for (const genKey in generationData) {
-                    const genData = generationData[genKey];
-                    if (genData[pokemonId.toString()]) {
-                        pokemon = genData[pokemonId.toString()];
-                        break;
-                    }
-                }
-            }
-            
-            if (!pokemon) {
-                console.error(`ポケモンID ${pokemonId} が見つかりません`);
-                return;
-            }
-
-            const modal = document.getElementById('pokemonModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
-
-            modalTitle.textContent = `#${pokemon.id.toString().padStart(3, '0')} ${pokemon.name}`;
-            
-            // 進化系表示を改善（分岐進化対応）
-            const evolutionDisplay = createEvolutionDisplay(pokemon);
-
-            modalBody.innerHTML = `
-                <div>
-                    <div style="text-align: center; margin-bottom: 20px;">
-                        ${evolutionDisplay}
-                    </div>
-                    
-                    <div class="detail-section">
-                        <h3>基本情報</h3>
-                        <p><strong>タイプ:</strong> ${pokemon.types.join(' / ')}</p>
-                        <p><strong>特性:</strong> ${pokemon.abilities.join(', ')}</p>
-                        <p><strong>高さ:</strong> ${pokemon.height}m</p>
-                        <p><strong>重さ:</strong> ${pokemon.weight}kg</p>
-                        <p><strong>世代:</strong> 第${pokemon.generation}世代</p>
-                    </div>
-
-                    <div class="external-links">
-                        <a href="${pokemon.external_links.kouryaku}" target="_blank" class="external-link">徹底攻略</a>
-                        <a href="${pokemon.external_links.gamewith}" target="_blank" class="external-link">GameWith</a>
-                        <a href="${pokemon.external_links.game8}" target="_blank" class="external-link">Game8</a>
-                    </div>
-                </div>
-
-                <div>
-                    <div class="detail-section">
-                        <h3>種族値</h3>
-                        <div class="stats-grid">
-                            <div class="stat-item">
-                                <span>HP</span>
-                                <span>${pokemon.stats.hp}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span>攻撃</span>
-                                <span>${pokemon.stats.attack}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span>防御</span>
-                                <span>${pokemon.stats.defense}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span>特攻</span>
-                                <span>${pokemon.stats.special_attack}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span>特防</span>
-                                <span>${pokemon.stats.special_defense}</span>
-                            </div>
-                            <div class="stat-item">
-                                <span>素早さ</span>
-                                <span>${pokemon.stats.speed}</span>
-                            </div>
-                        </div>
-                    </div>
+                    }).join('')}
                 </div>
             `;
-
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden';
+            
+            // クリックイベントを追加
+            card.addEventListener('click', () => showPokemonDetail(pokemon, dexNumber));
+            
+            return card;
         }
-
-        // モーダル閉じる
-        function closeModal() {
-            document.getElementById('pokemonModal').style.display = 'none';
-            document.body.style.overflow = 'auto';
+        
+        // ポケモン詳細を表示
+        function showPokemonDetail(pokemon, dexNumber) {
+            const formattedId = String(pokemon.id).padStart(3, '0');
+            const imageUrl = `pokemon_images/normal/${formattedId}.png`;
+            
+            const detailContent = document.getElementById('detailContent');
+            detailContent.innerHTML = `
+                <img src="${imageUrl}" alt="${pokemon.name}" class="detail-pokemon-image" 
+                     onerror="this.src='pokemon_images/normal/001.png'">
+                <h2>${pokemon.name} (${pokemon.name_en})</h2>
+                <p><strong>図鑑No:</strong> ${dexNumber} (全国No. ${pokemon.id})</p>
+                <div class="pokemon-types">
+                    ${pokemon.types.map(type => {
+                        const englishType = typeNameMap[type] || type.toLowerCase();
+                        return `
+                            <span class="type-badge type-${type}">
+                                <img src="type_images/${englishType}.png" alt="${type}" class="type-icon" 
+                                     onerror="this.style.display='none'">
+                                ${type}
+                            </span>
+                        `;
+                    }).join('')}
+                </div>
+                <div style="margin-top: 20px;">
+                    <p><strong>高さ:</strong> ${pokemon.height || '不明'}</p>
+                    <p><strong>重さ:</strong> ${pokemon.weight || '不明'}</p>
+                    ${pokemon.abilities ? `<p><strong>特性:</strong> ${pokemon.abilities.join(', ')}</p>` : ''}
+                </div>
+            `;
+            
+            document.getElementById('detailOverlay').style.display = 'block';
+            document.getElementById('detailPanel').style.display = 'block';
         }
-
-        // ESCキーでモーダル閉じる
+        
+        // 詳細パネルを閉じる
+        function closeDetailPanel() {
+            document.getElementById('detailOverlay').style.display = 'none';
+            document.getElementById('detailPanel').style.display = 'none';
+        }
+        
+        // エラー表示
+        function showError(message) {
+            const container = document.getElementById('pokemonGrid');
+            container.innerHTML = `<div class="error">${message}</div>`;
+        }
+        
+        // ページ読み込み時に初期化
+        window.addEventListener('load', () => {
+            console.log('ページが読み込まれました');
+            init();
+        });
+        
+        // エラーハンドリング
+        window.addEventListener('error', (e) => {
+            console.error('エラーが発生しました:', e.error);
+        });
+        
+        // ESCキーでモーダルやドロップダウンを閉じる
         document.addEventListener('keydown', (e) => {
             if (e.key === 'Escape') {
-                closeModal();
+                // 詳細パネルを閉じる
+                closeDetailPanel();
+                // タイプフィルターのドロップダウンを閉じる
+                const typeDropdown = document.querySelector('.type-dropdown[open]');
+                if (typeDropdown) {
+                    typeDropdown.removeAttribute('open');
+                }
             }
         });
-
-        // 画像関連の処理（削除済み）
-
-        // 利用可能な画像リストをキャッシュ
-        const availableImages = {};
-
-        // 画像関連の処理（削除済み）
     </script>
 </body>
 </html>

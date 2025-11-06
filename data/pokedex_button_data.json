@@ -1,0 +1,233 @@
+[
+  {
+    "id": 1,
+    "name": "national",
+    "japanese_name": "全国図鑑",
+    "pokemon_count": 1025,
+    "is_main_series": true
+  },
+  {
+    "id": 2,
+    "name": "kanto",
+    "japanese_name": "カントー図鑑",
+    "pokemon_count": 151,
+    "is_main_series": true
+  },
+  {
+    "id": 3,
+    "name": "original-johto",
+    "japanese_name": "ジョウト図鑑(金銀)",
+    "pokemon_count": 251,
+    "is_main_series": true
+  },
+  {
+    "id": 4,
+    "name": "hoenn",
+    "japanese_name": "ホウエン図鑑(RSE)",
+    "pokemon_count": 202,
+    "is_main_series": true
+  },
+  {
+    "id": 5,
+    "name": "original-sinnoh",
+    "japanese_name": "シンオウ図鑑(DP)",
+    "pokemon_count": 151,
+    "is_main_series": true
+  },
+  {
+    "id": 6,
+    "name": "extended-sinnoh",
+    "japanese_name": "シンオウ図鑑(Pt)",
+    "pokemon_count": 210,
+    "is_main_series": true
+  },
+  {
+    "id": 7,
+    "name": "updated-johto",
+    "japanese_name": "ジョウト図鑑(HGSS)",
+    "pokemon_count": 256,
+    "is_main_series": true
+  },
+  {
+    "id": 8,
+    "name": "original-unova",
+    "japanese_name": "イッシュ図鑑(BW)",
+    "pokemon_count": 156,
+    "is_main_series": true
+  },
+  {
+    "id": 9,
+    "name": "updated-unova",
+    "japanese_name": "イッシュ図鑑(B2W2)",
+    "pokemon_count": 301,
+    "is_main_series": true
+  },
+  {
+    "id": 11,
+    "name": "conquest-gallery",
+    "japanese_name": "ノブナガ図鑑",
+    "pokemon_count": 200,
+    "is_main_series": false
+  },
+  {
+    "id": 12,
+    "name": "kalos-central",
+    "japanese_name": "カロス中央図鑑",
+    "pokemon_count": 150,
+    "is_main_series": true
+  },
+  {
+    "id": 13,
+    "name": "kalos-coastal",
+    "japanese_name": "カロス海岸図鑑",
+    "pokemon_count": 153,
+    "is_main_series": true
+  },
+  {
+    "id": 14,
+    "name": "kalos-mountain",
+    "japanese_name": "カロス山岳図鑑",
+    "pokemon_count": 151,
+    "is_main_series": true
+  },
+  {
+    "id": 15,
+    "name": "updated-hoenn",
+    "japanese_name": "ホウエン図鑑(ORAS)",
+    "pokemon_count": 211,
+    "is_main_series": true
+  },
+  {
+    "id": 16,
+    "name": "original-alola",
+    "japanese_name": "アローラ図鑑(SM)",
+    "pokemon_count": 302,
+    "is_main_series": true
+  },
+  {
+    "id": 17,
+    "name": "original-melemele",
+    "japanese_name": "メレメレ図鑑(SM)",
+    "pokemon_count": 120,
+    "is_main_series": true
+  },
+  {
+    "id": 18,
+    "name": "original-akala",
+    "japanese_name": "アーカラ図鑑(SM)",
+    "pokemon_count": 130,
+    "is_main_series": true
+  },
+  {
+    "id": 19,
+    "name": "original-ulaula",
+    "japanese_name": "ウラウラ図鑑(SM)",
+    "pokemon_count": 130,
+    "is_main_series": true
+  },
+  {
+    "id": 20,
+    "name": "original-poni",
+    "japanese_name": "ポニ図鑑(SM)",
+    "pokemon_count": 100,
+    "is_main_series": true
+  },
+  {
+    "id": 21,
+    "name": "updated-alola",
+    "japanese_name": "アローラ図鑑(USUM)",
+    "pokemon_count": 403,
+    "is_main_series": true
+  },
+  {
+    "id": 22,
+    "name": "updated-melemele",
+    "japanese_name": "メレメレ図鑑(USUM)",
+    "pokemon_count": 150,
+    "is_main_series": true
+  },
+  {
+    "id": 23,
+    "name": "updated-akala",
+    "japanese_name": "アーカラ図鑑(USUM)",
+    "pokemon_count": 160,
+    "is_main_series": true
+  },
+  {
+    "id": 24,
+    "name": "updated-ulaula",
+    "japanese_name": "ウラウラ図鑑(USUM)",
+    "pokemon_count": 160,
+    "is_main_series": true
+  },
+  {
+    "id": 25,
+    "name": "updated-poni",
+    "japanese_name": "ポニ図鑑(USUM)",
+    "pokemon_count": 130,
+    "is_main_series": true
+  },
+  {
+    "id": 26,
+    "name": "letsgo-kanto",
+    "japanese_name": "カントー図鑑(LGPE)",
+    "pokemon_count": 153,
+    "is_main_series": true
+  },
+  {
+    "id": 27,
+    "name": "galar",
+    "japanese_name": "ガラル図鑑",
+    "pokemon_count": 400,
+    "is_main_series": true
+  },
+  {
+    "id": 28,
+    "name": "isle-of-armor",
+    "japanese_name": "ヨロイ島図鑑",
+    "pokemon_count": 211,
+    "is_main_series": true
+  },
+  {
+    "id": 29,
+    "name": "crown-tundra",
+    "japanese_name": "カンムリ雪原図鑑",
+    "pokemon_count": 210,
+    "is_main_series": true
+  },
+  {
+    "id": 30,
+    "name": "hisui",
+    "japanese_name": "ヒスイ図鑑",
+    "pokemon_count": 242,
+    "is_main_series": true
+  },
+  {
+    "id": 31,
+    "name": "paldea",
+    "japanese_name": "パルデア図鑑",
+    "pokemon_count": 400,
+    "is_main_series": true
+  },
+  {
+    "id": 32,
+    "name": "kitakami",
+    "japanese_name": "キタカミ図鑑",
+    "pokemon_count": 200,
+    "is_main_series": true
+  },
+  {
+    "id": 33,
+    "name": "blueberry",
+    "japanese_name": "ブルーベリー図鑑",
+    "pokemon_count": 243,
+    "is_main_series": true
+  },
+  {
+    "id": 34,
+    "name": "lumiose-city",
+    "japanese_name": "ミアレシティ図鑑",
+    "pokemon_count": 230,
+    "is_main_series": true
+  }
+]
