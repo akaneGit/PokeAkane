@@ -1308,6 +1308,118 @@
                 });
             }
             
+            // 新規追加フォルム
+            
+            // ケンタロス（パルデア）
+            if (pokemon.id === 128) {
+                forms['tauros_combat'] = `pokemon_images/forms/${formattedId}_tauros_combat.png`;
+                forms['tauros_blaze'] = `pokemon_images/forms/${formattedId}_tauros_blaze.png`;
+                forms['tauros_aqua'] = `pokemon_images/forms/${formattedId}_tauros_aqua.png`;
+            }
+            
+            // ギラティナ
+            if (pokemon.id === 487) {
+                forms['giratina_altered'] = `pokemon_images/patterns/${formattedId}_giratina-altered.png`;
+                forms['giratina_origin'] = `pokemon_images/patterns/${formattedId}_giratina-origin.png`;
+            }
+            
+            // シェイミ
+            if (pokemon.id === 492) {
+                forms['shaymin_land'] = `pokemon_images/patterns/${formattedId}_shaymin-land.png`;
+                forms['shaymin_sky'] = `pokemon_images/patterns/${formattedId}_shaymin-sky.png`;
+            }
+            
+            // ヒヒダルマ
+            if (pokemon.id === 555) {
+                forms['darmanitan_zen'] = `pokemon_images/patterns/${formattedId}_darmanitan-zen.png`;
+                forms['darmanitan_galar'] = `pokemon_images/forms/${formattedId}_darmanitan-galar.png`;
+                forms['darmanitan_zen_galar'] = `pokemon_images/forms/${formattedId}_darmanitan_zen_galar.png`;
+            }
+            
+            // メロエッタ
+            if (pokemon.id === 648) {
+                forms['meloetta_aria'] = `pokemon_images/patterns/${formattedId}_meloetta-aria.png`;
+                forms['meloetta_pirouette'] = `pokemon_images/patterns/${formattedId}_meloetta-pirouette.png`;
+            }
+            
+            // ギルガルド
+            if (pokemon.id === 681) {
+                forms['aegislash_shield'] = `pokemon_images/patterns/${formattedId}_aegislash-shield.png`;
+                forms['aegislash_blade'] = `pokemon_images/patterns/${formattedId}_aegislash-blade.png`;
+            }
+            
+            // バケッチャ
+            if (pokemon.id === 710) {
+                forms['pumpkaboo_small'] = `pokemon_images/patterns/${formattedId}_pumpkaboo-small.png`;
+                forms['pumpkaboo_average'] = `pokemon_images/patterns/${formattedId}_pumpkaboo-average.png`;
+                forms['pumpkaboo_large'] = `pokemon_images/patterns/${formattedId}_pumpkaboo-large.png`;
+                forms['pumpkaboo_super'] = `pokemon_images/patterns/${formattedId}_pumpkaboo-super.png`;
+            }
+            
+            // パンプジン
+            if (pokemon.id === 711) {
+                forms['gourgeist_small'] = `pokemon_images/patterns/${formattedId}_gourgeist-small.png`;
+                forms['gourgeist_average'] = `pokemon_images/patterns/${formattedId}_gourgeist-average.png`;
+                forms['gourgeist_large'] = `pokemon_images/patterns/${formattedId}_gourgeist-large.png`;
+                forms['gourgeist_super'] = `pokemon_images/patterns/${formattedId}_gourgeist-super.png`;
+            }
+            
+            // ジガルデ
+            if (pokemon.id === 718) {
+                forms['zygarde_10'] = `pokemon_images/patterns/${formattedId}_zygarde-10.png`;
+                forms['zygarde_50'] = `pokemon_images/patterns/${formattedId}_zygarde-50.png`;
+                forms['zygarde_complete'] = `pokemon_images/patterns/${formattedId}_zygarde-complete.png`;
+            }
+            
+            // オドリドリ
+            if (pokemon.id === 741) {
+                forms['oricorio_baile'] = `pokemon_images/patterns/${formattedId}_oricorio-baile.png`;
+                forms['oricorio_pom_pom'] = `pokemon_images/patterns/${formattedId}_oricorio-pom-pom.png`;
+                forms['oricorio_pau'] = `pokemon_images/patterns/${formattedId}_oricorio-pau.png`;
+                forms['oricorio_sensu'] = `pokemon_images/patterns/${formattedId}_oricorio-sensu.png`;
+            }
+            
+            // ルガルガン
+            if (pokemon.id === 745) {
+                forms['lycanroc_midday'] = `pokemon_images/patterns/${formattedId}_lycanroc-midday.png`;
+                forms['lycanroc_midnight'] = `pokemon_images/patterns/${formattedId}_lycanroc-midnight.png`;
+                forms['lycanroc_dusk'] = `pokemon_images/patterns/${formattedId}_lycanroc-dusk.png`;
+            }
+            
+            // ネクロズマ
+            if (pokemon.id === 800) {
+                forms['necrozma_dusk'] = `pokemon_images/patterns/${formattedId}_necrozma_dusk.png`;
+                forms['necrozma_dawn'] = `pokemon_images/patterns/${formattedId}_necrozma_dawn.png`;
+                forms['necrozma_ultra'] = `pokemon_images/patterns/${formattedId}_necrozma-ultra.png`;
+            }
+            
+            // ストリンダー
+            if (pokemon.id === 849) {
+                forms['toxtricity_amped'] = `pokemon_images/patterns/${formattedId}_toxtricity-amped.png`;
+                forms['toxtricity_low_key'] = `pokemon_images/patterns/${formattedId}_toxtricity-low-key.png`;
+            }
+            
+            // ウーラオス
+            if (pokemon.id === 892) {
+                forms['urshifu_single_strike'] = `pokemon_images/patterns/${formattedId}_urshifu-single-strike.png`;
+                forms['urshifu_rapid_strike'] = `pokemon_images/patterns/${formattedId}_urshifu-rapid-strike.png`;
+            }
+            
+            // テラパゴス
+            if (pokemon.id === 1024) {
+                forms['terapagos_terastal'] = `pokemon_images/patterns/${formattedId}_terapagos-terastal.png`;
+                forms['terapagos_stellar'] = `pokemon_images/patterns/${formattedId}_terapagos-stellar.png`;
+            }
+            
+            // ゲンシカイキ
+            if (pokemon.id === 382) { // カイオーガ
+                forms['kyogre_primal'] = `pokemon_images/patterns/${formattedId}_kyogre-primal.png`;
+            }
+            
+            if (pokemon.id === 383) { // グラードン
+                forms['groudon_primal'] = `pokemon_images/patterns/${formattedId}_groudon-primal.png`;
+            }
+            
             return forms;
         }
         
@@ -1344,7 +1456,7 @@
                     
                     // ボタンのラベルを日本語に（色違いボタンは全て除外）
                     const formLabels = {
-                        'normal': '通常',
+                        'normal': 'ノーマル',
                         'alola': 'アローラ',
                         'galar': 'ガラル',
                         'hisui': 'ヒスイ',
@@ -1382,7 +1494,28 @@
                         'vivillon_ocean': 'オーシャン', 'vivillon_pokeball': 'ボール',
                         'vivillon_polar': 'ツンドラ', 'vivillon_river': 'リバー',
                         'vivillon_sandstorm': 'さんぱち', 'vivillon_savanna': 'サバンナ',
-                        'vivillon_sun': 'たいよう', 'vivillon_tundra': 'ゆきぐに'
+                        'vivillon_sun': 'たいよう', 'vivillon_tundra': 'ゆきぐに',
+                        // 新追加フォルム
+                        'tauros_blaze': 'ブレイズ', 'tauros_aqua': 'アクア', 'tauros_combat': 'コンバット',
+                        'giratina_altered': 'アナザー', 'giratina_origin': 'オリジン',
+                        'shaymin_land': 'ランド', 'shaymin_sky': 'スカイ',
+                        'darmanitan_standard': 'ノーマル', 'darmanitan_zen': 'ダルマ',
+                        'darmanitan_galar': 'ガラル', 'darmanitan_zen_galar': 'ガラルダルマ',
+                        'meloetta_aria': 'ボイス', 'meloetta_pirouette': 'ステップ',
+                        'aegislash_shield': 'シールド', 'aegislash_blade': 'ブレード',
+                        'pumpkaboo_small': '小', 'pumpkaboo_average': '普通',
+                        'pumpkaboo_large': '大', 'pumpkaboo_super': '特大',
+                        'gourgeist_small': '小', 'gourgeist_average': '普通',
+                        'gourgeist_large': '大', 'gourgeist_super': '特大',
+                        'zygarde_10': '10%', 'zygarde_50': '50%', 'zygarde_complete': 'パーフェクト',
+                        'oricorio_baile': 'めらめら', 'oricorio_pom_pom': 'ぱちぱち',
+                        'oricorio_pau': 'ふらふら', 'oricorio_sensu': 'まいまい',
+                        'lycanroc_midday': 'まひる', 'lycanroc_midnight': 'まよなか', 'lycanroc_dusk': 'たそがれ',
+                        'necrozma_dusk': 'たそがれのたてがみ', 'necrozma_dawn': 'あかつきのつばさ', 'necrozma_ultra': 'ウルトラ',
+                        'toxtricity_amped': 'ハイ', 'toxtricity_low_key': 'ロー',
+                        'urshifu_single_strike': 'いちげき', 'urshifu_rapid_strike': 'れんげき',
+                        'terapagos_stellar': 'ステラ', 'terapagos_terastal': 'テラスタル',
+                        'kyogre_primal': 'ゲンシ', 'groudon_primal': 'ゲンシ'
                     };
                     
                     button.textContent = formLabels[form.name] || form.name;
@@ -1414,13 +1547,34 @@
             
             // フォルムのラベルを設定
             const formLabels = {
-                'normal': '通常',
+                'normal': 'ノーマル',
                 'alola': 'アローラ',
                 'galar': 'ガラル', 
                 'hisui': 'ヒスイ',
                 'mega': 'メガ',
                 'mega-x': 'メガX',
-                'mega-y': 'メガY'
+                'mega-y': 'メガY',
+                // 新追加フォルム
+                'giratina_altered': 'アナザー', 'giratina_origin': 'オリジン',
+                'shaymin_land': 'ランド', 'shaymin_sky': 'スカイ',
+                'darmanitan_standard': 'ノーマル', 'darmanitan_zen': 'ダルマ',
+                'darmanitan_galar': 'ガラル', 'darmanitan_zen_galar': 'ガラルダルマ',
+                'meloetta_aria': 'ボイス', 'meloetta_pirouette': 'ステップ',
+                'aegislash_shield': 'シールド', 'aegislash_blade': 'ブレード',
+                'pumpkaboo_small': '小', 'pumpkaboo_average': '普通',
+                'pumpkaboo_large': '大', 'pumpkaboo_super': '特大',
+                'gourgeist_small': '小', 'gourgeist_average': '普通',
+                'gourgeist_large': '大', 'gourgeist_super': '特大',
+                'zygarde_10': '10%', 'zygarde_50': '50%', 'zygarde_complete': 'パーフェクト',
+                'oricorio_baile': 'めらめら', 'oricorio_pom_pom': 'ぱちぱち',
+                'oricorio_pau': 'ふらふら', 'oricorio_sensu': 'まいまい',
+                'lycanroc_midday': 'まひる', 'lycanroc_midnight': 'まよなか', 'lycanroc_dusk': 'たそがれ',
+                'tauros_blaze': 'ブレイズ', 'tauros_aqua': 'アクア', 'tauros_combat': 'コンバット',
+                'necrozma_dusk': 'たそがれのたてがみ', 'necrozma_dawn': 'あかつきのつばさ', 'necrozma_ultra': 'ウルトラ',
+                'toxtricity_amped': 'ハイ', 'toxtricity_low_key': 'ロー',
+                'urshifu_single_strike': 'いちげき', 'urshifu_rapid_strike': 'れんげき',
+                'terapagos_stellar': 'ステラ', 'terapagos_terastal': 'テラスタル',
+                'kyogre_primal': 'ゲンシ', 'groudon_primal': 'ゲンシ'
             };
             
             formLabel = formLabels[formType] || formType;
@@ -1467,7 +1621,7 @@
                         <div class="image-item">
                             <img id="detailPokemonImage" src="${normalImageUrl}" alt="${pokemon.name}" class="detail-pokemon-image" 
                                  onerror="this.src='pokemon_images/normal/001.png'">
-                            <div class="image-label">通常</div>
+                            <div class="image-label">ノーマル</div>
                         </div>
                         ${shinyExists ? `
                             <div class="image-item">
