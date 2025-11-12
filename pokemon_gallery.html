@@ -289,6 +289,79 @@
             box-shadow: 0 5px 15px rgba(253, 121, 168, 0.4);
         }
         
+        /* 2段階表示用CSS */
+        .dex-category {
+            margin-bottom: 15px;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+        
+        .category-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 15px;
+            background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .category-header:hover {
+            background: linear-gradient(145deg, #e9ecef, #dee2e6);
+        }
+        
+        .category-header.expanded {
+            background: linear-gradient(145deg, #74b9ff, #0984e3);
+            color: white;
+        }
+        
+        .category-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 10px;
+            border-radius: 4px;
+        }
+        
+        .category-name {
+            flex: 1;
+            font-weight: bold;
+            font-size: 0.95rem;
+        }
+        
+        .category-toggle {
+            font-size: 0.8rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .subcategory-container {
+            padding: 10px;
+            background: #f8f9fa;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+        
+        .subcategory-button {
+            font-size: 0.85rem;
+            padding: 8px 12px;
+            margin: 0;
+            min-width: auto;
+            flex: none;
+        }
+        
+        .category-separator {
+            margin: 20px 0 10px 0;
+            padding: 8px 0;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: #fd79a8;
+            text-align: center;
+            border-top: 2px solid #fd79a8;
+            border-bottom: 1px solid #fd79a8;
+        }
+        
         .info-panel {
             background: #e8f4fd;
             border: 2px solid #74b9ff;
@@ -314,6 +387,23 @@
             width: 100%;
             border-radius: 2px;
             box-shadow: 0 2px 10px rgba(255, 105, 180, 0.5);
+            position: relative;
+        }
+        
+        /* 番号範囲表示 */
+        .range-label {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #ff6b9d, #4facfe);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(255, 107, 157, 0.3);
+            white-space: nowrap;
         }
         
         .pokemon-card {
@@ -607,6 +697,7 @@
                 }
                 pokedexData = await response.json();
                 console.log('図鑑構造データを読み込みました:', Object.keys(pokedexData).length, '個の図鑑');
+                console.log('利用可能な図鑑ID:', Object.keys(pokedexData).sort((a, b) => parseInt(a) - parseInt(b)));
             } catch (error) {
                 console.error('図鑑構造データ読み込みエラー:', error);
                 throw error;
@@ -633,8 +724,80 @@
             console.log('総ポケモンデータ:', Object.keys(pokemonData).length, '匹');
         }
         
-        // 図鑑ボタンを作成
-        function createDexButtons() {
+        // 図鑑ボタンを作成（2段階表示）
+        async function createDexButtons() {
+            const container = document.getElementById('dexButtons');
+            container.innerHTML = '';
+            
+            try {
+                // 新しい階層データを読み込み
+                const response = await fetch('data/pokedex_hierarchy.json');
+                const hierarchyData = await response.json();
+                
+                // 通常カテゴリを作成
+                hierarchyData.categories.forEach(category => {
+                    createCategorySection(container, category);
+                });
+                
+                // 特別カテゴリを作成
+                if (hierarchyData.special_categories) {
+                    hierarchyData.special_categories.forEach(category => {
+                        createCategorySection(container, category);
+                    });
+                }
+                
+            } catch (error) {
+                console.error('階層データの読み込みエラー:', error);
+                // フォールバック：古い方式
+                createOldDexButtons();
+            }
+        }
+        
+        // カテゴリセクションを作成
+        function createCategorySection(container, category) {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'dex-category';
+            
+            // カテゴリヘッダー（クリック可能）
+            const header = document.createElement('div');
+            header.className = 'category-header';
+            header.innerHTML = `
+                <img src="${category.icon}" alt="${category.name}" class="category-icon" onerror="this.style.display='none'">
+                <span class="category-name">${category.name}</span>
+                <span class="category-toggle">▼</span>
+            `;
+            
+            // サブカテゴリコンテナ
+            const subContainer = document.createElement('div');
+            subContainer.className = 'subcategory-container';
+            subContainer.style.display = 'none'; // 初期は非表示
+            
+            // サブカテゴリボタンを作成
+            category.subcategories.forEach(sub => {
+                const button = document.createElement('button');
+                button.className = 'dex-button subcategory-button';
+                button.textContent = sub.short_name || sub.name;
+                button.title = sub.name; // フルネームをツールチップで表示
+                button.onclick = () => selectDex(sub.pokedex_id);
+                button.dataset.dexId = sub.pokedex_id;
+                subContainer.appendChild(button);
+            });
+            
+            // ヘッダークリックでトグル
+            header.onclick = () => {
+                const isVisible = subContainer.style.display !== 'none';
+                subContainer.style.display = isVisible ? 'none' : 'block';
+                header.querySelector('.category-toggle').textContent = isVisible ? '▼' : '▲';
+                header.classList.toggle('expanded', !isVisible);
+            };
+            
+            categoryDiv.appendChild(header);
+            categoryDiv.appendChild(subContainer);
+            container.appendChild(categoryDiv);
+        }
+        
+        // フォールバック：古い図鑑ボタン作成
+        function createOldDexButtons() {
             const container = document.getElementById('dexButtons');
             container.innerHTML = '';
             
@@ -742,9 +905,10 @@
             }
             
             // 図鑑情報を表示
-            const dex = pokedexData[dexId];
+            const dex = pokedexData[dexId.toString()];
             if (!dex) {
                 console.error(`図鑑が見つかりません: ID ${dexId}`);
+                console.log('利用可能な図鑑ID:', Object.keys(pokedexData));
                 return;
             }
             
@@ -843,17 +1007,38 @@
             
             // ポケモンカード描画
             filteredPokemon.forEach(([dexNumber, pokemonInfo], index) => {
-                // 30匹ごとに区切り線を追加（最初は除く）
-                if (index > 0 && index % 30 === 0) {
-                    const separator = document.createElement('div');
-                    separator.className = 'row-separator';
-                    container.appendChild(separator);
-                }
-                
                 const pokemon = pokemonData[pokemonInfo.pokemon_id];
                 if (!pokemon) {
                     console.warn(`ポケモンデータが見つかりません: ID ${pokemonInfo.pokemon_id}`);
                     return;
+                }
+                
+                // 番号順の場合のみ区切り線を表示
+                if (sortOrder === 'id') {
+                    // 最初（0匹目）と30匹ごとに区切り線を追加
+                    if (index === 0 || index % 30 === 0) {
+                        const separator = document.createElement('div');
+                        separator.className = 'row-separator';
+                        
+                        // 番号範囲ラベルを作成
+                        const rangeLabel = document.createElement('div');
+                        rangeLabel.className = 'range-label';
+                        
+                        // 範囲を計算（図鑑番号で表示）
+                        const startIndex = index;
+                        const endIndex = Math.min(index + 29, filteredPokemon.length - 1);
+                        const startDexNumber = filteredPokemon[startIndex][0];
+                        const endDexNumber = filteredPokemon[endIndex][0];
+                        
+                        if (startDexNumber && endDexNumber) {
+                            const startNum = startDexNumber.toString().padStart(3, '0');
+                            const endNum = endDexNumber.toString().padStart(3, '0');
+                            rangeLabel.textContent = `No.${startNum}〜${endNum}`;
+                        }
+                        
+                        separator.appendChild(rangeLabel);
+                        container.appendChild(separator);
+                    }
                 }
                 
                 const card = createPokemonCard(pokemon, dexNumber);
