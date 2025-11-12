@@ -435,14 +435,101 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            max-height: 90%;
             background: white;
-            border-radius: 20px;
+            border-radius: 15px;
             padding: 30px;
             box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            z-index: 1000;
-            max-width: 500px;
-            width: 90%;
+            z-index: 1001;
+            overflow-y: auto;
             display: none;
+        }
+        
+        .detail-image-section {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .pokemon-image-container {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+        
+        .image-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .image-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            background: linear-gradient(45deg, #f1f2f6, #ddd6fe);
+            padding: 4px 12px;
+            border-radius: 15px;
+            text-align: center;
+            min-width: 60px;
+        }
+        
+        .detail-info-section {
+            padding-left: 20px;
+        }
+        
+        .form-buttons {
+            margin: 20px 0;
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .form-button {
+            background: linear-gradient(45deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+        
+        .form-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            background: linear-gradient(45deg, #5a6fd8 0%, #6b4190 100%);
+        }
+        
+        .form-button.active {
+            background: linear-gradient(45deg, #ff6b6b 0%, #ee5a24 100%);
+            box-shadow: 0 4px 12px rgba(255, 107, 107, 0.4);
+        }
+        
+        @media (min-width: 768px) {
+            .detail-panel {
+                display: flex;
+                gap: 30px;
+            }
+            
+            .detail-image-section {
+                flex: 1;
+                margin-bottom: 0;
+            }
+            
+            .detail-info-section {
+                flex: 1;
+                padding-left: 0;
+            }
         }
         
         .detail-overlay {
@@ -1146,38 +1233,285 @@
             return card;
         }
         
-        // ポケモン詳細を表示
-        function showPokemonDetail(pokemon, dexNumber) {
+        // ポケモンのフォルム画像を取得する関数（色違いボタン除外バージョン）
+        function getPokemonFormImages(pokemon) {
             const formattedId = String(pokemon.id).padStart(3, '0');
-            const imageUrl = `pokemon_images/normal/${formattedId}.png`;
+            const englishName = pokemon.name_en.toLowerCase().replace(/[\s.]/g, '');
+            
+            const forms = {
+                normal: `pokemon_images/normal/${formattedId}.png`
+                // 色違いは横並び表示するため、色違いボタンは全て除外
+            };
+            
+            // 地方フォルムをチェック（色違いボタンは除外）
+            const regionalForms = [
+                { key: 'alola', name: 'alola' },
+                { key: 'galar', name: 'galar' },
+                { key: 'hisui', name: 'hisui' }
+            ];
+            
+            regionalForms.forEach(region => {
+                forms[region.key] = `pokemon_images/forms/${formattedId}_${englishName}-${region.name}.png`;
+                // 色違いボタンは除外: forms[`${region.key}_shiny`] = ...
+            });
+            
+            // メガ進化をチェック（色違いボタンは除外）
+            const megaTypes = [
+                { key: 'mega', suffix: 'mega' },
+                { key: 'mega-x', suffix: 'mega-x' },
+                { key: 'mega-y', suffix: 'mega-y' }
+            ];
+            
+            megaTypes.forEach(mega => {
+                forms[mega.key] = `pokemon_images/mega_evolutions/${formattedId}_${englishName}-${mega.suffix}.png`;
+                // 色違いボタンは除外: forms[`${mega.key}_shiny`] = ...
+            });
+            
+            // 特殊パターンをチェック（色違いボタンは除外）
+            if (pokemon.id === 201) { // アンノーン
+                const unownForms = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'exclamation', 'question'];
+                unownForms.forEach(form => {
+                    forms[`unown_${form}`] = `pokemon_images/patterns/${formattedId}_unown-${form}.png`;
+                    // 色違いボタンは除外: forms[`unown_${form}_shiny`] = ...
+                });
+            }
+            
+            if (pokemon.id === 351) { // ポワルン
+                const castformForms = ['sunny', 'rainy', 'snowy'];
+                castformForms.forEach(form => {
+                    forms[`castform_${form}`] = `pokemon_images/patterns/${formattedId}_castform-${form}.png`;
+                    // 色違いボタンは除外: forms[`castform_${form}_shiny`] = ...
+                });
+            }
+            
+            if (pokemon.id === 386) { // デオキシス
+                const deoxysForms = ['attack', 'defense', 'speed'];
+                deoxysForms.forEach(form => {
+                    forms[`deoxys_${form}`] = `pokemon_images/patterns/${formattedId}_deoxys-${form}.png`;
+                    // 色違いボタンは除外: forms[`deoxys_${form}_shiny`] = ...
+                });
+            }
+            
+            if (pokemon.id === 479) { // ロトム
+                const rotomForms = ['heat', 'wash', 'frost', 'fan', 'mow'];
+                rotomForms.forEach(form => {
+                    forms[`rotom_${form}`] = `pokemon_images/patterns/${formattedId}_rotom-${form}.png`;
+                    // 色違いボタンは除外: forms[`rotom_${form}_shiny`] = ...
+                });
+            }
+            
+            if (pokemon.id === 666) { // ビビヨン
+                const vivillonForms = ['archipelago', 'continental', 'elegant', 'fancy', 'garden', 'high-plains', 'icy-snow', 'jungle', 'marine', 'meadow', 'modern', 'monsoon', 'ocean', 'pokeball', 'polar', 'river', 'sandstorm', 'savanna', 'sun', 'tundra'];
+                vivillonForms.forEach(form => {
+                    forms[`vivillon_${form}`] = `pokemon_images/patterns/${formattedId}_vivillon-${form}.png`;
+                    // 色違いボタンは除外: forms[`vivillon_${form}_shiny`] = ...
+                });
+            }
+            
+            return forms;
+        }
+        
+        // 画像の存在チェック関数
+        async function checkImageExists(url) {
+            return new Promise(resolve => {
+                const img = new Image();
+                img.onload = () => resolve(true);
+                img.onerror = () => resolve(false);
+                img.src = url;
+            });
+        }
+        
+        // フォルム切り替えボタンを作成
+        async function createFormButtons(pokemon, currentImageElement) {
+            const forms = getPokemonFormImages(pokemon);
+            const formButtonsContainer = document.getElementById('formButtons');
+            formButtonsContainer.innerHTML = '';
+            
+            const availableForms = [];
+            
+            // 各フォルムの存在チェック
+            for (const [formName, imagePath] of Object.entries(forms)) {
+                const exists = await checkImageExists(imagePath);
+                if (exists) {
+                    availableForms.push({name: formName, path: imagePath});
+                }
+            }
+            
+            if (availableForms.length > 1) {
+                availableForms.forEach(form => {
+                    const button = document.createElement('button');
+                    button.className = 'form-button';
+                    
+                    // ボタンのラベルを日本語に（色違いボタンは全て除外）
+                    const formLabels = {
+                        'normal': '通常',
+                        'alola': 'アローラ',
+                        'galar': 'ガラル',
+                        'hisui': 'ヒスイ',
+                        'mega': 'メガ',
+                        'mega-x': 'メガX',
+                        'mega-y': 'メガY',
+                        // アンノーンフォルム
+                        'unown_a': 'A', 'unown_b': 'B', 'unown_c': 'C', 'unown_d': 'D', 'unown_e': 'E',
+                        'unown_f': 'F', 'unown_g': 'G', 'unown_h': 'H', 'unown_i': 'I', 'unown_j': 'J',
+                        'unown_k': 'K', 'unown_l': 'L', 'unown_m': 'M', 'unown_n': 'N', 'unown_o': 'O',
+                        'unown_p': 'P', 'unown_q': 'Q', 'unown_r': 'R', 'unown_s': 'S', 'unown_t': 'T',
+                        'unown_u': 'U', 'unown_v': 'V', 'unown_w': 'W', 'unown_x': 'X', 'unown_y': 'Y', 'unown_z': 'Z',
+                        'unown_exclamation': '！', 'unown_question': '？',
+                        // ポワルンフォルム
+                        'castform_sunny': 'たいようのすがた',
+                        'castform_rainy': 'あまみずのすがた',
+                        'castform_snowy': 'ゆきぐものすがた',
+                        // デオキシスフォルム
+                        'deoxys_attack': 'アタック',
+                        'deoxys_defense': 'ディフェンス',
+                        'deoxys_speed': 'スピード',
+                        // ロトムフォルム
+                        'rotom_heat': 'ヒート',
+                        'rotom_wash': 'ウォッシュ',
+                        'rotom_frost': 'フロスト',
+                        'rotom_fan': 'スピン',
+                        'rotom_mow': 'カット',
+                        // ビビヨン
+                        'vivillon_archipelago': 'せんとう', 'vivillon_continental': 'たいりく',
+                        'vivillon_elegant': 'みやび', 'vivillon_fancy': 'はなもよう',
+                        'vivillon_garden': 'フラワー', 'vivillon_high-plains': 'こうげん',
+                        'vivillon_icy-snow': 'せつげん', 'vivillon_jungle': 'ジャングル',
+                        'vivillon_marine': 'マリン', 'vivillon_meadow': 'しとうそん',
+                        'vivillon_modern': 'モダン', 'vivillon_monsoon': 'スコール',
+                        'vivillon_ocean': 'オーシャン', 'vivillon_pokeball': 'ボール',
+                        'vivillon_polar': 'ツンドラ', 'vivillon_river': 'リバー',
+                        'vivillon_sandstorm': 'さんぱち', 'vivillon_savanna': 'サバンナ',
+                        'vivillon_sun': 'たいよう', 'vivillon_tundra': 'ゆきぐに'
+                    };
+                    
+                    button.textContent = formLabels[form.name] || form.name;
+                    
+                    if (form.name === 'normal') {
+                        button.classList.add('active');
+                    }
+                    
+                    button.onclick = async () => {
+                        // フォルム切り替え時に画像コンテナ全体を更新
+                        await updateImageContainer(pokemon, form.path, form.name);
+                        document.querySelectorAll('.form-button').forEach(btn => btn.classList.remove('active'));
+                        button.classList.add('active');
+                    };
+                    
+                    formButtonsContainer.appendChild(button);
+                });
+            }
+        }
+        
+        // 画像コンテナを更新する関数
+        async function updateImageContainer(pokemon, newFormPath, formType) {
+            const formattedId = String(pokemon.id).padStart(3, '0');
+            const container = document.querySelector('.pokemon-image-container');
+            
+            // フォルムの色違いパスを生成
+            let shinyPath = '';
+            let formLabel = '';
+            
+            // フォルムのラベルを設定
+            const formLabels = {
+                'normal': '通常',
+                'alola': 'アローラ',
+                'galar': 'ガラル', 
+                'hisui': 'ヒスイ',
+                'mega': 'メガ',
+                'mega-x': 'メガX',
+                'mega-y': 'メガY'
+            };
+            
+            formLabel = formLabels[formType] || formType;
+            
+            if (formType === 'normal') {
+                shinyPath = `pokemon_images/shinies/${formattedId}_shiny.png`;
+            } else {
+                // 他のフォルムの色違いを探す
+                shinyPath = newFormPath.replace('.png', '_shiny.png');
+            }
+            
+            // 色違い画像の存在チェック
+            const shinyExists = shinyPath ? await checkImageExists(shinyPath) : false;
+            
+            container.innerHTML = `
+                <div class="image-item">
+                    <img src="${newFormPath}" alt="${pokemon.name} (${formLabel})" class="detail-pokemon-image" 
+                         onerror="this.src='pokemon_images/normal/${formattedId}.png'">
+                    <div class="image-label">${formLabel}</div>
+                </div>
+                ${shinyExists ? `
+                    <div class="image-item">
+                        <img src="${shinyPath}" alt="${pokemon.name} (${formLabel}色違い)" class="detail-pokemon-image" 
+                             onerror="this.style.display='none'">
+                        <div class="image-label">${formLabel}色違い</div>
+                    </div>
+                ` : ''}
+            `;
+        }
+        
+        // ポケモン詳細を表示
+        async function showPokemonDetail(pokemon, dexNumber) {
+            const formattedId = String(pokemon.id).padStart(3, '0');
+            const normalImageUrl = `pokemon_images/normal/${formattedId}.png`;
+            const shinyImageUrl = `pokemon_images/shinies/${formattedId}_shiny.png`;
+            
+            // 色違い画像の存在チェック
+            const shinyExists = await checkImageExists(shinyImageUrl);
             
             const detailContent = document.getElementById('detailContent');
             detailContent.innerHTML = `
-                <img src="${imageUrl}" alt="${pokemon.name}" class="detail-pokemon-image" 
-                     onerror="this.src='pokemon_images/normal/001.png'">
-                <h2>${pokemon.name} (${pokemon.name_en})</h2>
-                <p><strong>図鑑No:</strong> ${dexNumber} (全国No. ${pokemon.id})</p>
-                <div class="pokemon-types">
-                    ${pokemon.types.map(type => {
-                        const englishType = typeNameMap[type] || type.toLowerCase();
-                        return `
-                            <span class="type-badge type-${type}">
-                                <img src="type_images/${englishType}.png" alt="${type}" class="type-icon" 
+                <div class="detail-image-section">
+                    <div class="pokemon-image-container">
+                        <div class="image-item">
+                            <img id="detailPokemonImage" src="${normalImageUrl}" alt="${pokemon.name}" class="detail-pokemon-image" 
+                                 onerror="this.src='pokemon_images/normal/001.png'">
+                            <div class="image-label">通常</div>
+                        </div>
+                        ${shinyExists ? `
+                            <div class="image-item">
+                                <img src="${shinyImageUrl}" alt="${pokemon.name} (色違い)" class="detail-pokemon-image" 
                                      onerror="this.style.display='none'">
-                                ${type}
-                            </span>
-                        `;
-                    }).join('')}
+                                <div class="image-label">色違い</div>
+                            </div>
+                        ` : ''}
+                    </div>
+                    <div id="formButtons" class="form-buttons">
+                        <!-- フォルム切り替えボタンがここに表示されます -->
+                    </div>
                 </div>
-                <div style="margin-top: 20px;">
-                    <p><strong>高さ:</strong> ${pokemon.height || '不明'}</p>
-                    <p><strong>重さ:</strong> ${pokemon.weight || '不明'}</p>
-                    ${pokemon.abilities ? `<p><strong>特性:</strong> ${pokemon.abilities.join(', ')}</p>` : ''}
+                <div class="detail-info-section">
+                    <h2>${pokemon.name} (${pokemon.name_en})</h2>
+                    <p><strong>図鑑No:</strong> ${dexNumber} (全国No. ${pokemon.id})</p>
+                    <div class="pokemon-types">
+                        ${pokemon.types.map(type => {
+                            const englishType = typeNameMap[type] || type.toLowerCase();
+                            return `
+                                <span class="type-badge type-${type}">
+                                    <img src="type_images/${englishType}.png" alt="${type}" class="type-icon" 
+                                         onerror="this.style.display='none'">
+                                    ${type}
+                                </span>
+                            `;
+                        }).join('')}
+                    </div>
+                    <div style="margin-top: 20px;">
+                        <p><strong>高さ:</strong> ${pokemon.height || '不明'}</p>
+                        <p><strong>重さ:</strong> ${pokemon.weight || '不明'}</p>
+                        ${pokemon.abilities ? `<p><strong>特性:</strong> ${pokemon.abilities.join(', ')}</p>` : ''}
+                    </div>
                 </div>
             `;
             
             document.getElementById('detailOverlay').style.display = 'block';
             document.getElementById('detailPanel').style.display = 'block';
+            
+            // フォルム切り替えボタンを作成（画像読み込み後）
+            const imageElement = document.getElementById('detailPokemonImage');
+            imageElement.onload = () => {
+                createFormButtons(pokemon, imageElement);
+            };
         }
         
         // 詳細パネルを閉じる
