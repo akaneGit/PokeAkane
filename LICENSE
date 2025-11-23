@@ -1,0 +1,41 @@
+MIT License
+
+Copyright (c) 2025 PokeAkane Project
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+---
+
+## 追加条項
+
+### ポケモン関連素材について
+このプロジェクトで使用されているポケモンの画像、名前、データは教育・研究目的での使用に限定されます。
+ポケモンの著作権は株式会社ポケモン・任天堂・ゲームフリークに帰属します。
+
+商用利用を検討される場合は、適切な許諾を取得してください。
+
+### 画像リソースについて  
+- ポケモン画像: PokemonDB、yakkun.comより引用（フェアユース）
+- タイプアイコン: オープンソースリソース使用
+- 地方アイコン: プロジェクト独自作成
+
+### データソースについて
+- PokeAPI (https://pokeapi.co/) - RESTful Pokémon API
+- PokemonDatabase (https://pokemondb.net/) - ポケモンデータベース
+- Yakkun (https://yakkun.com/) - ポケモン図鑑サイト

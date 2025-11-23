@@ -1,0 +1,205 @@
+{
+  "categories": [
+    {
+      "id": "national",
+      "name": "全国図鑑",
+      "icon": "region_icons/national.png",
+      "subcategories": [
+        {
+          "pokedex_id": 0,
+          "name": "全国図鑑（全ポケモン）",
+          "short_name": "全ポケモン"
+        }
+      ]
+    },
+    {
+      "id": "kanto",
+      "name": "カントー図鑑",
+      "icon": "region_icons/kanto.png",
+      "subcategories": [
+        {
+          "pokedex_id": 1,
+          "name": "カントー図鑑（赤・緑・青・ピカチュウ）",
+          "short_name": "RGBP"
+        },
+        {
+          "pokedex_id": 4,
+          "name": "カントー図鑑（ファイアレッド・リーフグリーン）",
+          "short_name": "FRLG"
+        },
+        {
+          "pokedex_id": 15,
+          "name": "カントー図鑑（Let's Go! ピカチュウ・イーブイ）",
+          "short_name": "Let's Go!"
+        }
+      ]
+    },
+    {
+      "id": "johto",
+      "name": "ジョウト図鑑",
+      "icon": "region_icons/johto.png",
+      "subcategories": [
+        {
+          "pokedex_id": 2,
+          "name": "ジョウト図鑑（金・銀・クリスタル）",
+          "short_name": "GSC"
+        },
+        {
+          "pokedex_id": 6,
+          "name": "ジョウト図鑑（ハートゴールド・ソウルシルバー）",
+          "short_name": "HGSS"
+        }
+      ]
+    },
+    {
+      "id": "hoenn",
+      "name": "ホウエン図鑑",
+      "icon": "region_icons/hoenn.png",
+      "subcategories": [
+        {
+          "pokedex_id": 3,
+          "name": "ホウエン図鑑（ルビー・サファイア・エメラルド）",
+          "short_name": "RSE"
+        },
+        {
+          "pokedex_id": 12,
+          "name": "ホウエン図鑑（オメガルビー・アルファサファイア）",
+          "short_name": "ORAS"
+        }
+      ]
+    },
+    {
+      "id": "sinnoh",
+      "name": "シンオウ図鑑",
+      "icon": "region_icons/sinnoh.png",
+      "subcategories": [
+        {
+          "pokedex_id": 5,
+          "name": "シンオウ図鑑（ダイヤモンド・パール・プラチナ）",
+          "short_name": "DPPt"
+        },
+        {
+          "pokedex_id": 17,
+          "name": "シンオウ図鑑（ブリリアントダイヤモンド・シャイニングパール）",
+          "short_name": "BDSP"
+        }
+      ]
+    },
+    {
+      "id": "unova",
+      "name": "イッシュ図鑑",
+      "icon": "region_icons/unova.png",
+      "subcategories": [
+        {
+          "pokedex_id": 7,
+          "name": "イッシュ図鑑（ブラック・ホワイト）",
+          "short_name": "BW"
+        },
+        {
+          "pokedex_id": 8,
+          "name": "イッシュ図鑑（ブラック2・ホワイト2）",
+          "short_name": "BW2"
+        }
+      ]
+    },
+    {
+      "id": "kalos",
+      "name": "カロス図鑑",
+      "icon": "region_icons/kalos.png",
+      "subcategories": [
+        {
+          "pokedex_id": 9,
+          "name": "セントラルカロス図鑑（X・Y）",
+          "short_name": "中央カロス"
+        },
+        {
+          "pokedex_id": 10,
+          "name": "コーストカロス図鑑（X・Y）",
+          "short_name": "海岸カロス"
+        },
+        {
+          "pokedex_id": 11,
+          "name": "マウンテンカロス図鑑（X・Y）",
+          "short_name": "山岳カロス"
+        }
+      ]
+    },
+    {
+      "id": "alola",
+      "name": "アローラ図鑑",
+      "icon": "region_icons/alola.png",
+      "subcategories": [
+        {
+          "pokedex_id": 13,
+          "name": "アローラ図鑑（サン・ムーン）",
+          "short_name": "SM"
+        },
+        {
+          "pokedex_id": 14,
+          "name": "アローラ図鑑（ウルトラサン・ウルトラムーン）",
+          "short_name": "USUM"
+        }
+      ]
+    },
+    {
+      "id": "galar",
+      "name": "ガラル図鑑",
+      "icon": "region_icons/galar.png",
+      "subcategories": [
+        {
+          "pokedex_id": 16,
+          "name": "ガラル図鑑（ソード・シールド）",
+          "short_name": "SwSh"
+        }
+      ]
+    },
+    {
+      "id": "hisui",
+      "name": "ヒスイ図鑑",
+      "icon": "region_icons/hisui.png",
+      "subcategories": [
+        {
+          "pokedex_id": 18,
+          "name": "ヒスイ図鑑（レジェンドアルセウス）",
+          "short_name": "PLA"
+        }
+      ]
+    },
+    {
+      "id": "paldea",
+      "name": "パルデア図鑑",
+      "icon": "region_icons/paldea.png",
+      "subcategories": [
+        {
+          "pokedex_id": 19,
+          "name": "パルデア図鑑（スカーレット・バイオレット）",
+          "short_name": "SV本編"
+        },
+        {
+          "pokedex_id": 20,
+          "name": "キタカミ図鑑",
+          "short_name": "碧の仮面"
+        },
+        {
+          "pokedex_id": 21,
+          "name": "ブルーベリー図鑑",
+          "short_name": "藍の円盤"
+        }
+      ]
+    }
+  ],
+  "special_categories": [
+    {
+      "id": "lumiose",
+      "name": "ミアレシティ図鑑",
+      "icon": "region_icons/lumiose.png",
+      "subcategories": [
+        {
+          "pokedex_id": 22,
+          "name": "ミアレシティ図鑑（レジェンド Z-A）",
+          "short_name": "Z-A"
+        }
+      ]
+    }
+  ]
+}
