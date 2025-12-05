@@ -23882,6 +23882,12 @@
         "name": "ディアンシー",
         "name_en": "diancie"
       }
+      ,
+      "232": {
+        "pokemon_id": 150,
+        "name": "ミュウツー",
+        "name_en": "mewtwo"
+      }
     }
   },
   "10": {
