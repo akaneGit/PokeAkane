@@ -754,8 +754,8 @@
         async function init() {
             console.log('init関数が呼ばれました');
             try {
-                console.log('図鑑構造データを読み込み中...');
-                await loadPokedexStructure();
+                console.log('図鑑インデックスを読み込み中...');
+                await loadPokedexIndex();
                 console.log('ポケモンデータを読み込み中...');
                 await loadPokemonData();
                 console.log('図鑑ボタンを作成中...');
@@ -767,7 +767,7 @@
                 
                 console.log('デフォルトで全国図鑑を選択中...');
                 // デフォルトで全国図鑑を選択
-                selectDex(0);
+                await selectDex(0);
                 console.log('初期化完了');
             } catch (error) {
                 console.error('初期化エラー:', error);
@@ -776,17 +776,17 @@
         }
         
         // 図鑑構造データを読み込み
-        async function loadPokedexStructure() {
+        async function loadPokedexIndex() {
             try {
-                const response = await fetch('data/pokedex_structure.json');
+                const response = await fetch('data/pokedex_index.json');
                 if (!response.ok) {
                     throw new Error(`HTTP ${response.status}: ${response.statusText}`);
                 }
                 pokedexData = await response.json();
-                console.log('図鑑構造データを読み込みました:', Object.keys(pokedexData).length, '個の図鑑');
+                console.log('図鑑インデックスを読み込みました:', Object.keys(pokedexData).length, '個の図鑑');
                 console.log('利用可能な図鑑ID:', Object.keys(pokedexData).sort((a, b) => parseInt(a) - parseInt(b)));
             } catch (error) {
-                console.error('図鑑構造データ読み込みエラー:', error);
+                console.error('図鑑インデックス読み込みエラー:', error);
                 throw error;
             }
         }
@@ -905,7 +905,7 @@
         function setupGenerationButtons() {
             const genButtons = document.querySelectorAll('.gen-btn');
             genButtons.forEach(btn => {
-                btn.addEventListener('click', () => {
+                btn.addEventListener('click', async () => {
                     // アクティブ状態を更新
                     genButtons.forEach(b => b.classList.remove('active'));
                     btn.classList.add('active');
@@ -915,7 +915,7 @@
                     
                     // 世代ボタンが押されたら全国図鑑に切り替え
                     if (currentGeneration !== 'all') {
-                        selectDex(0, true); // 全国図鑑（ID: 0）に切り替え（世代リセットをスキップ）
+                        await selectDex(0, true); // 全国図鑑（ID: 0）に切り替え（世代リセットをスキップ）
                     } else {
                         // 全世代が選択された場合は現在の図鑑を表示
                         if (currentDex !== null) {
@@ -970,7 +970,7 @@
         }
         
         // 図鑑を選択
-        function selectDex(dexId, skipGenerationReset = false) {
+        async function selectDex(dexId, skipGenerationReset = false) {
             currentDex = dexId;
             
             // 図鑑ボタンの状態を更新
@@ -992,10 +992,17 @@
             }
             
             // 図鑑情報を表示
-            const dex = pokedexData[dexId.toString()];
-            if (!dex) {
-                console.error(`図鑑が見つかりません: ID ${dexId}`);
-                console.log('利用可能な図鑑ID:', Object.keys(pokedexData));
+            // 個別図鑑ファイルを読み込む方式に変更
+            let dex = null;
+            try {
+                const resp = await fetch(`data/pokedex_structures/${dexId}.json`);
+                if (!resp.ok) {
+                    throw new Error(`図鑑 ${dexId} の読み込み失敗: HTTP ${resp.status}`);
+                }
+                dex = await resp.json();
+            } catch (e) {
+                console.error(e);
+                // インデックスのみを使用するためフォールバックは中止
                 return;
             }
             

@@ -1,0 +1,37 @@
+{
+  "id": 11,
+  "name": "マウンテンカロス図鑑（XY）",
+  "key": "xy_mountain",
+  "pokemon": {
+    "1": {
+      "pokemon_id": 50,
+      "name": "ディグダ",
+      "name_en": "diglett"
+    },
+    "2": {
+      "pokemon_id": 51,
+      "name": "ダグトリオ",
+      "name_en": "dugtrio"
+    },
+    "3": {
+      "pokemon_id": 328,
+      "name": "ナックラー",
+      "name_en": "trapinch"
+    },
+    "4": {
+      "pokemon_id": 329,
+      "name": "ビブラーバ",
+      "name_en": "vibrava"
+    },
+    "5": {
+      "pokemon_id": 330,
+      "name": "フライゴン",
+      "name_en": "flygon"
+    },
+    "151": {
+      "pokemon_id": 150,
+      "name": "ミュウツー",
+      "name_en": "mewtwo"
+    }
+  }
+}

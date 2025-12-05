@@ -1,21 +1,21 @@
 @echo off
-REM PokeAkane ç°¡æ˜“èµ·å‹•ãƒãƒƒãƒãƒ•ã‚¡ã‚¤ãƒ«
+REM PokeAkane ŠÈˆÕ‹N“®ƒoƒbƒ`ƒtƒ@ƒCƒ‹
 cd /d %~dp0
 
-echo ? PokeAkane ã‚µãƒ¼ãƒãƒ¼ç®¡ç†
+echo ? PokeAkane ƒT[ƒo[ŠÇ—
 echo.
 
 :menu
-echo é¸æŠžã—ã¦ãã ã•ã„:
-echo [1] ã‚µãƒ¼ãƒãƒ¼èµ·å‹•
-echo [2] ã‚µãƒ¼ãƒãƒ¼åœæ­¢  
-echo [3] ã‚µãƒ¼ãƒãƒ¼çŠ¶æ…‹ç¢ºèª
-echo [4] ã‚µãƒ¼ãƒãƒ¼å†èµ·å‹•
-echo [5] ãƒ–ãƒ©ã‚¦ã‚¶ã§é–‹ã
-echo [6] çµ‚äº†
+echo ‘I‘ð‚µ‚Ä‚­‚¾‚³‚¢:
+echo [1] ƒT[ƒo[‹N“®
+echo [2] ƒT[ƒo[’âŽ~  
+echo [3] ƒT[ƒo[ó‘ÔŠm”F
+echo [4] ƒT[ƒo[Ä‹N“®
+echo [5] ƒuƒ‰ƒEƒU‚ÅŠJ‚­
+echo [6] I—¹
 echo.
 
-set /p choice="ç•ªå·ã‚’å…¥åŠ› (1-6): "
+set /p choice="”Ô†‚ð“ü—Í (1-6): "
 
 if "%choice%"=="1" (
     echo.
@@ -58,10 +58,10 @@ if "%choice%"=="5" (
 )
 
 if "%choice%"=="6" (
-    echo ? ãŠç–²ã‚Œæ§˜ã§ã—ãŸï¼
+    echo ? ‚¨”æ‚ê—l‚Å‚µ‚½I
     exit /b
 )
 
-echo ? ç„¡åŠ¹ãªé¸æŠžã§ã™
+echo ? –³Œø‚È‘I‘ð‚Å‚·
 echo.
 goto menu

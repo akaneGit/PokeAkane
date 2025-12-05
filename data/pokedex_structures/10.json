@@ -1,0 +1,37 @@
+{
+  "id": 10,
+  "name": "コーストカロス図鑑（XY）",
+  "key": "xy_coastal",
+  "pokemon": {
+    "1": {
+      "pokemon_id": 425,
+      "name": "ドリフロン",
+      "name_en": "drifloon"
+    },
+    "2": {
+      "pokemon_id": 426,
+      "name": "ドリフゴン",
+      "name_en": "drifblim"
+    },
+    "3": {
+      "pokemon_id": 619,
+      "name": "ココロモリ",
+      "name_en": "mienfoo"
+    },
+    "4": {
+      "pokemon_id": 620,
+      "name": "コジョンド",
+      "name_en": "mienshao"
+    },
+    "5": {
+      "pokemon_id": 335,
+      "name": "ザングース",
+      "name_en": "zangoose"
+    },
+    "153": {
+      "pokemon_id": 146,
+      "name": "ファイヤー",
+      "name_en": "moltres"
+    }
+  }
+}

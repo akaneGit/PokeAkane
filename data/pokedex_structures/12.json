@@ -1,0 +1,162 @@
+{
+  "id": 12,
+  "name": "コーストカロス図鑑（X・Y）",
+  "key": "xy_coastal",
+  "pokemon": {
+    "1": {
+      "pokemon_id": 425,
+      "name": "ドリフロン",
+      "name_en": "drifloon"
+    },
+    "2": {
+      "pokemon_id": 426,
+      "name": "ドリフゴン",
+      "name_en": "drifblim"
+    },
+    "3": {
+      "pokemon_id": 619,
+      "name": "ココロモリ",
+      "name_en": "mienfoo"
+    },
+    "4": {
+      "pokemon_id": 620,
+      "name": "コジョンド",
+      "name_en": "mienshao"
+    },
+    "5": {
+      "pokemon_id": 335,
+      "name": "ザングース",
+      "name_en": "zangoose"
+    },
+    "6": {
+      "pokemon_id": 336,
+      "name": "ハブネーク",
+      "name_en": "seviper"
+    },
+    "7": {
+      "pokemon_id": 325,
+      "name": "バネブー",
+      "name_en": "spoink"
+    },
+    "8": {
+      "pokemon_id": 326,
+      "name": "ブーピッグ",
+      "name_en": "grumpig"
+    },
+    "9": {
+      "pokemon_id": 359,
+      "name": "アブソル",
+      "name_en": "absol"
+    },
+    "10": {
+      "pokemon_id": 686,
+      "name": "マーイーカ",
+      "name_en": "inkay"
+    },
+    "11": {
+      "pokemon_id": 687,
+      "name": "カラマネロ",
+      "name_en": "malamar"
+    },
+    "12": {
+      "pokemon_id": 337,
+      "name": "ルナトーン",
+      "name_en": "lunatone"
+    },
+    "13": {
+      "pokemon_id": 338,
+      "name": "ソルロック",
+      "name_en": "solrock"
+    },
+    "14": {
+      "pokemon_id": 371,
+      "name": "タツベイ",
+      "name_en": "bagon"
+    },
+    "15": {
+      "pokemon_id": 372,
+      "name": "コモルー",
+      "name_en": "shelgon"
+    },
+    "16": {
+      "pokemon_id": 373,
+      "name": "ボーマンダ",
+      "name_en": "salamence"
+    },
+    "17": {
+      "pokemon_id": 278,
+      "name": "キャモメ",
+      "name_en": "wingull"
+    },
+    "18": {
+      "pokemon_id": 279,
+      "name": "ペリッパー",
+      "name_en": "pelipper"
+    },
+    "19": {
+      "pokemon_id": 276,
+      "name": "スバメ",
+      "name_en": "taillow"
+    },
+    "20": {
+      "pokemon_id": 277,
+      "name": "オオスバメ",
+      "name_en": "swellow"
+    },
+    "21": {
+      "pokemon_id": 688,
+      "name": "カメテテ",
+      "name_en": "binacle"
+    },
+    "22": {
+      "pokemon_id": 689,
+      "name": "ガメノデス",
+      "name_en": "barbaracle"
+    },
+    "23": {
+      "pokemon_id": 557,
+      "name": "イシズマイ",
+      "name_en": "dwebble"
+    },
+    "24": {
+      "pokemon_id": 558,
+      "name": "イワパレス",
+      "name_en": "crustle"
+    },
+    "25": {
+      "pokemon_id": 72,
+      "name": "メノクラゲ",
+      "name_en": "tentacool"
+    },
+    "26": {
+      "pokemon_id": 73,
+      "name": "ドククラゲ",
+      "name_en": "tentacruel"
+    },
+    "27": {
+      "pokemon_id": 320,
+      "name": "ホエルコ",
+      "name_en": "wailmer"
+    },
+    "28": {
+      "pokemon_id": 321,
+      "name": "ホエルオー",
+      "name_en": "wailord"
+    },
+    "29": {
+      "pokemon_id": 370,
+      "name": "ラブカス",
+      "name_en": "luvdisc"
+    },
+    "30": {
+      "pokemon_id": 690,
+      "name": "クズモー",
+      "name_en": "skrelp"
+    },
+    "153": {
+      "pokemon_id": 146,
+      "name": "ファイヤー",
+      "name_en": "moltres"
+    }
+  }
+}
