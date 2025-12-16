@@ -198,6 +198,11 @@
           "pokedex_id": 22,
           "name": "ミアレシティ図鑑（レジェンド Z-A）",
           "short_name": "Z-A"
+        },
+        {
+          "pokedex_id": 23,
+          "name": "異次元図鑑（レジェンド Z-A）",
+          "short_name": "異次元"
         }
       ]
     }

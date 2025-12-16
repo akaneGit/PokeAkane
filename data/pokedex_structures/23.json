@@ -1,0 +1,663 @@
+{
+  "id": 23,
+  "name": "異次元図鑑（レジェンド Z-A）",
+  "key": "za-alternate",
+  "pokemon": {
+    "1": {
+      "name": "マンキー",
+      "pokemon_id": 56,
+      "name_en": "mankey"
+    },
+    "2": {
+      "name": "オコリザル",
+      "pokemon_id": 57,
+      "name_en": "primeape"
+    },
+    "3": {
+      "name": "コノヨザル",
+      "pokemon_id": 979,
+      "name_en": "annihilape"
+    },
+    "4": {
+      "name": "ニャース",
+      "pokemon_id": 52,
+      "name_en": "meowth"
+    },
+    "5": {
+      "name": "ペルシアン",
+      "pokemon_id": 53,
+      "name_en": "persian"
+    },
+    "6": {
+      "name": "ニャイキング",
+      "pokemon_id": 863,
+      "name_en": "perrserker"
+    },
+    "7": {
+      "name": "カモネギ",
+      "pokemon_id": 83,
+      "name_en": "farfetchd"
+    },
+    "8": {
+      "name": "ネギガナイト",
+      "pokemon_id": 865,
+      "name_en": "sirfetchd"
+    },
+    "9": {
+      "name": "カラカラ",
+      "pokemon_id": 104,
+      "name_en": "cubone"
+    },
+    "10": {
+      "name": "ガラガラ",
+      "pokemon_id": 105,
+      "name_en": "marowak"
+    },
+    "11": {
+      "name": "ポリゴン",
+      "pokemon_id": 137,
+      "name_en": "porygon"
+    },
+    "12": {
+      "name": "ポリゴン2",
+      "pokemon_id": 233,
+      "name_en": "porygon2"
+    },
+    "13": {
+      "name": "ポリゴンZ",
+      "pokemon_id": 474,
+      "name_en": "porygon-z"
+    },
+    "14": {
+      "name": "カプサイジ",
+      "pokemon_id": 951,
+      "name_en": "capsakid"
+    },
+    "15": {
+      "name": "スコヴィラン",
+      "pokemon_id": 952,
+      "name_en": "scovillain"
+    },
+    "16": {
+      "name": "カヌチャン",
+      "pokemon_id": 957,
+      "name_en": "tinkatink"
+    },
+    "17": {
+      "name": "ナカヌチャン",
+      "pokemon_id": 958,
+      "name_en": "tinkatuff"
+    },
+    "18": {
+      "name": "デカヌチャン",
+      "pokemon_id": 959,
+      "name_en": "tinkaton"
+    },
+    "19": {
+      "name": "モトトカゲ",
+      "pokemon_id": 967,
+      "name_en": "cyclizar"
+    },
+    "20": {
+      "name": "キラーメ",
+      "pokemon_id": 969,
+      "name_en": "glimmet"
+    },
+    "21": {
+      "name": "キラフロル",
+      "pokemon_id": 970,
+      "name_en": "glimmora"
+    },
+    "22": {
+      "name": "ロトム",
+      "pokemon_id": 479,
+      "name_en": "rotom"
+    },
+    "23": {
+      "name": "ボチ",
+      "pokemon_id": 971,
+      "name_en": "greavard"
+    },
+    "24": {
+      "name": "ハカドッグ",
+      "pokemon_id": 972,
+      "name_en": "houndstone"
+    },
+    "25": {
+      "name": "スナバァ",
+      "pokemon_id": 769,
+      "name_en": "sandygast"
+    },
+    "26": {
+      "name": "シロデスナ",
+      "pokemon_id": 770,
+      "name_en": "palossand"
+    },
+    "27": {
+      "name": "カクレオン",
+      "pokemon_id": 352,
+      "name_en": "kecleon"
+    },
+    "28": {
+      "name": "カラミンゴ",
+      "pokemon_id": 973,
+      "name_en": "flamigo"
+    },
+    "29": {
+      "name": "フリージオ",
+      "pokemon_id": 615,
+      "name_en": "cryogonal"
+    },
+    "30": {
+      "name": "ヘイラッシャ",
+      "pokemon_id": 977,
+      "name_en": "dondozo"
+    },
+    "31": {
+      "name": "シャリタツ",
+      "pokemon_id": 978,
+      "name_en": "tatsugiri-curly"
+    },
+    "32": {
+      "name": "セビエ",
+      "pokemon_id": 996,
+      "name_en": "frigibax"
+    },
+    "33": {
+      "name": "セゴール",
+      "pokemon_id": 997,
+      "name_en": "arctibax"
+    },
+    "34": {
+      "name": "セグレイブ",
+      "pokemon_id": 998,
+      "name_en": "baxcalibur"
+    },
+    "35": {
+      "name": "コレクレー",
+      "pokemon_id": 999,
+      "name_en": "gimmighoul"
+    },
+    "36": {
+      "name": "サーフゴー",
+      "pokemon_id": 1000,
+      "name_en": "gholdengo"
+    },
+    "37": {
+      "name": "ハリーセン",
+      "pokemon_id": 211,
+      "name_en": "qwilfish"
+    },
+    "38": {
+      "name": "ハリーマン",
+      "pokemon_id": 904,
+      "name_en": "overqwil"
+    },
+    "39": {
+      "name": "キモリ",
+      "pokemon_id": 252,
+      "name_en": "treecko"
+    },
+    "40": {
+      "name": "ジュプトル",
+      "pokemon_id": 253,
+      "name_en": "grovyle"
+    },
+    "41": {
+      "name": "ジュカイン",
+      "pokemon_id": 254,
+      "name_en": "sceptile"
+    },
+    "42": {
+      "name": "アチャモ",
+      "pokemon_id": 255,
+      "name_en": "torchic"
+    },
+    "43": {
+      "name": "ワカシャモ",
+      "pokemon_id": 256,
+      "name_en": "combusken"
+    },
+    "44": {
+      "name": "バシャーモ",
+      "pokemon_id": 257,
+      "name_en": "blaziken"
+    },
+    "45": {
+      "name": "ミズゴロウ",
+      "pokemon_id": 258,
+      "name_en": "mudkip"
+    },
+    "46": {
+      "name": "ヌマクロー",
+      "pokemon_id": 259,
+      "name_en": "marshtomp"
+    },
+    "47": {
+      "name": "ラグラージ",
+      "pokemon_id": 260,
+      "name_en": "swampert"
+    },
+    "48": {
+      "name": "ヒンバス",
+      "pokemon_id": 349,
+      "name_en": "feebas"
+    },
+    "49": {
+      "name": "ミロカロス",
+      "pokemon_id": 350,
+      "name_en": "milotic"
+    },
+    "50": {
+      "name": "リーシャン",
+      "pokemon_id": 433,
+      "name_en": "chingling"
+    },
+    "51": {
+      "name": "チリーン",
+      "pokemon_id": 358,
+      "name_en": "chimecho"
+    },
+    "52": {
+      "name": "イエッサン（オスのすがた）"
+    },
+    "53": {
+      "name": "チョロネコ",
+      "pokemon_id": 509,
+      "name_en": "purrloin"
+    },
+    "54": {
+      "name": "レパルダス",
+      "pokemon_id": 510,
+      "name_en": "liepard"
+    },
+    "55": {
+      "name": "ムンナ",
+      "pokemon_id": 517,
+      "name_en": "munna"
+    },
+    "56": {
+      "name": "ムシャーナ",
+      "pokemon_id": 518,
+      "name_en": "musharna"
+    },
+    "57": {
+      "name": "ナゲキ",
+      "pokemon_id": 538,
+      "name_en": "throh"
+    },
+    "58": {
+      "name": "ダゲキ",
+      "pokemon_id": 539,
+      "name_en": "sawk"
+    },
+    "59": {
+      "name": "デスマス",
+      "pokemon_id": 562,
+      "name_en": "yamask"
+    },
+    "60": {
+      "name": "デスカーン",
+      "pokemon_id": 563,
+      "name_en": "cofagrigus"
+    },
+    "61": {
+      "name": "デスバーン",
+      "pokemon_id": 867,
+      "name_en": "runerigus"
+    },
+    "62": {
+      "name": "コソクムシ",
+      "pokemon_id": 767,
+      "name_en": "wimpod"
+    },
+    "63": {
+      "name": "グソクムシャ",
+      "pokemon_id": 768,
+      "name_en": "golisopod"
+    },
+    "64": {
+      "name": "クスネ",
+      "pokemon_id": 827,
+      "name_en": "nickit"
+    },
+    "65": {
+      "name": "フォクスライ",
+      "pokemon_id": 828,
+      "name_en": "thievul"
+    },
+    "66": {
+      "name": "タタッコ",
+      "pokemon_id": 852,
+      "name_en": "clobbopus"
+    },
+    "67": {
+      "name": "オトスパス",
+      "pokemon_id": 853,
+      "name_en": "grapploct"
+    },
+    "68": {
+      "name": "ミミッキュ",
+      "pokemon_id": 778,
+      "name_en": "mimikyu-disguised"
+    },
+    "69": {
+      "name": "バサギリ",
+      "pokemon_id": 900,
+      "name_en": "kleavor"
+    },
+    "70": {
+      "name": "モルペコ",
+      "pokemon_id": 877,
+      "name_en": "morpeko-full-belly"
+    },
+    "71": {
+      "name": "ゴビット",
+      "pokemon_id": 622,
+      "name_en": "golett"
+    },
+    "72": {
+      "name": "ゴルーグ",
+      "pokemon_id": 623,
+      "name_en": "golurk"
+    },
+    "73": {
+      "name": "ココガラ",
+      "pokemon_id": 821,
+      "name_en": "rookidee"
+    },
+    "74": {
+      "name": "アオガラス",
+      "pokemon_id": 822,
+      "name_en": "corvisquire"
+    },
+    "75": {
+      "name": "アーマーガア",
+      "pokemon_id": 823,
+      "name_en": "corviknight"
+    },
+    "76": {
+      "name": "ププリン",
+      "pokemon_id": 174,
+      "name_en": "igglybuff"
+    },
+    "77": {
+      "name": "プリン",
+      "pokemon_id": 39,
+      "name_en": "jigglypuff"
+    },
+    "78": {
+      "name": "プクリン",
+      "pokemon_id": 40,
+      "name_en": "wigglytuff"
+    },
+    "79": {
+      "name": "パピモッチ",
+      "pokemon_id": 926,
+      "name_en": "fidough"
+    },
+    "80": {
+      "name": "バウッツェル",
+      "pokemon_id": 927,
+      "name_en": "dachsbun"
+    },
+    "81": {
+      "name": "ムックル",
+      "pokemon_id": 396,
+      "name_en": "starly"
+    },
+    "82": {
+      "name": "ムクバード",
+      "pokemon_id": 397,
+      "name_en": "staravia"
+    },
+    "83": {
+      "name": "ムクホーク",
+      "pokemon_id": 398,
+      "name_en": "staraptor"
+    },
+    "84": {
+      "name": "バネブー",
+      "pokemon_id": 325,
+      "name_en": "spoink"
+    },
+    "85": {
+      "name": "ブーピッグ",
+      "pokemon_id": 326,
+      "name_en": "grumpig"
+    },
+    "86": {
+      "name": "イキリンコ",
+      "pokemon_id": 931,
+      "name_en": "squawkabilly-green-plumage"
+    },
+    "87": {
+      "name": "マケンカニ",
+      "pokemon_id": 739,
+      "name_en": "crabrawler"
+    },
+    "88": {
+      "name": "ケケンカニ",
+      "pokemon_id": 740,
+      "name_en": "crabominable"
+    },
+    "89": {
+      "name": "コジオ",
+      "pokemon_id": 932,
+      "name_en": "nacli"
+    },
+    "90": {
+      "name": "ジオヅム",
+      "pokemon_id": 933,
+      "name_en": "naclstack"
+    },
+    "91": {
+      "name": "キョジオーン",
+      "pokemon_id": 934,
+      "name_en": "garganacl"
+    },
+    "92": {
+      "name": "ゴクリン",
+      "pokemon_id": 316,
+      "name_en": "gulpin"
+    },
+    "93": {
+      "name": "マルノーム",
+      "pokemon_id": 317,
+      "name_en": "swalot"
+    },
+    "94": {
+      "name": "ズバット",
+      "pokemon_id": 41,
+      "name_en": "zubat"
+    },
+    "95": {
+      "name": "ゴルバット",
+      "pokemon_id": 42,
+      "name_en": "golbat"
+    },
+    "96": {
+      "name": "クロバット",
+      "pokemon_id": 169,
+      "name_en": "crobat"
+    },
+    "97": {
+      "name": "カルボウ",
+      "pokemon_id": 935,
+      "name_en": "charcadet"
+    },
+    "98": {
+      "name": "グレンアルマ",
+      "pokemon_id": 936,
+      "name_en": "armarouge"
+    },
+    "99": {
+      "name": "ソウブレイズ",
+      "pokemon_id": 937,
+      "name_en": "ceruledge"
+    },
+    "100": {
+      "name": "オラチフ",
+      "pokemon_id": 942,
+      "name_en": "maschiff"
+    },
+    "101": {
+      "name": "マフィティフ",
+      "pokemon_id": 943,
+      "name_en": "mabosstiff"
+    },
+    "102": {
+      "name": "エレズン",
+      "pokemon_id": 848,
+      "name_en": "toxel"
+    },
+    "103": {
+      "name": "ストリンダー",
+      "pokemon_id": 849,
+      "name_en": "toxtricity-amped"
+    },
+    "104": {
+      "name": "シルシュルー",
+      "pokemon_id": 944,
+      "name_en": "shroodle"
+    },
+    "105": {
+      "name": "タギングル",
+      "pokemon_id": 945,
+      "name_en": "grafaiai"
+    },
+    "106": {
+      "name": "ザングース",
+      "pokemon_id": 335,
+      "name_en": "zangoose"
+    },
+    "107": {
+      "name": "ハブネーク",
+      "pokemon_id": 336,
+      "name_en": "seviper"
+    },
+    "108": {
+      "name": "マネネ",
+      "pokemon_id": 439,
+      "name_en": "mime-jr"
+    },
+    "109": {
+      "name": "バリヤード",
+      "pokemon_id": 122,
+      "name_en": "mr-mime"
+    },
+    "110": {
+      "name": "バリコオル",
+      "pokemon_id": 866,
+      "name_en": "mr-rime"
+    },
+    "111": {
+      "name": "タマゲタケ",
+      "pokemon_id": 590,
+      "name_en": "foongus"
+    },
+    "112": {
+      "name": "モロバレル",
+      "pokemon_id": 591,
+      "name_en": "amoonguss"
+    },
+    "113": {
+      "name": "ヒードラン",
+      "pokemon_id": 485,
+      "name_en": "heatran"
+    },
+    "114": {
+      "name": "ボルケニオン",
+      "pokemon_id": 721,
+      "name_en": "volcanion"
+    },
+    "115": {
+      "name": "コバルオン",
+      "pokemon_id": 638,
+      "name_en": "cobalion"
+    },
+    "116": {
+      "name": "テラキオン",
+      "pokemon_id": 639,
+      "name_en": "terrakion"
+    },
+    "117": {
+      "name": "ビリジオン",
+      "pokemon_id": 640,
+      "name_en": "virizion"
+    },
+    "118": {
+      "name": "ケルディオ",
+      "pokemon_id": 647,
+      "name_en": "keldeo-ordinary"
+    },
+    "119": {
+      "name": "メロエッタ",
+      "pokemon_id": 648,
+      "name_en": "meloetta-aria"
+    },
+    "120": {
+      "name": "ゲノセクト",
+      "pokemon_id": 649,
+      "name_en": "genesect"
+    },
+    "121": {
+      "name": "フーパ",
+      "pokemon_id": 720,
+      "name_en": "hoopa"
+    },
+    "122": {
+      "name": "マーシャドー",
+      "pokemon_id": 802,
+      "name_en": "marshadow"
+    },
+    "123": {
+      "name": "メルタン",
+      "pokemon_id": 808,
+      "name_en": "meltan"
+    },
+    "124": {
+      "name": "メルメタル",
+      "pokemon_id": 809,
+      "name_en": "melmetal"
+    },
+    "125": {
+      "name": "ダークライ",
+      "pokemon_id": 491,
+      "name_en": "darkrai"
+    },
+    "126": {
+      "name": "ラティアス",
+      "pokemon_id": 380,
+      "name_en": "latias"
+    },
+    "127": {
+      "name": "ラティオス",
+      "pokemon_id": 381,
+      "name_en": "latios"
+    },
+    "128": {
+      "name": "カイオーガ",
+      "pokemon_id": 382,
+      "name_en": "kyogre"
+    },
+    "129": {
+      "name": "グラードン",
+      "pokemon_id": 383,
+      "name_en": "groudon"
+    },
+    "130": {
+      "name": "レックウザ",
+      "pokemon_id": 384,
+      "name_en": "rayquaza"
+    },
+    "131": {
+      "name": "マギアナ",
+      "pokemon_id": 801,
+      "name_en": "magearna"
+    },
+    "132": {
+      "name": "メガゼラオラ"
+    }
+  }
+}
